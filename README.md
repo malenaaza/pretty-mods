@@ -64,7 +64,7 @@ It asks once to add the marketplace (`y`), then for a scope. Start a new session
 
 The theme is drawn by the desktop and mobile apps. The terminal and editors don't draw themes, so there only the countdown shows.
 
-**In the desktop app, use a session on your own computer.** A theme did not show in a cloud session, and did show in a session started in the Code tab with "my own computer" selected (see Status). If you installed from a terminal, install at user scope, then start a new local session in the app.
+**In the desktop app, the safest place is a session on your own computer.** `christmas-theme`, installed from a terminal, did not show in a cloud session and did show in a session started with "my own computer" selected (see Status). A copy of `kitty-theme` loaded in a cloud session's own mods folder did show its colours there, so cloud sessions can draw a theme; why the installed one didn't is not known. If you installed from a terminal, install at user scope, then start a new local session in the app.
 
 ## How it works
 
