@@ -72,11 +72,20 @@ If they attach a logo to the chat:
 
 1. Ask once that the logo is theirs to use. Never use another company's logo.
 2. **An SVG file:** run `python3 <skill>/scripts/svg_to_logo.py <file>` (add `--mono` to paint it in one colour). It fits the logo into the template's 100 x 100 grid, prints the `<g>` to paste into `LOGO`, and refuses what a theme can't draw (pictures, text, gradients, filters, scripts, `url(...)`), saying why. Relay the reason in plain words and say what to fix (convert text to outlines, flatten gradients), then ask them to upload it again.
-3. **A PNG, JPEG or other picture:** a theme can't hold a picture. Ask for the SVG, or offer to trace it only if a tracing tool such as `potrace` is installed, and say that tracing suits a simple one-colour logo and loses detail on anything else. Check what the tracer produced with the script above before using it.
+3. **A PNG or other picture:** a theme can't hold a picture, so trace it first. Ask for the SVG if they have one. If not, and the logo is simple and one colour, make a virtual environment of its own (`python3 -m venv <scratch>/venv && <scratch>/venv/bin/pip install potracer pillow numpy`) and run `<scratch>/venv/bin/python <skill>/scripts/trace_png.py logo.png logo.svg`, then pass `logo.svg` to `svg_to_logo.py`. Say that tracing loses detail on anything with gradients or photographs. **Always look at the trace against the original** (draw the SVG in a browser): a first trace can come out inverted, and a logo whose edge is cut off in the picture stays cut off. If the logo is photographic or has many colours, say that a theme can't use it and ask for a vector version.
 4. If the attachment can't be read as a file in this session, say so and ask them to paste the SVG text instead. Don't guess at a logo's shapes.
 5. Show them what you did (the colours chosen, that the logo is faint and in the corner) and ask them to look at it on their own device. You can't see it.
 
-Their uploaded logo stays in their own repository. Never copy it into the public one.
+Their uploaded logo stays in their own repository, or in a folder only on their own computer. Never copy it, or anything that names their company, into the public pretty-mods repository. If the brand is private or the person is a franchisee and not the owner of the brand, build it as a local folder (a folder with its own `.claude-plugin/marketplace.json`, added with `claude plugin marketplace add <folder>` and installed as `<plugin>@<marketplace>`), say that the franchise's brand rules decide whether it may be shared, and do not publish it.
+
+## A theme that follows the system's mode
+
+By default make a theme that respects the mode the person has chosen, light or dark, and force one only when the idea needs it (a night scene). Use `<skill>/brand-theme-template/register-both-modes.tsx.template` as the starting point. The points that matter:
+
+- Give `makeColors` **both** halves, `light` and `dark`, and leave out `overrideColorScheme` and `only`. Give each half its own `accent` through that half's `roles`, so it keeps its contrast on its own ground.
+- Draw the scene so it reads the mode: on the desktop a scene sees the mode the app shows through `@media (prefers-color-scheme: dark)`. Draw the two grounds as two rectangles with classes and hide one at a time, so no CSS needs a `url(...)`, and recolour the logo for dark in that same media rule. On the phone it is not known whether the scene follows the mode, so the default (light) must look right alone.
+- Leave the `glass` without a `tint`, so its veil takes each mode's own panel colour.
+- Render both modes before showing it: `scripts/render_scene.js` draws the light one, so draw the dark one too (a browser page with `colorScheme: 'dark'`).
 
 ## Seasonal and themed looks
 

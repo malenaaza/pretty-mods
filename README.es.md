@@ -126,7 +126,7 @@ Las escenas navideña y de gatitos se mueven despacio, sin parpadeos. Se paran c
 
 ## Más
 
-- La skill `pretty-mods` crea mods a tu estilo, y trae una plantilla para un tema con el logo de tu propia empresa.
+- La skill `pretty-mods` crea mods a tu estilo, y trae una plantilla para un tema con el logo de tu propia empresa, que puede seguir el modo claro u oscuro de tu sistema. Un PNG sencillo de un solo color se puede trazar a vectores.
 - Todo lo de este repositorio es gratis y con licencia MIT, y seguirá siéndolo. Más adelante podría aparecer un conjunto de pago aparte, en otro repositorio privado; hoy no hay nada a la venta.
 - Cómo funcionan por dentro, cómo hacer o cambiar una, y el estado detallado de lo probado: en el [README en inglés](README.md).
 

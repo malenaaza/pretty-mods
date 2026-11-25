@@ -10,4 +10,4 @@ for dir in plugins/*/; do
   fi
 done
 # The logo converter in the pretty-mods skill
-(cd plugins/pretty-mods/skills/pretty-mods/scripts && python3 -m unittest -q test_svg_to_logo)
+(cd plugins/pretty-mods/skills/pretty-mods/scripts && python3 -m unittest -q test_svg_to_logo test_trace_png)
