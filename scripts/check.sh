@@ -3,6 +3,7 @@
 set -e
 cd "$(dirname "$0")/.."
 claude plugin validate .
+python3 scripts/check_frontmatter.py plugins/*/skills/*/SKILL.md
 for dir in plugins/*/; do
   claude plugin validate "$dir"
   if ls "$dir"hooks/*.test.* >/dev/null 2>&1; then
@@ -10,4 +11,4 @@ for dir in plugins/*/; do
   fi
 done
 # The logo converter in the pretty-mods skill
-(cd plugins/pretty-mods/skills/pretty-mods/scripts && python3 -m unittest -q test_svg_to_logo)
+(cd plugins/pretty-mods/skills/pretty-mods/scripts && python3 -m unittest -q test_svg_to_logo test_trace_png)

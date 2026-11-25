@@ -18,9 +18,9 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 | Mod | Dónde se muestra | ¿Visto? |
 |---|---|---|
-| `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
-| `christmas-town-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador |
-| `christmas-market-theme` | Igual que arriba | Sí, en Windows: tras pedir la dueña tres puestos (0.2.0), informó de que "está bien", aunque los puestos le siguen pareciendo grandes y decidió dejarlos así. La primera versión mostraba solo dos puestos, uno cortado en el borde |
+| `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido; después la dueña informó de que los regalos añadidos en la 0.2.6 se ven bien). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
+| `christmas-town-theme` | Igual que arriba | Sí, en Windows: la primera versión tenía chimeneas que no se veían; tras la 0.1.1 (chimeneas de ladrillo con nieve) la dueña informó de que se ve bien |
+| `christmas-market-theme` | Igual que arriba | Sí, en Windows: tras pedir la dueña tres puestos (0.2.0), informó de que "está bien", aunque los puestos le siguen pareciendo grandes y decidió dejarlos así. Tras la 0.2.1 (casas del fondo visibles, tazas con asa) informó de que se ve bien. La primera versión mostraba solo dos puestos, uno cortado en el borde |
 | `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien", y después de que la cola del gato y las estrellas se ven y se mueven en la 0.1.6). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
 | `kitty-status`, `christmas-countdown` | La línea de estado en la terminal de Claude Code | Sí, las dos funcionan en la terminal de Claude Code (informe de la dueña). **En la app de escritorio de Windows los informes fueron mixtos:** `kitty-status` se vio una vez bajo la caja de texto y luego no, y `christmas-countdown` nunca se vio allí. Una línea de prueba que se actualizaba cada 5 segundos tampoco se mostró en una sesión en la nube. No cuentes con las líneas de estado en la app de escritorio; la causa no se conoce |
 | `now-playing` | La línea de estado, bajo la caja de texto (Mac: app Música; Windows: cualquier reproductor que informe a los controles multimedia del sistema, como YouTube Music en un navegador) | **Sí, en Windows, en la app de escritorio** (captura de la dueña, versión 0.2.0: se mostraron título y artista con el nombre de la mod delante) **y en la terminal de Claude Code** (informe de la dueña, versión no indicada). Mac: nunca se ha ejecutado. Las letras con acento salían rotas en la 0.2.0; la dueña confirmó que se ven bien (é y ñ) en la 0.2.1 |
@@ -126,7 +126,7 @@ Las escenas navideña y de gatitos se mueven despacio, sin parpadeos. Se paran c
 
 ## Más
 
-- La skill `pretty-mods` crea mods a tu estilo, y trae una plantilla para un tema con el logo de tu propia empresa.
+- La skill `pretty-mods` crea mods a tu estilo, y trae una plantilla para un tema con el logo de tu propia empresa, que puede seguir el modo claro u oscuro de tu sistema. Un PNG sencillo de un solo color se puede trazar a vectores.
 - Todo lo de este repositorio es gratis y con licencia MIT, y seguirá siéndolo. Más adelante podría aparecer un conjunto de pago aparte, en otro repositorio privado; hoy no hay nada a la venta.
 - Cómo funcionan por dentro, cómo hacer o cambiar una, y el estado detallado de lo probado: en el [README en inglés](README.md).
 

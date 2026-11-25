@@ -2,7 +2,7 @@
 
 A starting point for a theme in a company's own colours, with the company's own logo as a faint backdrop. Use it only for a logo the person has the right to use.
 
-Everything to change is marked `CHANGE:` in `register.tsx.template`.
+Everything to change is marked `CHANGE:`. There are two versions of the code: `register.tsx.template`, a dark theme with a forced mode, and `register-both-modes.tsx.template`, which follows the person's light or dark mode and is the one to start from unless the idea needs one mode. Copy the one you want to `hooks/register.tsx`.
 
 ## How to use it
 
@@ -14,6 +14,7 @@ Everything to change is marked `CHANGE:` in `register.tsx.template`.
 
 ## The logo
 
+- From a PNG, trace it first with `scripts/trace_png.py` (see the skill's instructions; it needs `potracer`, `pillow` and `numpy` in a virtual environment) and look at the trace against the original.
 - From an uploaded SVG, run `python3 ../scripts/svg_to_logo.py logo.svg` (from the skill folder; add `--mono` for one colour). It prints the shapes to paste into `LOGO` and refuses what can't be drawn.
 - It must be pure SVG shapes. A PNG or JPEG can't be embedded, and neither can fonts: turn any wordmark text into outlines first.
 - Paste only the `<path>`, `<circle>` and `<rect>` elements into `LOGO`, drawn on a 100 x 100 grid, and leave out the outer `<svg>` tag. `LOGO_COLOR` sets the fill.

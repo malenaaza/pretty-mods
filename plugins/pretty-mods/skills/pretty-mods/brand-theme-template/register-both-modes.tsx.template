@@ -1,0 +1,99 @@
+import type { Register, ThemeSetArgs } from 'claude-code'
+
+import { makeColors } from './make-colors.js'
+
+// This version FOLLOWS the mode the person has chosen (light or dark) instead of forcing one.
+// CHANGE: the brand colours, in both modes. Six-digit hex only. Light and dark each give their own accent, so it
+// keeps its contrast on its own ground. Keep text well above the contrast floor.
+const { theme, problems } = makeColors({
+  label: 'CHANGE Company',
+  roles: { danger: '#b3392f', success: '#2f7d4f', warning: '#a86f14', pro: '#6d4f94', accent: '#3b6fd4' },
+  light: {
+    roles: { accent: '#2f5fbf' },
+    gray: {
+      anchors: {
+        'surface-0': '#edf0f6',
+        'surface-1': '#f3f6fb',
+        'surface-2': '#fafbfd',
+        'text-primary': '#14202e',
+        'text-secondary': '#394658',
+        'text-muted': '#52607a',
+      },
+    },
+  },
+  dark: {
+    roles: { accent: '#7aa2ec', danger: '#d9695e', success: '#5fb07a', warning: '#d9a441', pro: '#a58bd0' },
+    gray: {
+      anchors: {
+        'surface-0': '#10151d',
+        'surface-1': '#171e29',
+        'surface-2': '#1e2734',
+        'surface-3': '#242f3e',
+        'text-primary': '#eef2f8',
+        'text-secondary': '#c9d1de',
+        'text-muted': '#a9b3c4',
+      },
+    },
+  },
+})
+
+// CHANGE: the logo, as plain SVG shapes on a 100 x 100 grid (svg_to_logo.py prints this for you). This placeholder is
+// a ring and a dot. Keep each shape's own `fill`: the scene recolours the logo for dark mode below.
+const LOGO =
+  '<path d="M10 50a40 40 0 1 0 80 0a40 40 0 1 0 -80 0ZM30 50a20 20 0 1 0 40 0a20 20 0 1 0 -40 0Z" fill="#3b6fd4" fill-rule="evenodd"/><circle cx="50" cy="50" r="9" fill="#3b6fd4"/>'
+
+// A wide window shows only the middle band of this tall picture (about y 290 to 510), so the logo sits in that
+// band, at the right edge where the words are not. It is faint, so text stays readable over it. The scene reads the
+// mode the app shows (on the desktop): a pale ground and the logo in its own colour by day, a dark ground and a
+// light logo at night. The two grounds are two rectangles, one hidden at a time, so no CSS needs a `url(...)`.
+const SCENE = [
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">',
+  '<defs>',
+  '<linearGradient id="dayg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f8fc"/><stop offset="1" stop-color="#e1e8f3"/></linearGradient>',
+  '<linearGradient id="nightg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0f18"/><stop offset="1" stop-color="#162131"/></linearGradient>',
+  '</defs>',
+  '<style>',
+  '.night{display:none}',
+  '.lg{opacity:.12}',
+  // CHANGE: the logo's colour at night. `path` and `circle` cover the placeholder; list the elements your logo uses.
+  '@media (prefers-color-scheme:dark){.day{display:none}.night{display:inline}.lg{opacity:.16}.lg path,.lg circle{fill:#9ab8f0}}',
+  '</style>',
+  '<rect class="day" width="400" height="800" fill="url(#dayg)"/>',
+  '<rect class="night" width="400" height="800" fill="url(#nightg)"/>',
+  `<g class="lg" transform="translate(262 372) scale(1.1)">${LOGO}</g>`,
+  '</svg>',
+].join('')
+
+// The glass has no tint of its own, so its veil takes each mode's own panel colour.
+const LOOK: ThemeSetArgs = {
+  colors: theme,
+  backdrop: { scene: 'brand-logo', glass: { blur: 0, opacity: 0.35 } },
+}
+
+export const register: Register = on => {
+  on('session.start', async ($, e, next) => {
+    const unpainted = problems.find(line => line.startsWith("Desktop won't paint"))
+
+    if (unpainted !== undefined) {
+      $.ui.toast(unpainted)
+    }
+    const set = await $.theme.set(LOOK)
+
+    if (!set.isDrawn) {
+      $.ui.status(set.reason)
+    }
+
+    return next(e)
+  })
+
+  on('ui.render', { component: 'Backdrop' }, ($, e, next) => {
+    if (e.surface !== 'desktop' && e.surface !== 'mobile') {
+      return next(e)
+    }
+
+    const { Svg } = $.ui.resolve(e)
+
+    // CHANGE: say what the logo is, for screen readers.
+    return <Svg source={SCENE} alt="The company logo, faint, in the corner" isInteractive />
+  })
+}
