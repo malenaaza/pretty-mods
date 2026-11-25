@@ -1,0 +1,5 @@
+{
+  "name": "now-playing",
+  "version": "0.1.0",
+  "description": "Shows the song playing in the Music app on your Mac in the status line. Terminal on a Mac only."
+}

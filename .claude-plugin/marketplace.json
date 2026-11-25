@@ -27,6 +27,11 @@
       "category": "extras"
     },
     {
+      "name": "now-playing",
+      "source": "./plugins/now-playing",
+      "category": "extras"
+    },
+    {
       "name": "pretty-mods",
       "source": "./plugins/pretty-mods",
       "category": "authoring"
