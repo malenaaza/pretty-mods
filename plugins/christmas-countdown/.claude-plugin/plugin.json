@@ -1,0 +1,5 @@
+{
+  "name": "christmas-countdown",
+  "version": "0.1.0",
+  "description": "Days left until Christmas in the status line, and a greeting on the day."
+}
