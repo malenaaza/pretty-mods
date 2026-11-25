@@ -9,6 +9,14 @@ Pretty mods for Claude: changes to how Claude looks and what it shows, for the d
 | `christmas-theme` | A Christmas look: deep pine green with warm cream text, cranberry accents and gold, and a slow snowfall behind the conversation. Dark, in the app's desktop and mobile versions. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
 
+## The skill that makes mods
+
+`pretty-mods` is a skill: ask Claude for a mod ("make Claude look like a cosy cabin", "a status line with the weather") and it builds one in your own style. The first time it asks a few questions (colours, dark or light, motion, sound) and saves them in `~/.pretty-mods/style.md`, outside the skill, so it never asks twice. It uses Claude's built-in mod-writing skill for the mechanics and adds the checks for desktop and mobile: readable contrast, slow vector-only motion, no flashing, layouts that fit a phone, no sound unless you ask, and an honest note on what could not be checked.
+
+```
+/plugin install pretty-mods --marketplace malenaaza/pretty-mods
+```
+
 ## Install
 
 In Claude Code, type these (for each mod you want):
@@ -28,10 +36,10 @@ The theme is drawn by the desktop and mobile apps. The terminal and editors don'
 ## Checking and testing
 
 ```
-claude plugin validate plugins/christmas-theme
-claude plugin validate plugins/christmas-countdown
-claude plugin test plugins/christmas-countdown
+scripts/check.sh
 ```
+
+It validates the marketplace and every plugin and runs each plugin's tests.
 
 ## Status
 

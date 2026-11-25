@@ -1,0 +1,10 @@
+{
+  "name": "pretty-mods",
+  "version": "0.1.0",
+  "description": "Makes pretty mods for Claude in your own style: themes, panels, status lines and small extras that look right on desktop and mobile.",
+  "author": { "name": "malenaaza", "url": "https://github.com/malenaaza" },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT",
+  "keywords": ["mods", "theme", "claude", "desktop", "mobile", "christmas"]
+}
