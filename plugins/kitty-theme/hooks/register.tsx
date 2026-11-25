@@ -25,13 +25,16 @@ const { theme, problems } = makeColors({
 // A window at night: moon, a few stars, and a cat sitting on a ledge. Only the tail and the stars move, slowly.
 // A wide window shows only the middle band of this tall picture (about y 290 to 510), and a phone shows nearly all
 // of it, so the moon and the cat sit in that band, the cat at the right edge where the words aren't.
-const STARS = Array.from({ length: 36 }, (_, i) => {
+const STARS = Array.from({ length: 30 }, (_, i) => {
   const x = (i * 59 + 23) % 400
   const y = (i * 97 + 11) % 800
-  const r = 0.9 + ((i * 3) % 4) * 0.45
+  const r = 2.4 + ((i * 3) % 4) * 1.1
+  const duration = 5 + ((i * 3) % 5)
   const delay = -((i * 5) % 9)
+  // A four-pointed sparkle: four curves that bend in towards the middle.
+  const d = `M${x} ${y - r}Q${x} ${y} ${x + r} ${y}Q${x} ${y} ${x} ${y + r}Q${x} ${y} ${x - r} ${y}Q${x} ${y} ${x} ${y - r}Z`
 
-  return `<circle class="s" cx="${x}" cy="${y}" r="${r}" style="animation-delay:${delay}s"/>`
+  return `<path class="s" d="${d}" style="animation-duration:${duration}s;animation-delay:${delay}s"/>`
 }).join('')
 
 const SCENE = [
@@ -40,10 +43,10 @@ const SCENE = [
   '<stop offset="0" stop-color="#151021"/><stop offset="1" stop-color="#2d2140"/>',
   '</linearGradient></defs>',
   '<style>',
-  '.s{fill:#f6ecdf;animation:tw 9s ease-in-out infinite}',
-  '@keyframes tw{0%,100%{opacity:.35}50%{opacity:.9}}',
-  '.t{transform-origin:26px -2px;animation:sway 7s ease-in-out infinite}',
-  '@keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(6deg)}}',
+  '.s{fill:#f6ecdf;animation-name:tw;animation-timing-function:ease-in-out;animation-iteration-count:infinite}',
+  '@keyframes tw{0%,100%{opacity:.15}50%{opacity:1}}',
+  '.t{transform-origin:26px -2px;animation:sway 4.5s ease-in-out infinite}',
+  '@keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(10deg)}}',
   // Asked to reduce motion, the stars and the tail stay still.
   '@media (prefers-reduced-motion:reduce){.s,.t{animation:none}}',
   '</style>',
