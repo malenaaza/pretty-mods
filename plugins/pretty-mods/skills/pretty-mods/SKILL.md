@@ -50,7 +50,8 @@ Mods draw differently by surface: `terminal`, `desktop`, `vscode` and `mobile`. 
 
 1. `claude plugin validate <mod folder>` must pass.
 2. Where the mod has logic (a date, a counter), write a `*.test.ts` and run `claude plugin test <mod folder>`.
-3. Say what you could not check. In a cloud session there is no desktop or phone screen: the colours, contrast and motion are **validated, not seen**. Tell the user that, ask them to look at it on their own device, and ask for a screenshot description or what looked wrong. Never say it looks good when you haven't seen it.
+3. **Look at a moving scene before showing it.** Keep the scene in a constant called `SCENE`, then run `node <skill>/scripts/render_scene.js <mod folder>/hooks/register.tsx <a scratch folder>` and open the PNGs it writes (a wide frame and a phone frame, at 0, 20 and 45 seconds). Check that the subject is inside the visible band, that nothing starts off screen when a session opens, that it is not too big on a wide frame and that nothing is the wrong colour. It draws the scene alone: the app adds its own glass blur and tint and its panels on top, so keep `glass` blur low (a blur of 18 turned Santa into a blob) and tell the user that this part is not seen.
+4. Say what you could not check. In a cloud session there is no desktop or phone screen: the colours, contrast and motion are **validated, not seen**. Tell the user that, ask them to look at it on their own device, and ask for a screenshot description or what looked wrong. Never say it looks good when you haven't seen it. A render is not the app: say "rendered the scene in a browser", not "checked on your screen".
 
 ## Step 5: Keep it and share it
 
@@ -61,7 +62,7 @@ A mod written in a session lives in that session's mods folder and ends with it.
 - Install line to give for a shared mod: `/plugin install <mod> --marketplace <owner>/<repo>`.
 - Before putting a mod in a public repository, ask whether the repository is public or private, and look for anything personal in it.
 
-Never push to a branch another session owns, and never open a pull request unless asked.
+Push only after `scripts/check.sh` has passed, and chain them with `&&`, never `;`, so a failing check stops the push. Never push to a branch another session owns, and never open a pull request unless asked.
 
 ## A theme with a company logo
 
