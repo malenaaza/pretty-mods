@@ -1,0 +1,80 @@
+import type { Register, ThemeSetArgs } from 'claude-code'
+
+import { makeColors } from './make-colors.js'
+
+// CHANGE: the brand colours. Six-digit hex only. Keep text well above the contrast floor.
+const { theme, problems } = makeColors({
+  label: 'CHANGE Company',
+  roles: { accent: '#3b6fd4', danger: '#c0392b', success: '#2f7d4f', warning: '#b8860b', pro: '#6d4f94' },
+  light: {
+    gray: {
+      anchors: {
+        'surface-0': '#eef1f6',
+        'surface-1': '#f4f6fa',
+        'surface-2': '#fafbfd',
+        'text-primary': '#16202e',
+        'text-secondary': '#394658',
+        'text-muted': '#52607a',
+      },
+    },
+  },
+  dark: {
+    gray: {
+      anchors: {
+        'surface-0': '#10151d',
+        'surface-1': '#171e29',
+        'surface-2': '#1e2734',
+        'surface-3': '#242f3e',
+        'text-primary': '#eef2f8',
+        'text-secondary': '#c9d1de',
+        'text-muted': '#a9b3c4',
+      },
+    },
+  },
+})
+
+// CHANGE: the logo, as plain SVG shapes on a 100 x 100 grid. This placeholder is a ring and a dot.
+const LOGO = '<circle cx="50" cy="50" r="38" fill="none" stroke-width="10"/><circle cx="50" cy="50" r="12"/>'
+const LOGO_COLOR = '#3b6fd4'
+
+// The logo sits small and faint in the upper right, away from the words and the message box.
+const SCENE = [
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">',
+  `<g transform="translate(270 70) scale(1.1)" fill="${LOGO_COLOR}" stroke="${LOGO_COLOR}" opacity=".08">`,
+  LOGO,
+  '</g>',
+  '</svg>',
+].join('')
+
+const LOOK: ThemeSetArgs = {
+  colors: theme,
+  backdrop: { scene: 'brand-logo', glass: { blur: 14, tint: '#10151d', opacity: 0.5 } },
+}
+
+export const register: Register = on => {
+  on('session.start', async ($, e, next) => {
+    const unpainted = problems.find(line => line.startsWith("Desktop won't paint"))
+
+    if (unpainted !== undefined) {
+      $.ui.toast(unpainted)
+    }
+    const set = await $.theme.set(LOOK)
+
+    if (!set.isDrawn) {
+      $.ui.status(set.reason)
+    }
+
+    return next(e)
+  })
+
+  on('ui.render', { component: 'Backdrop' }, ($, e, next) => {
+    if (e.surface !== 'desktop' && e.surface !== 'mobile') {
+      return next(e)
+    }
+
+    const { Svg } = $.ui.resolve(e)
+
+    // CHANGE: say what the logo is, for screen readers.
+    return <Svg source={SCENE} alt="The company logo, faint, in the corner" />
+  })
+}

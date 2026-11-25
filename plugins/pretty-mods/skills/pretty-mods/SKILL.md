@@ -62,6 +62,10 @@ A mod written in a session lives in that session's mods folder and ends with it.
 
 Never push to a branch another session owns, and never open a pull request unless asked.
 
+## A theme with a company logo
+
+When the user wants a theme in their own company's colours with its logo, start from `<skill>/brand-theme-template/` (its README says how). Ask first that the logo is theirs to use, and never use another company's logo. The logo must be redrawn as plain SVG shapes, since a theme can't embed a picture or a font. Build it in the user's own repository, private if the brand isn't public, never in the public pretty-mods repository.
+
 ## Seasonal and themed looks
 
 For a season or a theme (Christmas, Halloween, spring, a favourite film), write one theme mod and, if wanted, small extras as separate mods (a countdown, a greeting). Say when it is meant to be switched off: a Christmas look in July is a surprise. The user decides whether a mod should switch itself on and off by date; if they want that, do it in the mod, and test the dates.
