@@ -45,10 +45,11 @@ const FLAKES = Array.from({ length: 48 }, (_, i) => {
   return `<circle class="f" cx="${x}" cy="-10" r="${r}" style="--d:${drift}px;--y:${rest}px;animation-duration:${duration}s;animation-delay:${delay}s"/>`
 }).join('')
 
-// Santa, his sleigh and one reindeer, drawn small around (0, 0). They rest at the spot given by the outer
-// transform, and the slow flight across the sky only moves them sideways. The sky band a wide window shows
-// is about y 290 to 510, so they fly through the middle of it. The animation starts partway across (the
-// negative delay), so they are on screen when a session opens.
+// Santa, his sleigh and one reindeer, drawn small around (0, 0). The reindeer is on the left and faces left, so
+// the flight goes from right to left and the reindeer pulls the sleigh. They rest at the spot given by the outer
+// transform, and the slow flight across the sky only moves them sideways. The sky band a wide window shows is
+// about y 290 to 510, so they fly through the middle of it. The animation starts partway across (the negative
+// delay), so they are on screen when a session opens.
 const SANTA = [
   '<path d="M-38 -8 L-12 -4" stroke="#d9b45a" stroke-width="1" fill="none"/>',
   '<ellipse cx="-50" cy="-8" rx="14" ry="7" fill="#7a5230"/>',
@@ -77,7 +78,7 @@ const SCENE = [
   '.sl{animation:fly 70s linear -34s infinite}',
   // Asked to reduce motion, the flakes rest at set heights and Santa rests where he is drawn.
   '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.sl{animation:none}}',
-  '@keyframes fly{from{transform:translate(-250px,0)}to{transform:translate(215px,0)}}',
+  '@keyframes fly{from{transform:translate(215px,0)}to{transform:translate(-250px,0)}}',
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   FLAKES,

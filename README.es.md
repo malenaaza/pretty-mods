@@ -17,8 +17,8 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 | Mod | Dónde se muestra | ¿Visto? |
 |---|---|---|
-| `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien"). Móvil: sin probar |
-| `kitty-theme` | Igual que arriba | Se vieron los colores; el gato se ha rehecho desde entonces y aún no hay informe |
+| `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido). Móvil: sin probar |
+| `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien"; la 0.1.5 era la versión actual, no dijo cuál exactamente). Móvil: sin probar |
 | `christmas-countdown`, `kitty-status` | La línea de estado, donde Claude Code muestre una | Sin informe individual |
 | `now-playing` | La línea de estado en la terminal de Claude Code (Mac: app Música; Windows: cualquier reproductor que informe a los controles multimedia del sistema, como YouTube Music en un navegador) | No. Nunca se ha ejecutado en un Mac ni en un PC con Windows reales |
 
