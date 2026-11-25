@@ -25,6 +25,33 @@ test('a long line is cut', () => {
   expect(out?.endsWith('…')).toBe(true)
 })
 
+test('the Windows command is tried after the Mac one fails', async ($, on) => {
+  const lines: Array<string | undefined> = []
+  const tried: string[] = []
+
+  on('session.start', (_, e) => ({ cwd: e.cwd }))
+  on('clock.every', () => ({ value: undefined }))
+  on('process.run', (_, e) => {
+    tried.push(e.argv[0] ?? '')
+
+    return e.argv[0] === 'powershell.exe'
+      ? { value: { exitCode: 0, stdout: 'playing||Song||Band\r\n', stderr: '' } }
+      : { deny: 'not a Mac' }
+  })
+  on('ui.status', (_, e) => {
+    lines.push(e.text)
+
+    return { value: undefined }
+  })
+
+  await $.session.start({ cwd: '/', surface: 'terminal', isInteractive: true })
+
+  // The Mac command is tried once; after the Windows one works, only it is asked again.
+  expect(tried.slice(0, 2)).toEqual(['osascript', 'powershell.exe'])
+  expect(tried.filter(name => name === 'osascript')).toHaveLength(1)
+  expect(lines.at(-1)).toBe('🎵 Song - Band')
+})
+
 test('a failing command shows nothing and stops asking', async ($, on) => {
   const lines: Array<string | undefined> = []
   let runs = 0
@@ -44,6 +71,6 @@ test('a failing command shows nothing and stops asking', async ($, on) => {
 
   await $.session.start({ cwd: '/', surface: 'terminal', isInteractive: true })
 
-  expect(runs).toBe(1)
+  expect(runs).toBe(2)
   expect(lines.at(-1)).toBeUndefined()
 })

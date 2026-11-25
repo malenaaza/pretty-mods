@@ -1,11 +1,20 @@
 import type { Register } from 'claude-code'
 
-import { parseNowPlaying, SCRIPT } from './parse.js'
+import { parseNowPlaying, SCRIPT, WINDOWS_SCRIPT } from './parse.js'
 
 const EVERY = 15 * 1000
 
+type Player = { argv: string[] }
+
+// Tried in order, once: the Mac's Music app, then Windows' media controls.
+const PLAYERS: Player[] = [
+  { argv: ['osascript', '-e', SCRIPT] },
+  { argv: ['powershell.exe', '-NoProfile', '-NonInteractive', '-Command', WINDOWS_SCRIPT] },
+]
+
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
+    let player: Player | undefined
     let isStopped = false
 
     const check = async (): Promise<void> => {
@@ -13,15 +22,22 @@ export const register: Register = on => {
         return
       }
 
-      try {
-        const ran = await $.process.run(['osascript', '-e', SCRIPT], { timeoutMs: 5000 })
+      for (const candidate of player === undefined ? PLAYERS : [player]) {
+        try {
+          const ran = await $.process.run(candidate.argv, { timeoutMs: 8000 })
 
-        $.ui.status(ran.exitCode === 0 ? parseNowPlaying(ran.stdout) : undefined)
-      } catch {
-        // Not a Mac, or the command can't run here: show nothing and stop asking.
-        isStopped = true
-        $.ui.status(undefined)
+          player = candidate
+          $.ui.status(ran.exitCode === 0 ? parseNowPlaying(ran.stdout) : undefined)
+
+          return
+        } catch {
+          // This command can't run here: try the next one.
+        }
       }
+
+      // Neither could run: show nothing and stop asking.
+      isStopped = true
+      $.ui.status(undefined)
     }
 
     await check()

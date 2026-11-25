@@ -1,4 +1,22 @@
-// The Music app's answer is "state||title||artist", or "off" when the app isn't running.
+// Windows: whatever is playing in the system's media controls (YouTube Music in a browser, Spotify...).
+// Needs Windows PowerShell 5.1 (powershell.exe), which can reach the Windows media session.
+export const WINDOWS_SCRIPT = [
+  "$ErrorActionPreference = 'Stop'",
+  'Add-Type -AssemblyName System.Runtime.WindowsRuntime',
+  "$asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0]",
+  'function Await($op, $type) { $t = $asTask.MakeGenericMethod($type).Invoke($null, @($op)); $t.Wait(-1) | Out-Null; $t.Result }',
+  '$m = [Windows.Media.Control.GlobalSystemMediaTransportControlsSessionManager, Windows.Media.Control, ContentType = WindowsRuntime]',
+  '$mgr = Await ($m::RequestAsync()) $m',
+  '$s = $mgr.GetCurrentSession()',
+  "if ($null -eq $s) { Write-Output 'off'; exit 0 }",
+  "$st = [string]$s.GetPlaybackInfo().PlaybackStatus",
+  "if ($st -ne 'Playing') { Write-Output $st.ToLower(); exit 0 }",
+  '$pt = [Windows.Media.Control.GlobalSystemMediaTransportControlsSessionMediaProperties, Windows.Media.Control, ContentType = WindowsRuntime]',
+  '$p = Await ($s.TryGetMediaPropertiesAsync()) $pt',
+  "Write-Output ('playing||' + $p.Title + '||' + $p.Artist)",
+].join('\n')
+
+// The Music app's answer is "state||title||artist", or "off" when the app isn't running. The Windows script answers the same way.
 export const SCRIPT = [
   'if application "Music" is running then',
   'tell application "Music"',

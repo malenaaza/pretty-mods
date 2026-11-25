@@ -20,7 +20,7 @@ Pretty mods for Claude: changes to how Claude looks and what it shows, for the d
 
 | Mod | What it does |
 |---|---|
-| `now-playing` | Shows "🎵 title - artist" in the status line for the song playing in the Music app (Apple Music) on your Mac. It asks the app on your own Mac, so it needs no account connection, token or sign-in. Terminal on a Mac only: not the desktop or phone apps, and nothing shows when the app is closed or paused. Updates every 15 seconds. |
+| `now-playing` | Shows "🎵 title - artist" in the status line for the song that's playing. On a Mac it asks the Music app; on Windows it reads the system media controls, so YouTube Music in a browser works, and so do Spotify and most players. It asks your own computer, so it needs no account connection, token or sign-in. Terminal only: not the desktop or phone apps, and nothing shows when nothing is playing. Updates every 15 seconds. |
 
 ## The skill that makes mods
 
@@ -76,6 +76,6 @@ It validates the marketplace and every plugin and runs each plugin's tests.
 
 New. Written in a cloud session, so the looks (Christmas and kitty) have been validated but not yet seen on a real desktop or phone screen. If the snow, the colours or the contrast look wrong on your device, please open an issue and say which device.
 
-`now-playing` is tested only on sample text, not on a real Mac with the Music app. The first time it runs, macOS may ask to let the terminal control Music; allow it. If it shows nothing while a song plays, please open an issue.
+`now-playing` is tested only on sample text, not on a real Mac or Windows PC; the Windows media-controls script in particular has never been run. On a Mac, the first time it runs macOS may ask to let the terminal control Music; allow it. On Windows it needs Windows PowerShell (`powershell.exe`, built in). If it shows nothing while a song plays, please open an issue and say which system and player.
 
 MIT licence.
