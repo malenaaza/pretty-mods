@@ -3,6 +3,7 @@
 set -e
 cd "$(dirname "$0")/.."
 claude plugin validate .
+python3 scripts/check_frontmatter.py plugins/*/skills/*/SKILL.md
 for dir in plugins/*/; do
   claude plugin validate "$dir"
   if ls "$dir"hooks/*.test.* >/dev/null 2>&1; then

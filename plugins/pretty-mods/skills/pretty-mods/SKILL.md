@@ -1,6 +1,7 @@
 ---
 name: pretty-mods
-description: Makes mods for Claude in the user's own style: a theme, a panel beside the chat, a band above the prompt, a status line entry, a toast, a slash command, a sound or a seasonal look (Christmas, Halloween...), for the desktop and mobile apps as well as the terminal. Use whenever the user asks for a mod, a theme or a look for Claude, "make Claude look like...", a panel or status line, or to change or share a mod they made. It adds their saved style and the desktop and mobile checks to Claude's built-in mod-writing skill (plugin-authoring).
+description: >-
+  Makes mods for Claude in the user's own style: a theme, a panel beside the chat, a band above the prompt, a status line entry, a toast, a slash command, a sound or a seasonal look (Christmas, Halloween...), for the desktop and mobile apps as well as the terminal. Use whenever the user asks for a mod, a theme or a look for Claude, "make Claude look like...", a panel or status line, or to change or share a mod they made. It adds their saved style and the desktop and mobile checks to Claude's built-in mod-writing skill (plugin-authoring).
 ---
 
 # Pretty mods
