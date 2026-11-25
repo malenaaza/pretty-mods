@@ -43,8 +43,8 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 | Mod | What it does |
 |---|---|
-| `christmas-theme` | Deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh and a reindeer crossing the sky once every 70 seconds. Dark. |
-| `christmas-town-theme` | Another Christmas look, with a town: a midnight-blue night with snow-roofed houses and their lit windows, a church with a steeple, pine trees with coloured lights, a moon, drifting chimney smoke and slow snowfall. Dark. Install it instead of `christmas-theme`, not with it. |
+| `christmas-theme` | Deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh full of wrapped presents and a reindeer crossing the sky once every 70 seconds. Dark. |
+| `christmas-town-theme` | Another Christmas look, with a town: a midnight-blue night with snow-roofed houses with brick chimneys and their lit windows, a church with a steeple, pine trees with coloured lights, a moon, drifting chimney smoke and slow snowfall. Dark. Install it instead of `christmas-theme`, not with it. |
 | `christmas-market-theme` | A Christmas market at night: wooden stalls with snowy roofs and striped awnings, strings of coloured lights, a tall lit tree, a standing table with a candle, and six people in winter coats eating and drinking (a sausage in a bun, a pretzel, a crepe, mugs of something hot). Their arms lift slowly to their mouths and steam rises from the mugs. Dark. Install it instead of the other Christmas themes, not with them. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
 
