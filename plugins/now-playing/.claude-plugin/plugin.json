@@ -1,5 +1,5 @@
 {
   "name": "now-playing",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Shows the song that's playing in the status line: the Music app on a Mac, or whatever your Windows media controls show (YouTube Music in a browser, Spotify...). Terminal only."
 }

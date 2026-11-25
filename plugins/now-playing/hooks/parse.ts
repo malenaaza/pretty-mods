@@ -1,6 +1,8 @@
 // Windows: whatever is playing in the system's media controls (YouTube Music in a browser, Spotify...).
 // Needs Windows PowerShell 5.1 (powershell.exe), which can reach the Windows media session.
 export const WINDOWS_SCRIPT = [
+  // Answer in UTF-8 without a byte-order mark, or accented letters in a title arrive broken.
+  '[Console]::OutputEncoding = New-Object System.Text.UTF8Encoding $false',
   "$ErrorActionPreference = 'Stop'",
   'Add-Type -AssemblyName System.Runtime.WindowsRuntime',
   "$asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0]",
@@ -34,7 +36,8 @@ const shorten = (text: string): string => (text.length > MAX ? `${text.slice(0, 
 
 // The status line text for what the Music app said, or undefined for nothing to show.
 export const parseNowPlaying = (stdout: string): string | undefined => {
-  const [state, title, ...rest] = stdout.trim().split('||')
+  // A byte-order mark at the start would make the state read "\uFEFFplaying".
+  const [state, title, ...rest] = stdout.replace(/^\uFEFF/, '').trim().split('||')
 
   if (state !== 'playing' || title === undefined || title.trim() === '') {
     return undefined

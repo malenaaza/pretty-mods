@@ -6,6 +6,11 @@ test('a playing track shows title and artist', () => {
   expect(parseNowPlaying('playing||Song||Band\n')).toBe('🎵 Song - Band')
 })
 
+test('accented letters and a byte-order mark are handled', () => {
+  expect(parseNowPlaying('playing||Miénteme||Niño')).toBe('🎵 Miénteme - Niño')
+  expect(parseNowPlaying('\uFEFFplaying||Song||Band\r\n')).toBe('🎵 Song - Band')
+})
+
 test('nothing shows when paused, stopped or the app is off', () => {
   expect(parseNowPlaying('paused')).toBeUndefined()
   expect(parseNowPlaying('stopped')).toBeUndefined()
