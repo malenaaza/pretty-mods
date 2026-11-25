@@ -12,3 +12,4 @@ Pretty mods for Claude: one folder per mod in `plugins/`, listed in `.claude-plu
 6. **Personal data stays out:** no names, tokens, personal paths or screenshots of the owner's screen. The owner's style lives in `~/.pretty-mods/style.md`, never in the repository.
 7. **Pull requests** only when asked. Before opening one, fetch `main` and merge it into the branch.
 8. Update the README in the same change as a mod or a skill change.
+9. **Free mods only.** Everything in this repository is free and MIT-licensed. A paid mod would go in a separate private repository, never here.

@@ -24,6 +24,10 @@ Pretty mods for Claude: changes to how Claude looks and what it shows, for the d
 /plugin install pretty-mods --marketplace malenaaza/pretty-mods
 ```
 
+## Plus (coming)
+
+Everything in this repository is free and MIT-licensed, and stays free, including `kitty-theme`. Later, a separate paid set of themes with richer scenes may appear under the name Plus. It would live in its own private repository, not here. Nothing is for sale yet, and no price or date is set.
+
 ## Install
 
 In Claude Code, type these (for each mod you want):
