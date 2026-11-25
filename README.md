@@ -38,6 +38,8 @@ Everything in this repository is free and MIT-licensed, and stays free, includin
 
 ## Install
 
+**What you need: Claude Code.** These mods work only in Claude Code. The owner tried them with a Claude Free account and they did not work there, so they are not for Free. The themes also need a Claude Code session shown in the desktop app (see below), and `now-playing` needs the Claude Code terminal. Why they fail on Free was not investigated.
+
 In Claude Code, type these (for each mod you want):
 
 ```
@@ -113,6 +115,8 @@ It validates the marketplace and every plugin and runs each plugin's tests.
 ## Status
 
 New. Written in a cloud session, so the looks (Christmas and kitty) have been validated but not yet seen on a real desktop or phone screen. If the snow, the colours or the contrast look wrong on your device, please open an issue and say which device.
+
+Owner's report, Free account: the mods do not work on Claude Free; they work only in Claude Code. Nothing more was tested there, and the cause is not known.
 
 Owner's report, Windows desktop app (app version 6.28899.6, Pro plan): `christmas-theme` installed from a terminal showed nothing in a cloud Code session, and showed once the session was started on the owner's own computer. In a terminal-only session it reports that no client draws themes yet, which is expected. The owner's screenshot of `christmas-theme` 0.2.1 showed Santa, the reindeer and the sleigh on screen but as a blurred blob, because the backdrop glass blurred the whole scene (blur 18). `christmas-theme` 0.2.2 and `kitty-theme` 0.1.3 lower the blur to 2 and the veil to 45%, and Santa is a little more transparent so he doesn't compete with long answers; not yet reported back. Not yet reported: `kitty-theme`, the phone app, and `christmas-countdown`/`kitty-status` in the desktop app.
 
