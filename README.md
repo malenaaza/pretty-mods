@@ -134,10 +134,6 @@ Before showing a moving scene, the skill renders it in a browser at a wide and a
 /plugin install pretty-mods --marketplace malenaaza/pretty-mods
 ```
 
-## Plus (coming)
-
-Everything in this repository is free and MIT-licensed, and stays free, including `kitty-theme`. Later, a separate paid set of themes with richer scenes may appear under the name Plus. It would live in its own private repository, not here. Nothing is for sale yet, and no price or date is set.
-
 ## How it works
 
 **A mod is a small folder.** Each one lives in `plugins/<name>/` and holds three things:
