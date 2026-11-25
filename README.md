@@ -64,6 +64,42 @@ It asks once to add the marketplace (`y`), then for a scope. Start a new session
 
 The theme is drawn by the desktop and mobile apps. The terminal and editors don't draw themes, so there only the countdown shows.
 
+## How it works
+
+**A mod is a small folder.** Each one lives in `plugins/<name>/` and holds three things:
+
+- `.claude-plugin/plugin.json`: its name, a one-line description and a version.
+- `hooks/hooks.json`: points at the mod's code.
+- `hooks/register.ts` (or `.tsx`): the code. It says "when this happens in Claude, do that", for example "when a session starts, set the colours" or "every hour, update the status line".
+
+**The marketplace is the list.** `.claude-plugin/marketplace.json` names every mod and where its folder is. When you run `/plugin install <mod> --marketplace malenaaza/pretty-mods`, Claude Code reads that list, finds the folder and installs it. A mod that isn't in the list can't be installed.
+
+**What a mod can change.** There are three kinds here:
+
+- **A look (theme):** colours and a moving scene behind the conversation, for the desktop and mobile apps. The terminal and editors don't draw themes. `christmas-theme` and `kitty-theme` are looks.
+- **A status line:** one line of text, which the mod updates itself. `christmas-countdown`, `kitty-status` and `now-playing` are status lines.
+- **Running something on your computer:** `now-playing` asks your Music app (Mac) or Windows media controls what's playing. That works in the terminal only.
+
+**Where each works** (what the design says, not yet all confirmed on real devices):
+
+| Mod | Terminal | Desktop app | Phone |
+|---|---|---|---|
+| `christmas-theme`, `kitty-theme` | no | yes | yes |
+| `christmas-countdown`, `kitty-status` | yes | where the app shows a status line | not confirmed |
+| `now-playing` | yes | no | no |
+
+**Making or changing one yourself.**
+
+1. Ask Claude, with the `pretty-mods` skill installed: "make Claude look like a cosy cabin". It builds the folder for you in your own style.
+2. Or copy a folder in `plugins/` and change it. `kitty-status` is the smallest example.
+3. Add it to `.claude-plugin/marketplace.json` and to the tables above.
+4. Run `scripts/check.sh`. It validates everything and runs the tests.
+5. Raise the `version` in its `plugin.json` when its behaviour changes, so installed copies update.
+
+**For a company theme with a logo,** use the template in `plugins/pretty-mods/skills/pretty-mods/brand-theme-template/`. A theme can only draw plain vector shapes, so a logo has to be an SVG, not a picture.
+
+**Honest limits.** Everything was written in a cloud session with no real screen, so the looks are validated, not seen. See Status below.
+
 ## Checking and testing
 
 ```
