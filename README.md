@@ -6,7 +6,7 @@ Pretty mods for Claude: changes to how Claude looks and what it shows, for the d
 
 | Mod | What it does |
 |---|---|
-| `christmas-theme` | A Christmas look: deep pine green with warm cream text, cranberry accents and gold, and a slow snowfall behind the conversation. Dark, in the app's desktop and mobile versions. |
+| `christmas-theme` | A Christmas look: deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh and a reindeer crossing the sky once every 90 seconds. Dark, in the app's desktop and mobile versions. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
 
 ## Kitty mods
@@ -64,6 +64,8 @@ It asks once to add the marketplace (`y`), then for a scope. Start a new session
 
 The theme is drawn by the desktop and mobile apps. The terminal and editors don't draw themes, so there only the countdown shows.
 
+**In the desktop app, use a session on your own computer.** A theme did not show in a cloud session, and did show in a session started in the Code tab with "my own computer" selected (see Status). If you installed from a terminal, install at user scope, then start a new local session in the app.
+
 ## How it works
 
 **A mod is a small folder.** Each one lives in `plugins/<name>/` and holds three things:
@@ -111,6 +113,10 @@ It validates the marketplace and every plugin and runs each plugin's tests.
 ## Status
 
 New. Written in a cloud session, so the looks (Christmas and kitty) have been validated but not yet seen on a real desktop or phone screen. If the snow, the colours or the contrast look wrong on your device, please open an issue and say which device.
+
+Owner's report, Windows desktop app (app version 6.28899.6, Pro plan): `christmas-theme` installed from a terminal showed nothing in a cloud Code session, and showed once the session was started on the owner's own computer. In a terminal-only session it reports that no client draws themes yet, which is expected. Not yet reported: `kitty-theme`, the phone app, and `christmas-countdown`/`kitty-status` in the desktop app.
+
+`kitty-theme` 0.1.0, same setup: the plum colours showed but the cat did not, because the cat was drawn off screen on a wide window and too dark. 0.1.1 moves it to the right edge, in the visible band, and lightens it; not yet reported back.
 
 `now-playing` is tested only on sample text, not on a real Mac or Windows PC; the Windows media-controls script in particular has never been run. On a Mac, the first time it runs macOS may ask to let the terminal control Music; allow it. On Windows it needs Windows PowerShell (`powershell.exe`, built in). If it shows nothing while a song plays, please open an issue and say which system and player.
 

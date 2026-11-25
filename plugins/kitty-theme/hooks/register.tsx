@@ -22,11 +22,13 @@ const { theme, problems } = makeColors({
   only: 'dark',
 })
 
-// A window at night: moon, a few stars, and a cat sitting on the ledge. Only the tail and the stars move, slowly.
-const STARS = Array.from({ length: 24 }, (_, i) => {
+// A window at night: moon, a few stars, and a cat sitting on a ledge. Only the tail and the stars move, slowly.
+// A wide window shows only the middle band of this tall picture (about y 290 to 510), and a phone shows nearly all
+// of it, so the moon and the cat sit in that band, the cat at the right edge where the words aren't.
+const STARS = Array.from({ length: 36 }, (_, i) => {
   const x = (i * 59 + 23) % 400
-  const y = (i * 37 + 11) % 420
-  const r = 0.8 + ((i * 3) % 4) * 0.4
+  const y = (i * 97 + 11) % 800
+  const r = 0.9 + ((i * 3) % 4) * 0.45
   const delay = -((i * 5) % 9)
 
   return `<circle class="s" cx="${x}" cy="${y}" r="${r}" style="animation-delay:${delay}s"/>`
@@ -39,28 +41,29 @@ const SCENE = [
   '</linearGradient></defs>',
   '<style>',
   '.s{fill:#f6ecdf;animation:tw 9s ease-in-out infinite}',
-  '@keyframes tw{0%,100%{opacity:.25}50%{opacity:.8}}',
-  '.t{transform-origin:292px 700px;animation:sway 7s ease-in-out infinite}',
+  '@keyframes tw{0%,100%{opacity:.35}50%{opacity:.9}}',
+  '.t{transform-origin:357px 470px;animation:sway 7s ease-in-out infinite}',
   '@keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(6deg)}}',
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   STARS,
-  '<circle cx="300" cy="150" r="42" fill="#f3e6c8" opacity=".9"/>',
-  '<circle cx="286" cy="140" r="38" fill="#1c1529" opacity=".18"/>',
-  '<rect x="0" y="716" width="400" height="84" fill="#120d1a"/>',
-  '<rect x="0" y="710" width="400" height="8" fill="#241b31"/>',
-  '<g fill="#0c0812">',
-  '<path class="t" d="M290 704 C340 700 352 650 330 626 C348 656 322 690 288 692 Z"/>',
-  '<ellipse cx="250" cy="680" rx="46" ry="34"/>',
-  '<circle cx="214" cy="636" r="26"/>',
-  '<path d="M194 620 L198 592 L214 612 Z M214 612 L230 592 L234 620 Z"/>',
+  '<circle cx="85" cy="350" r="34" fill="#f3e6c8" opacity=".92"/>',
+  '<circle cx="73" cy="341" r="30" fill="#1c1529" opacity=".16"/>',
+  '<rect x="236" y="470" width="164" height="9" rx="2" fill="#4a3b68"/>',
+  '<g fill="#6a5791">',
+  '<path class="t" d="M357 468 C388 466 392 436 376 420 C384 442 372 458 356 458 Z"/>',
+  '<ellipse cx="331" cy="446" rx="28" ry="24"/>',
+  '<circle cx="302" cy="416" r="18"/>',
+  '<path d="M287 403 L290 380 L303 397 Z M303 397 L316 380 L319 405 Z"/>',
   '</g>',
+  '<circle cx="296" cy="415" r="2.2" fill="#f3e6c8"/>',
+  '<circle cx="308" cy="415" r="2.2" fill="#f3e6c8"/>',
   '</svg>',
 ].join('')
 
 const LOOK: ThemeSetArgs = {
   colors: theme,
-  backdrop: { scene: 'kitty-window', glass: { blur: 18, tint: '#1b1524', opacity: 0.74 } },
+  backdrop: { scene: 'kitty-window', glass: { blur: 18, tint: '#1b1524', opacity: 0.5 } },
   overrideColorScheme: 'dark',
 }
 
