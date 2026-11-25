@@ -101,7 +101,7 @@ Para actualizar tras una versión nueva: `claude plugin marketplace update prett
 
 ## Movimiento
 
-Las escenas navideña y de gatitos se mueven despacio, sin parpadeos. Están pensadas para pararse cuando el ajuste "reducir movimiento" de tu sistema está activado (probado en un render en navegador; aún sin confirmar en la app).
+Las escenas navideña y de gatitos se mueven despacio, sin parpadeos. Se paran cuando el ajuste "reducir movimiento" de tu sistema está activado. La dueña confirmó en Windows que funciona en la app (no dijo con cuál de los dos temas lo comprobó).
 
 ## Más
 
