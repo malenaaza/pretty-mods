@@ -22,7 +22,7 @@ const { theme, problems } = makeColors({
   only: 'dark',
 })
 
-// The scene is drawn on a tall 400 x 800 picture. A wide window shows only its middle band (about y 290 to 510),
+// Three stalls, with a standing table between each pair and a tree behind the middle one. The scene is drawn on a tall 400 x 800 picture. A wide window shows only its middle band (about y 290 to 510),
 // so the market stands on a ground line at y 505 and rises into that band; a phone shows all of it.
 const G = 505
 
@@ -106,7 +106,7 @@ const table = (x: number): string => {
 
   return [
     `<rect x="${x - 2}" y="${G - 40}" width="4" height="40" fill="#4a2f1f"/>`,
-    `<ellipse cx="${x}" cy="${G - 40}" rx="23" ry="4.5" fill="#7a5236"/>`,
+    `<ellipse cx="${x}" cy="${G - 40}" rx="20" ry="4" fill="#7a5236"/>`,
     `<rect x="${x - 1.5}" y="${G - 49}" width="3" height="7" fill="#efe3cd"/>`,
     flame,
     `<rect x="${x + 9}" y="${G - 50}" width="7" height="8" rx="1.5" fill="#f1e6d0"/>`,
@@ -139,44 +139,41 @@ const TOWN = [
   })
   .join('')
 
-// A tall tree behind the standing table, with lights.
+// A tall tree behind the middle stall, so its top and star show above the stall's roof.
 const TREE_X = 200
 const TREE = (() => {
   const tier = (base: number, width: number, height: number): string =>
     `<path d="M${TREE_X - width / 2} ${G - base} L${TREE_X} ${G - base - height} L${TREE_X + width / 2} ${G - base} Z" fill="#0f2c1d"/>`
   const lights = [
-    [-0.2, 0.28],
-    [0.18, 0.4],
-    [-0.12, 0.52],
-    [0.12, 0.64],
-    [-0.05, 0.76],
-    [0.05, 0.88],
+    [-0.16, 0.5],
+    [0.14, 0.6],
+    [-0.1, 0.7],
+    [0.1, 0.8],
+    [-0.04, 0.9],
+    [0.05, 0.97],
   ]
-    .map(([dx, dy], i) => bulbAt(TREE_X + (dx ?? 0) * 150, G - (dy ?? 0) * 150, BULBS[i % BULBS.length] ?? '#f6c95a'))
+    .map(([dx, dy], i) => bulbAt(TREE_X + (dx ?? 0) * 190, G - (dy ?? 0) * 190, BULBS[i % BULBS.length] ?? '#f6c95a'))
     .join('')
 
   return [
-    tier(40, 78, 52),
-    tier(70, 62, 50),
-    tier(100, 46, 48),
-    `<path d="M${TREE_X - 5} ${G - 142} L${TREE_X} ${G - 160} L${TREE_X + 5} ${G - 142} Z" fill="#e6edf7" opacity=".88"/>`,
-    `<circle cx="${TREE_X}" cy="${G - 164}" r="3.2" fill="#ffd36b"/>`,
+    tier(60, 100, 74),
+    tier(100, 82, 68),
+    tier(138, 62, 62),
+    `<path d="M${TREE_X - 6} ${G - 184} L${TREE_X} ${G - 204} L${TREE_X + 6} ${G - 184} Z" fill="#e6edf7" opacity=".88"/>`,
+    `<circle cx="${TREE_X}" cy="${G - 208}" r="3.4" fill="#ffd36b"/>`,
     lights,
   ].join('')
 })()
 
-// A string of lights between the two stalls, through the tree.
-const GARLAND = (() => {
-  const x0 = 114
-  const y0 = G - 112
-  const x1 = 286
-  const y1 = G - 112
-  const dip = 34
+// A string of lights between the roofs of two neighbouring stalls.
+const garland = (x0: number, x1: number): string => {
+  const y = G - 110
+  const dip = 16
   const point = (t: number): [number, number] => [
     (1 - t) * (1 - t) * x0 + 2 * (1 - t) * t * ((x0 + x1) / 2) + t * t * x1,
-    (1 - t) * (1 - t) * y0 + 2 * (1 - t) * t * (y0 + dip * 2) + t * t * y1,
+    (1 - t) * (1 - t) * y + 2 * (1 - t) * t * (y + dip * 2) + t * t * y,
   ]
-  const bulbs = [0.1, 0.22, 0.34, 0.46, 0.58, 0.7, 0.82, 0.94]
+  const bulbs = [0.2, 0.4, 0.6, 0.8]
     .map((t, i) => {
       const [bx, by] = point(t)
 
@@ -184,8 +181,8 @@ const GARLAND = (() => {
     })
     .join('')
 
-  return `<path d="M${x0} ${y0} Q${(x0 + x1) / 2} ${y0 + dip * 2} ${x1} ${y1}" stroke="#2c1d17" stroke-width="1" fill="none"/>${bulbs}`
-})()
+  return `<path d="M${x0} ${y} Q${(x0 + x1) / 2} ${y + dip * 2} ${x1} ${y}" stroke="#3a2a22" stroke-width="1" fill="none"/>${bulbs}`
+}
 
 const FLAKES = Array.from({ length: 40 }, (_, i) => {
   const x = (i * 83 + 17) % 400
@@ -218,16 +215,19 @@ const SCENE = [
   '<rect width="400" height="800" fill="url(#sky)"/>',
   TOWN,
   TREE,
-  stall(6, 104, '#c23a3a'),
-  stall(290, 104, '#2f7d4f'),
-  GARLAND,
-  table(TREE_X),
-  person(60, 1, '#b3263b', '#2f6f4e', '#e8c76a', '#e8c4a0', 'mug', 1),
-  person(86, -1, '#2f5d8c', '#c23a3a', '#efe3cd', '#8d5a3b', 'sausage', 2),
-  person(TREE_X - 24, 1, '#c68a2e', '#3a3a4a', '#c23a3a', '#c68e65', 'pretzel', 3),
-  person(TREE_X + 24, -1, '#4a7a52', '#efe3cd', '#b3263b', '#e8c4a0', 'mug', 4),
+  stall(10, 92, '#c23a3a'),
+  stall(154, 92, '#c8902f'),
+  stall(298, 92, '#2f7d4f'),
+  garland(104, 152),
+  garland(248, 296),
+  table(128),
+  table(272),
+  person(34, 1, '#b3263b', '#2f6f4e', '#e8c76a', '#e8c4a0', 'mug', 1),
+  person(62, -1, '#2f5d8c', '#c23a3a', '#efe3cd', '#8d5a3b', 'sausage', 2),
+  person(182, 1, '#c68a2e', '#3a3a4a', '#c23a3a', '#c68e65', 'pretzel', 3),
+  person(216, -1, '#4a7a52', '#efe3cd', '#b3263b', '#e8c4a0', 'mug', 4),
   person(326, 1, '#7a3b6a', '#e8c76a', '#2f6f4e', '#c68e65', 'crepe', 5),
-  person(358, -1, '#3a5a8a', '#b3263b', '#e8c76a', '#8d5a3b', 'mug', 6),
+  person(356, -1, '#3a5a8a', '#b3263b', '#e8c76a', '#8d5a3b', 'mug', 6),
   `<rect x="0" y="${G}" width="400" height="295" fill="#241a1c"/>`,
   `<rect x="0" y="${G}" width="400" height="6" fill="#e6edf7" opacity=".5"/>`,
   FLAKES,
