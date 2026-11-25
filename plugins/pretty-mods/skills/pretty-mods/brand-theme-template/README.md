@@ -14,6 +14,7 @@ Everything to change is marked `CHANGE:` in `register.tsx.template`.
 
 ## The logo
 
+- From an uploaded SVG, run `python3 ../scripts/svg_to_logo.py logo.svg` (from the skill folder; add `--mono` for one colour). It prints the shapes to paste into `LOGO` and refuses what can't be drawn.
 - It must be pure SVG shapes. A PNG or JPEG can't be embedded, and neither can fonts: turn any wordmark text into outlines first.
 - Paste only the `<path>`, `<circle>` and `<rect>` elements into `LOGO`, drawn on a 100 x 100 grid, and leave out the outer `<svg>` tag. `LOGO_COLOR` sets the fill.
 - Keep the whole scene under about 131,000 characters, so simplify a detailed logo.

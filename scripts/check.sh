@@ -9,3 +9,5 @@ for dir in plugins/*/; do
     claude plugin test "$dir"
   fi
 done
+# The logo converter in the pretty-mods skill
+(cd plugins/pretty-mods/skills/pretty-mods/scripts && python3 -m unittest -q test_svg_to_logo)

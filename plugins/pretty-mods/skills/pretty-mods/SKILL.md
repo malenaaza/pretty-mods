@@ -64,7 +64,17 @@ Never push to a branch another session owns, and never open a pull request unles
 
 ## A theme with a company logo
 
-When the user wants a theme in their own company's colours with its logo, start from `<skill>/brand-theme-template/` (its README says how). Ask first that the logo is theirs to use, and never use another company's logo. The logo must be redrawn as plain SVG shapes, since a theme can't embed a picture or a font. Build it in the user's own repository, private if the brand isn't public, never in the public pretty-mods repository.
+When the user wants a theme in their own company's colours with its logo, start from `<skill>/brand-theme-template/` (its README says how). Build it in the user's own repository, private if the brand isn't public, never in the public pretty-mods repository.
+
+If they attach a logo to the chat:
+
+1. Ask once that the logo is theirs to use. Never use another company's logo.
+2. **An SVG file:** run `python3 <skill>/scripts/svg_to_logo.py <file>` (add `--mono` to paint it in one colour). It fits the logo into the template's 100 x 100 grid, prints the `<g>` to paste into `LOGO`, and refuses what a theme can't draw (pictures, text, gradients, filters, scripts, `url(...)`), saying why. Relay the reason in plain words and say what to fix (convert text to outlines, flatten gradients), then ask them to upload it again.
+3. **A PNG, JPEG or other picture:** a theme can't hold a picture. Ask for the SVG, or offer to trace it only if a tracing tool such as `potrace` is installed, and say that tracing suits a simple one-colour logo and loses detail on anything else. Check what the tracer produced with the script above before using it.
+4. If the attachment can't be read as a file in this session, say so and ask them to paste the SVG text instead. Don't guess at a logo's shapes.
+5. Show them what you did (the colours chosen, that the logo is faint and in the corner) and ask them to look at it on their own device. You can't see it.
+
+Their uploaded logo stays in their own repository. Never copy it into the public one.
 
 ## Seasonal and themed looks
 
