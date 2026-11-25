@@ -20,6 +20,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 |---|---|---|
 | `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
 | `christmas-town-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador |
+| `christmas-market-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador |
 | `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien", y después de que la cola del gato y las estrellas se ven y se mueven en la 0.1.6). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
 | `kitty-status`, `christmas-countdown` | La línea de estado en la terminal de Claude Code | Sí, las dos funcionan en la terminal de Claude Code (informe de la dueña). **En la app de escritorio de Windows los informes fueron mixtos:** `kitty-status` se vio una vez bajo la caja de texto y luego no, y `christmas-countdown` nunca se vio allí. Una línea de prueba que se actualizaba cada 5 segundos tampoco se mostró en una sesión en la nube. No cuentes con las líneas de estado en la app de escritorio; la causa no se conoce |
 | `now-playing` | La línea de estado, bajo la caja de texto (Mac: app Música; Windows: cualquier reproductor que informe a los controles multimedia del sistema, como YouTube Music en un navegador) | **Sí, en Windows, en la app de escritorio** (captura de la dueña, versión 0.2.0: se mostraron título y artista con el nombre de la mod delante) **y en la terminal de Claude Code** (informe de la dueña, versión no indicada). Mac: nunca se ha ejecutado. Las letras con acento salían rotas en la 0.2.0; la dueña confirmó que se ven bien (é y ñ) en la 0.2.1 |
@@ -36,10 +37,15 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 *Vista previa de `christmas-town-theme`, dibujada de la misma forma.*
 
+![Vista previa de christmas-market-theme: un mercadillo de Navidad de noche con puestos, luces, un abeto y gente comiendo y bebiendo](docs/previews/christmas-market-theme.png)
+
+*Vista previa de `christmas-market-theme`, dibujada de la misma forma, en un momento con los brazos levantados.*
+
 | Mod | Qué hace |
 |---|---|
 | `christmas-theme` | Verde pino profundo con texto crema cálido, acentos granate y dorado, una nevada lenta, y Santa con su trineo y un reno cruzando el cielo una vez cada 70 segundos. Oscuro. |
 | `christmas-town-theme` | Otro aspecto navideño, con un pueblo: una noche azul medianoche con casas con tejados nevados y sus ventanas encendidas, una iglesia con campanario, pinos con luces de colores, una luna, humo de chimeneas que se eleva despacio y una nevada lenta. Oscuro. Instálalo en lugar de `christmas-theme`, no a la vez. |
+| `christmas-market-theme` | Un mercadillo de Navidad de noche: puestos de madera con tejados nevados y toldos a rayas, guirnaldas de luces de colores, un abeto alto iluminado, una mesa alta con una vela y seis personas con abrigos de invierno comiendo y bebiendo (un salchichón en pan, un pretzel, un crepe, tazas de algo caliente). Los brazos suben despacio hacia la boca y sale vapor de las tazas. Oscuro. Instálalo en lugar de los otros temas navideños, no a la vez. |
 | `christmas-countdown` | Muestra "🎄 N days to Christmas" en la línea de estado, y "🎄 Merry Christmas!" el mismo día. Sigue siendo correcto si dejas una sesión abierta pasada la medianoche. |
 
 ### Gatitos
@@ -73,6 +79,10 @@ En una terminal, inicia Claude Code (`claude`) y escribe, para cada mod que quie
 
 ```
 /plugin install christmas-town-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install christmas-market-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```

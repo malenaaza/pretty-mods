@@ -17,6 +17,11 @@
       "category": "theme"
     },
     {
+      "name": "christmas-market-theme",
+      "source": "./plugins/christmas-market-theme",
+      "category": "theme"
+    },
+    {
       "name": "christmas-countdown",
       "source": "./plugins/christmas-countdown",
       "category": "extras"
