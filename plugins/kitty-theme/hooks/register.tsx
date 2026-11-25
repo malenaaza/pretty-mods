@@ -44,6 +44,8 @@ const SCENE = [
   '@keyframes tw{0%,100%{opacity:.35}50%{opacity:.9}}',
   '.t{transform-origin:26px -2px;animation:sway 7s ease-in-out infinite}',
   '@keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(6deg)}}',
+  // Asked to reduce motion, the stars and the tail stay still.
+  '@media (prefers-reduced-motion:reduce){.s,.t{animation:none}}',
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   STARS,
