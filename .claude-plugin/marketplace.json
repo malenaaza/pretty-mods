@@ -12,6 +12,11 @@
       "category": "theme"
     },
     {
+      "name": "christmas-town-theme",
+      "source": "./plugins/christmas-town-theme",
+      "category": "theme"
+    },
+    {
       "name": "christmas-countdown",
       "source": "./plugins/christmas-countdown",
       "category": "extras"

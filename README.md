@@ -19,6 +19,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 | Mod | Where it shows | Seen? |
 |---|---|---|
 | `christmas-theme` | Claude desktop app, in a Claude Code session on your own computer | Yes, on Windows (version 0.2.4 "looks good", and Santa is sharp). iPhone: tried once, in a Remote Control session running on the computer with the theme switched on, and no theme showed |
+| `christmas-town-theme` | Same as above | Not yet reported. Only checked in a browser render |
 | `kitty-theme` | Same as above | Yes, on Windows (the owner reported it "looks good", and later that the cat's tail and the stars show and move in 0.1.6). iPhone: tried once, in a Remote Control session running on the computer with the theme switched on, and no theme showed |
 | `kitty-status`, `christmas-countdown` | The status line in the Claude Code terminal | Yes, both work in the Claude Code terminal (owner's report). **In the Windows desktop app the reports were mixed:** `kitty-status` was seen once under the text box, was not seen later, and `christmas-countdown` was never seen there. A test line that updated every 5 seconds did not show in a cloud session in that app. So do not count on status lines in the desktop app; the cause is not known |
 | `now-playing` | The status line, under the text box (Mac: Music app; Windows: any player that reports to the system media controls, such as YouTube Music in a browser) | **Yes, on Windows, in the desktop app** (owner's screenshot, version 0.2.0: title and artist showed with the mod's name in front) **and in the Claude Code terminal** (owner's report, version not stated). A Mac: never run. Accented letters showed broken in 0.2.0; the owner confirmed they show correctly (é and ñ) in 0.2.1 |
@@ -31,9 +32,14 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 *Preview of the scene alone, drawn in a browser. The app adds its own blur and panels on top, so it looks different there. It is not a screenshot of anyone's screen.*
 
+![Preview of christmas-town-theme: a midnight-blue night town with lit windows, a church and trees with lights](docs/previews/christmas-town-theme.png)
+
+*Preview of `christmas-town-theme`, drawn the same way.*
+
 | Mod | What it does |
 |---|---|
 | `christmas-theme` | Deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh and a reindeer crossing the sky once every 70 seconds. Dark. |
+| `christmas-town-theme` | Another Christmas look, with a town: a midnight-blue night with snow-roofed houses and their lit windows, a church with a steeple, pine trees with coloured lights, a moon, drifting chimney smoke and slow snowfall. Dark. Install it instead of `christmas-theme`, not with it. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
 
 ### Kitty
@@ -63,6 +69,10 @@ In a terminal, start Claude Code (`claude`) and type, for each mod you want:
 
 ```
 /plugin install christmas-countdown --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install christmas-town-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```
