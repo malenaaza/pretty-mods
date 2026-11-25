@@ -69,7 +69,7 @@ const SCENE = [
 
 const LOOK: ThemeSetArgs = {
   colors: theme,
-  backdrop: { scene: 'kitty-window', glass: { blur: 2, tint: '#1b1524', opacity: 0.45 } },
+  backdrop: { scene: 'kitty-window', glass: { blur: 0, tint: '#1b1524', opacity: 0.35 } },
   overrideColorScheme: 'dark',
 }
 

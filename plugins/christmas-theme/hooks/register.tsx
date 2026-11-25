@@ -87,7 +87,7 @@ const SCENE = [
 
 const LOOK: ThemeSetArgs = {
   colors: theme,
-  backdrop: { scene: 'snowfall', glass: { blur: 2, tint: '#0f1f17', opacity: 0.45 } },
+  backdrop: { scene: 'snowfall', glass: { blur: 0, tint: '#0f1f17', opacity: 0.35 } },
   overrideColorScheme: 'dark',
 }
 
