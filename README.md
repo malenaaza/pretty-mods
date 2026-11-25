@@ -6,7 +6,7 @@ Pretty mods for Claude: changes to how Claude looks and what it shows, for the d
 
 | Mod | What it does |
 |---|---|
-| `christmas-theme` | A Christmas look: deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh and a reindeer crossing the sky once every 90 seconds. Dark, in the app's desktop and mobile versions. |
+| `christmas-theme` | A Christmas look: deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh and a reindeer crossing the sky once every 70 seconds. Dark, in the app's desktop and mobile versions. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
 
 ## Kitty mods

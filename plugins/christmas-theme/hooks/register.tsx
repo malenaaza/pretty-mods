@@ -46,7 +46,8 @@ const FLAKES = Array.from({ length: 48 }, (_, i) => {
 
 // Santa, his sleigh and one reindeer, drawn small around (0, 0). They rest at the spot given by the outer
 // transform, and the slow flight across the sky only moves them sideways. The sky band a wide window shows
-// is about y 290 to 510, so they fly there.
+// is about y 290 to 510, so they fly through the middle of it. The animation starts partway across (the
+// negative delay), so they are on screen when a session opens.
 const SANTA = [
   '<path d="M-38 -8 L-12 -4" stroke="#d9b45a" stroke-width="1" fill="none"/>',
   '<ellipse cx="-50" cy="-8" rx="14" ry="7" fill="#7a5230"/>',
@@ -72,12 +73,12 @@ const SCENE = [
   '<style>',
   '.f{fill:#fffaf0;opacity:.85;animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite}',
   '@keyframes fall{from{transform:translate(0,0)}to{transform:translate(var(--d),830px)}}',
-  '.sl{animation:fly 90s linear infinite}',
-  '@keyframes fly{from{transform:translate(-230px,0)}to{transform:translate(370px,0)}}',
+  '.sl{animation:fly 70s linear -34s infinite}',
+  '@keyframes fly{from{transform:translate(-250px,0)}to{transform:translate(215px,0)}}',
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   FLAKES,
-  `<g transform="translate(120 340) scale(1.2)" opacity=".92"><g class="sl">${SANTA}</g></g>`,
+  `<g transform="translate(200 400) scale(1.5)" opacity=".95"><g class="sl">${SANTA}</g></g>`,
   '</svg>',
 ].join('')
 
