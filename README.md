@@ -1,6 +1,6 @@
 # pretty-mods
 
-Pretty mods for Claude: changes to how Claude looks and what it shows, for the desktop and mobile apps. They start with Christmas.
+Pretty mods for Claude: changes to how Claude looks and what it shows, for the desktop and mobile apps. They start with Christmas, and now kitties.
 
 ## Christmas mods
 
@@ -9,13 +9,32 @@ Pretty mods for Claude: changes to how Claude looks and what it shows, for the d
 | `christmas-theme` | A Christmas look: deep pine green with warm cream text, cranberry accents and gold, and a slow snowfall behind the conversation. Dark, in the app's desktop and mobile versions. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
 
+## Kitty mods
+
+| Mod | What it does |
+|---|---|
+| `kitty-theme` | A cosy kitty look: soft plum night, cream text and rose accents, with a sleepy cat on a moonlit window ledge. Only the tail and the stars move, slowly. Dark, in the app's desktop and mobile versions. |
+| `kitty-status` | A little cat in the status line whose mood follows the time of day ("😴 kitty is asleep", "😺 kitty wants breakfast", "😸 kitty is purring"...). |
+
+## Music
+
+| Mod | What it does |
+|---|---|
+| `now-playing` | Shows "🎵 title - artist" in the status line for the song that's playing. On a Mac it asks the Music app; on Windows it reads the system media controls, so YouTube Music in a browser works, and so do Spotify and most players. It asks your own computer, so it needs no account connection, token or sign-in. Terminal only: not the desktop or phone apps, and nothing shows when nothing is playing. Updates every 15 seconds. |
+
 ## The skill that makes mods
 
 `pretty-mods` is a skill: ask Claude for a mod ("make Claude look like a cosy cabin", "a status line with the weather") and it builds one in your own style. The first time it asks a few questions (colours, dark or light, motion, sound) and saves them in `~/.pretty-mods/style.md`, outside the skill, so it never asks twice. It uses Claude's built-in mod-writing skill for the mechanics and adds the checks for desktop and mobile: readable contrast, slow vector-only motion, no flashing, layouts that fit a phone, no sound unless you ask, and an honest note on what could not be checked.
 
+It also carries a template for a theme in a company's own colours with its own logo as a faint backdrop (`plugins/pretty-mods/skills/pretty-mods/brand-theme-template/`). Attach your logo (an SVG works best) and Claude converts it to the plain shapes a theme can draw, refusing anything it can't, such as pictures, text or gradients. Use it only for a logo you have the right to use, and keep that theme in your own repository.
+
 ```
 /plugin install pretty-mods --marketplace malenaaza/pretty-mods
 ```
+
+## Plus (coming)
+
+Everything in this repository is free and MIT-licensed, and stays free, including `kitty-theme`. Later, a separate paid set of themes with richer scenes may appear under the name Plus. It would live in its own private repository, not here. Nothing is for sale yet, and no price or date is set.
 
 ## Install
 
@@ -29,9 +48,57 @@ In Claude Code, type these (for each mod you want):
 /plugin install christmas-countdown --marketplace malenaaza/pretty-mods
 ```
 
+```
+/plugin install kitty-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install kitty-status --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install now-playing --marketplace malenaaza/pretty-mods
+```
+
 It asks once to add the marketplace (`y`), then for a scope. Start a new session afterwards.
 
 The theme is drawn by the desktop and mobile apps. The terminal and editors don't draw themes, so there only the countdown shows.
+
+## How it works
+
+**A mod is a small folder.** Each one lives in `plugins/<name>/` and holds three things:
+
+- `.claude-plugin/plugin.json`: its name, a one-line description and a version.
+- `hooks/hooks.json`: points at the mod's code.
+- `hooks/register.ts` (or `.tsx`): the code. It says "when this happens in Claude, do that", for example "when a session starts, set the colours" or "every hour, update the status line".
+
+**The marketplace is the list.** `.claude-plugin/marketplace.json` names every mod and where its folder is. When you run `/plugin install <mod> --marketplace malenaaza/pretty-mods`, Claude Code reads that list, finds the folder and installs it. A mod that isn't in the list can't be installed.
+
+**What a mod can change.** There are three kinds here:
+
+- **A look (theme):** colours and a moving scene behind the conversation, for the desktop and mobile apps. The terminal and editors don't draw themes. `christmas-theme` and `kitty-theme` are looks.
+- **A status line:** one line of text, which the mod updates itself. `christmas-countdown`, `kitty-status` and `now-playing` are status lines.
+- **Running something on your computer:** `now-playing` asks your Music app (Mac) or Windows media controls what's playing. That works in the terminal only.
+
+**Where each works** (what the design says, not yet all confirmed on real devices):
+
+| Mod | Terminal | Desktop app | Phone |
+|---|---|---|---|
+| `christmas-theme`, `kitty-theme` | no | yes | yes |
+| `christmas-countdown`, `kitty-status` | yes | where the app shows a status line | not confirmed |
+| `now-playing` | yes | no | no |
+
+**Making or changing one yourself.**
+
+1. Ask Claude, with the `pretty-mods` skill installed: "make Claude look like a cosy cabin". It builds the folder for you in your own style.
+2. Or copy a folder in `plugins/` and change it. `kitty-status` is the smallest example.
+3. Add it to `.claude-plugin/marketplace.json` and to the tables above.
+4. Run `scripts/check.sh`. It validates everything and runs the tests.
+5. Raise the `version` in its `plugin.json` when its behaviour changes, so installed copies update.
+
+**For a company theme with a logo,** use the template in `plugins/pretty-mods/skills/pretty-mods/brand-theme-template/`. A theme can only draw plain vector shapes, so a logo has to be an SVG, not a picture.
+
+**Honest limits.** Everything was written in a cloud session with no real screen, so the looks are validated, not seen. See Status below.
 
 ## Checking and testing
 
@@ -43,6 +110,8 @@ It validates the marketplace and every plugin and runs each plugin's tests.
 
 ## Status
 
-New. Written in a cloud session, so the look has been validated but not yet seen on a real desktop or phone screen. If the snow, the colours or the contrast look wrong on your device, please open an issue and say which device.
+New. Written in a cloud session, so the looks (Christmas and kitty) have been validated but not yet seen on a real desktop or phone screen. If the snow, the colours or the contrast look wrong on your device, please open an issue and say which device.
+
+`now-playing` is tested only on sample text, not on a real Mac or Windows PC; the Windows media-controls script in particular has never been run. On a Mac, the first time it runs macOS may ask to let the terminal control Music; allow it. On Windows it needs Windows PowerShell (`powershell.exe`, built in). If it shows nothing while a song plays, please open an issue and say which system and player.
 
 MIT licence.
