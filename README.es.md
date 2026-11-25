@@ -10,7 +10,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 - **Los temas (aspectos) solo se ven en la app de escritorio de Claude**, en una sesión de Claude Code. La terminal y los editores no dibujan temas. Usa una sesión **en tu propio ordenador**: una sesión que corre en la nube puede mostrar una copia antigua del tema, o ninguna.
 - **Las mods de línea de estado** (`kitty-status`, `christmas-countdown`, `now-playing`) se muestran en la terminal de Claude Code. En la app de escritorio de Windows `now-playing` se mostró y las otras dos no fueron fiables: mira "Qué funciona dónde".
 - **Un solo tema a la vez.** Si hay dos activos, gana el último.
-- Todavía no es para todo el mundo: se ha probado en un solo PC con Windows. Mac y móvil no se han probado.
+- Todavía no es para todo el mundo: se ha probado en un solo PC con Windows. Un Mac no se ha probado, y en un iPhone no se vio ningún tema.
 
 ## Qué funciona dónde
 
@@ -18,8 +18,8 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 | Mod | Dónde se muestra | ¿Visto? |
 |---|---|---|
-| `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido). Móvil: sin probar |
-| `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien", y después de que la cola del gato y las estrellas se ven y se mueven en la 0.1.6). Móvil: sin probar |
+| `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido). iPhone: se probó una vez y no se vio ningún tema (no se anotó cómo se abrió la sesión) |
+| `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien", y después de que la cola del gato y las estrellas se ven y se mueven en la 0.1.6). iPhone: se probó una vez y no se vio ningún tema (no se anotó cómo se abrió la sesión) |
 | `kitty-status`, `christmas-countdown` | La línea de estado en la terminal de Claude Code | Sí, las dos funcionan en la terminal de Claude Code (informe de la dueña). **En la app de escritorio de Windows los informes fueron mixtos:** `kitty-status` se vio una vez bajo la caja de texto y luego no, y `christmas-countdown` nunca se vio allí. Una línea de prueba que se actualizaba cada 5 segundos tampoco se mostró en una sesión en la nube. No cuentes con las líneas de estado en la app de escritorio; la causa no se conoce |
 | `now-playing` | La línea de estado, bajo la caja de texto (Mac: app Música; Windows: cualquier reproductor que informe a los controles multimedia del sistema, como YouTube Music en un navegador) | **Sí, en Windows, en la app de escritorio** (captura de la dueña, versión 0.2.0: se mostraron título y artista con el nombre de la mod delante) **y en la terminal de Claude Code** (informe de la dueña, versión no indicada). Mac: nunca se ha ejecutado. Las letras con acento salían rotas en la 0.2.0; la dueña confirmó que se ven bien (é y ñ) en la 0.2.1 |
 
