@@ -1,6 +1,6 @@
 {
   "name": "pretty-mods",
-  "description": "Pretty mods for Claude: looks and small extras for the desktop and mobile apps, starting with Christmas, and a skill that makes mods in your own style.",
+  "description": "Pretty mods for Claude: looks and small extras for the desktop and mobile apps, for Christmas and for kitty lovers, and a skill that makes mods in your own style.",
   "owner": {
     "name": "malenaaza",
     "url": "https://github.com/malenaaza"
@@ -14,6 +14,16 @@
     {
       "name": "christmas-countdown",
       "source": "./plugins/christmas-countdown",
+      "category": "extras"
+    },
+    {
+      "name": "kitty-theme",
+      "source": "./plugins/kitty-theme",
+      "category": "theme"
+    },
+    {
+      "name": "kitty-status",
+      "source": "./plugins/kitty-status",
       "category": "extras"
     },
     {

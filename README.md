@@ -1,6 +1,6 @@
 # pretty-mods
 
-Pretty mods for Claude: changes to how Claude looks and what it shows, for the desktop and mobile apps. They start with Christmas.
+Pretty mods for Claude: changes to how Claude looks and what it shows, for the desktop and mobile apps. They start with Christmas, and now kitties.
 
 ## Christmas mods
 
@@ -8,6 +8,13 @@ Pretty mods for Claude: changes to how Claude looks and what it shows, for the d
 |---|---|
 | `christmas-theme` | A Christmas look: deep pine green with warm cream text, cranberry accents and gold, and a slow snowfall behind the conversation. Dark, in the app's desktop and mobile versions. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
+
+## Kitty mods
+
+| Mod | What it does |
+|---|---|
+| `kitty-theme` | A cosy kitty look: soft plum night, cream text and rose accents, with a sleepy cat on a moonlit window ledge. Only the tail and the stars move, slowly. Dark, in the app's desktop and mobile versions. |
+| `kitty-status` | A little cat in the status line whose mood follows the time of day ("😴 kitty is asleep", "😺 kitty wants breakfast", "😸 kitty is purring"...). |
 
 ## The skill that makes mods
 
@@ -29,6 +36,14 @@ In Claude Code, type these (for each mod you want):
 /plugin install christmas-countdown --marketplace malenaaza/pretty-mods
 ```
 
+```
+/plugin install kitty-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install kitty-status --marketplace malenaaza/pretty-mods
+```
+
 It asks once to add the marketplace (`y`), then for a scope. Start a new session afterwards.
 
 The theme is drawn by the desktop and mobile apps. The terminal and editors don't draw themes, so there only the countdown shows.
@@ -43,6 +58,6 @@ It validates the marketplace and every plugin and runs each plugin's tests.
 
 ## Status
 
-New. Written in a cloud session, so the look has been validated but not yet seen on a real desktop or phone screen. If the snow, the colours or the contrast look wrong on your device, please open an issue and say which device.
+New. Written in a cloud session, so the looks (Christmas and kitty) have been validated but not yet seen on a real desktop or phone screen. If the snow, the colours or the contrast look wrong on your device, please open an issue and say which device.
 
 MIT licence.

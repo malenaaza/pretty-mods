@@ -1,0 +1,5 @@
+{
+  "name": "kitty-status",
+  "version": "0.1.0",
+  "description": "A little cat in the status line whose mood follows the time of day."
+}
