@@ -40,8 +40,9 @@ const FLAKES = Array.from({ length: 48 }, (_, i) => {
   const duration = 14 + ((i * 5) % 11)
   const delay = -((i * 3) % 17)
   const drift = ((i * 11) % 30) - 15
+  const rest = (i * 131 + 40) % 800
 
-  return `<circle class="f" cx="${x}" cy="-10" r="${r}" style="--d:${drift}px;animation-duration:${duration}s;animation-delay:${delay}s"/>`
+  return `<circle class="f" cx="${x}" cy="-10" r="${r}" style="--d:${drift}px;--y:${rest}px;animation-duration:${duration}s;animation-delay:${delay}s"/>`
 }).join('')
 
 // Santa, his sleigh and one reindeer, drawn small around (0, 0). They rest at the spot given by the outer
@@ -74,6 +75,8 @@ const SCENE = [
   '.f{fill:#fffaf0;opacity:.85;animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite}',
   '@keyframes fall{from{transform:translate(0,0)}to{transform:translate(var(--d),830px)}}',
   '.sl{animation:fly 70s linear -34s infinite}',
+  // Asked to reduce motion, the flakes rest at set heights and Santa rests where he is drawn.
+  '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.sl{animation:none}}',
   '@keyframes fly{from{transform:translate(-250px,0)}to{transform:translate(215px,0)}}',
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',

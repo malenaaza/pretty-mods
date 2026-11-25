@@ -39,7 +39,7 @@ Mods draw differently by surface: `terminal`, `desktop`, `vscode` and `mobile`. 
 
 - **Colours:** build them with the built-in skill's `makeColors` and don't write token names by hand. Work until no line starts `Desktop won't paint this theme`, because then the desktop ignores the whole theme. Check both light and dark unless the mod forces one.
 - **Text must stay readable.** Give text colours enough contrast over the backdrop, and use the backdrop's `glass` setting so panels stay legible over a busy scene.
-- **A moving scene is a risk.** Keep it slow, pure vector and small. No flashing: nothing that swings between light and dark more than three times a second. Give every moving part a resting place so it looks finished for someone who asked for reduced motion.
+- **A moving scene is a risk.** Keep it slow, pure vector and small. No flashing: nothing that swings between light and dark more than three times a second. Give every moving part a resting place so it looks finished for someone who asked for reduced motion, and switch the motion off for them with `@media (prefers-reduced-motion:reduce)` in the scene's own `<style>`; a hidden resting place (a flake parked above the top edge) is not a finished picture.
 - **A wide window crops a tall scene.** With `slice`, a 400 x 800 picture on a desktop window shows only its middle band, roughly the middle quarter of the height, so anything drawn near the top or the foot is off screen there. Put the subject inside that band and test the idea on both a wide and a tall frame. Keep a silhouette lighter than the sky, since the glass tint dims the scene.
 - **Fit any screen.** On a phone the scene is tall and narrow, and on its side there is little room. Use `preserveAspectRatio="xMidYMid slice"` for loose art and keep the subject away from the middle, where the words sit, and the foot, where the message box sits.
 - **Mobile draws a tool row as one quiet line.** For anything a person should see without a tap, such as a chart or a short report, put it in a card, as the built-in skill says.
@@ -50,7 +50,8 @@ Mods draw differently by surface: `terminal`, `desktop`, `vscode` and `mobile`. 
 
 1. `claude plugin validate <mod folder>` must pass.
 2. Where the mod has logic (a date, a counter), write a `*.test.ts` and run `claude plugin test <mod folder>`.
-3. Say what you could not check. In a cloud session there is no desktop or phone screen: the colours, contrast and motion are **validated, not seen**. Tell the user that, ask them to look at it on their own device, and ask for a screenshot description or what looked wrong. Never say it looks good when you haven't seen it.
+3. **Look at a moving scene before showing it.** Keep the scene in a constant called `SCENE`, then run `node <skill>/scripts/render_scene.js <mod folder>/hooks/register.tsx <a scratch folder>` and open the PNGs it writes (a wide frame and a phone frame, at 0, 20 and 45 seconds, and one of each with reduced motion on). Check that the subject is inside the visible band, that nothing starts off screen when a session opens, that it is not too big on a wide frame and that nothing is the wrong colour. It draws the scene alone: the app adds its own glass blur and tint and its panels on top, so keep `glass` blur low (a blur of 18 turned Santa into a blob) and tell the user that this part is not seen.
+4. Say what you could not check. In a cloud session there is no desktop or phone screen: the colours, contrast and motion are **validated, not seen**. Tell the user that, ask them to look at it on their own device, and ask for a screenshot description or what looked wrong. Never say it looks good when you haven't seen it. A render is not the app: say "rendered the scene in a browser", not "checked on your screen".
 
 ## Step 5: Keep it and share it
 
@@ -61,7 +62,7 @@ A mod written in a session lives in that session's mods folder and ends with it.
 - Install line to give for a shared mod: `/plugin install <mod> --marketplace <owner>/<repo>`.
 - Before putting a mod in a public repository, ask whether the repository is public or private, and look for anything personal in it.
 
-Never push to a branch another session owns, and never open a pull request unless asked.
+Push only after `scripts/check.sh` has passed, and chain them with `&&`, never `;`, so a failing check stops the push. Never push to a branch another session owns, and never open a pull request unless asked.
 
 ## A theme with a company logo
 
