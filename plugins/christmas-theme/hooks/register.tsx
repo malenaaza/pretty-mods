@@ -78,13 +78,13 @@ const SCENE = [
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   FLAKES,
-  `<g transform="translate(200 400) scale(1.5)" opacity=".95"><g class="sl">${SANTA}</g></g>`,
+  `<g transform="translate(200 400) scale(1.5)" opacity=".85"><g class="sl">${SANTA}</g></g>`,
   '</svg>',
 ].join('')
 
 const LOOK: ThemeSetArgs = {
   colors: theme,
-  backdrop: { scene: 'snowfall', glass: { blur: 18, tint: '#0f1f17', opacity: 0.6 } },
+  backdrop: { scene: 'snowfall', glass: { blur: 2, tint: '#0f1f17', opacity: 0.45 } },
   overrideColorScheme: 'dark',
 }
 
