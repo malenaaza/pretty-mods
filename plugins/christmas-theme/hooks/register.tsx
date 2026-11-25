@@ -44,6 +44,26 @@ const FLAKES = Array.from({ length: 48 }, (_, i) => {
   return `<circle class="f" cx="${x}" cy="-10" r="${r}" style="--d:${drift}px;animation-duration:${duration}s;animation-delay:${delay}s"/>`
 }).join('')
 
+// Santa, his sleigh and one reindeer, drawn small around (0, 0). They rest at the spot given by the outer
+// transform, and the slow flight across the sky only moves them sideways. The sky band a wide window shows
+// is about y 290 to 510, so they fly there.
+const SANTA = [
+  '<path d="M-38 -8 L-12 -4" stroke="#d9b45a" stroke-width="1" fill="none"/>',
+  '<ellipse cx="-50" cy="-8" rx="14" ry="7" fill="#7a5230"/>',
+  '<circle cx="-66" cy="-18" r="5" fill="#7a5230"/>',
+  '<circle cx="-71" cy="-17" r="1.8" fill="#e03a3a"/>',
+  '<path d="M-67 -23 L-70 -33 M-67 -23 L-62 -32" stroke="#7a5230" stroke-width="1.4" fill="none"/>',
+  '<path d="M-58 -2 L-60 8 M-44 -2 L-42 8" stroke="#7a5230" stroke-width="1.6" fill="none"/>',
+  '<path d="M-14 -2 C-12 8 6 10 24 6 L26 -8 L-6 -8 Z" fill="#b3263b"/>',
+  '<path d="M-18 12 C0 16 26 14 32 4" stroke="#d9b45a" stroke-width="2" fill="none"/>',
+  '<circle cx="22" cy="-12" r="7" fill="#8a6d2b"/>',
+  '<circle cx="8" cy="-14" r="7" fill="#b3263b"/>',
+  '<circle cx="8" cy="-24" r="4.5" fill="#f4dcc4"/>',
+  '<path d="M3 -26 L8 -37 L13 -26 Z" fill="#b3263b"/>',
+  '<circle cx="8" cy="-38" r="1.8" fill="#fffaf0"/>',
+  '<path d="M4 -23 Q8 -14 12 -23 Z" fill="#fffaf0"/>',
+].join('')
+
 const SCENE = [
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">',
   '<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">',
@@ -52,15 +72,18 @@ const SCENE = [
   '<style>',
   '.f{fill:#fffaf0;opacity:.85;animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite}',
   '@keyframes fall{from{transform:translate(0,0)}to{transform:translate(var(--d),830px)}}',
+  '.sl{animation:fly 90s linear infinite}',
+  '@keyframes fly{from{transform:translate(-230px,0)}to{transform:translate(370px,0)}}',
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   FLAKES,
+  `<g transform="translate(120 340) scale(1.2)" opacity=".92"><g class="sl">${SANTA}</g></g>`,
   '</svg>',
 ].join('')
 
 const LOOK: ThemeSetArgs = {
   colors: theme,
-  backdrop: { scene: 'snowfall', glass: { blur: 18, tint: '#0f1f17', opacity: 0.72 } },
+  backdrop: { scene: 'snowfall', glass: { blur: 18, tint: '#0f1f17', opacity: 0.6 } },
   overrideColorScheme: 'dark',
 }
 
