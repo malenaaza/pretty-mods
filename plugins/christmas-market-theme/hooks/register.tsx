@@ -110,6 +110,8 @@ const table = (x: number): string => {
     `<rect x="${x - 1.5}" y="${G - 49}" width="3" height="7" fill="#efe3cd"/>`,
     flame,
     `<rect x="${x + 9}" y="${G - 50}" width="7" height="8" rx="1.5" fill="#f1e6d0"/>`,
+    `<rect x="${x + 9}" y="${G - 46}" width="7" height="2" fill="#c8453a"/>`,
+    `<path d="M${x + 16} ${G - 48} q3.5 0 3.5 2.5 q0 2.5 -3.5 2.5" stroke="#f1e6d0" stroke-width="1.5" fill="none"/>`,
     `<circle class="st" cx="${x + 12}" cy="${G - 54}" r="2.6" style="animation-delay:-1s"/>`,
     `<circle class="st" cx="${x + 13}" cy="${G - 54}" r="2.2" style="animation-delay:-3.5s"/>`,
   ].join('')
@@ -132,9 +134,9 @@ const TOWN = [
     const top = G - ph
 
     return [
-      `<rect x="${px}" y="${top}" width="${pw}" height="${ph}" fill="#22141b"/>`,
-      `<path d="M${px - 2} ${top} L${px + pw / 2} ${top - 20} L${px + pw + 2} ${top} Z" fill="#2a1a22"/>`,
-      `<rect class="w" x="${px + pw / 2 - 3}" y="${top + 16}" width="6" height="8" fill="#f2bf55" opacity=".55" style="animation-delay:${-((i * 4) % 9)}s"/>`,
+      `<rect x="${px}" y="${top}" width="${pw}" height="${ph}" fill="#3b2331"/>`,
+      `<path d="M${px - 2} ${top} L${px + pw / 2} ${top - 20} L${px + pw + 2} ${top} Z" fill="#4c2f3d"/>`,
+      `<rect class="w" x="${px + pw / 2 - 3}" y="${top + 16}" width="6" height="8" fill="#f2bf55" opacity=".9" style="animation-delay:${-((i * 4) % 9)}s"/>`,
     ].join('')
   })
   .join('')
