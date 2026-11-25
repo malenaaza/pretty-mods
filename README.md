@@ -8,6 +8,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 - **You need Claude Code.** These mods work only in Claude Code. They did not work on a Claude Free account when the owner tried.
 - **Looks (themes) show only in the Claude desktop app**, in a Claude Code session. The terminal and editors don't draw themes. Use a session **on your own computer**: a session that runs in the cloud may show an older copy of a theme, or none.
+- **The status-line mods** (`kitty-status`, `christmas-countdown`, `now-playing`) show in the Claude Code terminal. In the Windows desktop app `now-playing` showed, and the other two were not reliable: see "What works where".
 - **Only one theme at a time.** If two are on, the later one wins.
 - Not for everyone yet: it has been tried on one Windows PC. Mac and phone are untested.
 
@@ -19,8 +20,8 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 |---|---|---|
 | `christmas-theme` | Claude desktop app, in a Claude Code session on your own computer | Yes, on Windows (version 0.2.4 "looks good", and Santa is sharp). Phone: not tested |
 | `kitty-theme` | Same as above | Yes, on Windows (the owner reported it "looks good"; 0.1.5 was the current version, the exact one was not stated). Phone: not tested |
-| `christmas-countdown`, `kitty-status` | The status line, wherever Claude Code shows one | Not individually reported |
-| `now-playing` | The status line in the Claude Code terminal (Mac: Music app; Windows: any player that reports to the system media controls, such as YouTube Music in a browser) | No. Never run on a real Mac or Windows PC |
+| `kitty-status`, `christmas-countdown` | The status line in the Claude Code terminal | Yes, both work in the Claude Code terminal (owner's report). **In the Windows desktop app the reports were mixed:** `kitty-status` was seen once under the text box, was not seen later, and `christmas-countdown` was never seen there. A test line that updated every 5 seconds did not show in a cloud session in that app. So do not count on status lines in the desktop app; the cause is not known |
+| `now-playing` | The status line, under the text box (Mac: Music app; Windows: any player that reports to the system media controls, such as YouTube Music in a browser) | **Yes, on Windows, in the desktop app** (owner's screenshot, version 0.2.0: title and artist showed with the mod's name in front) **and in the Claude Code terminal** (owner's report, version not stated). A Mac: never run. Accented letters showed broken in 0.2.0; 0.2.1 should fix it, not yet reported |
 
 ## The mods
 
@@ -50,7 +51,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 | Mod | What it does |
 |---|---|
-| `now-playing` | Shows "🎵 title - artist" in the status line for the song that's playing. Updates every 15 seconds. Nothing shows when nothing is playing. Terminal only. It needs no account connection, token or sign-in, because it asks your own computer. |
+| `now-playing` | Shows "🎵 title - artist" in the status line for the song that's playing. Updates every 15 seconds. Nothing shows when nothing is playing. It needs no account connection, token or sign-in, because it asks your own computer. |
 
 ## Install
 
@@ -101,7 +102,7 @@ To update after a new version: `claude plugin marketplace update pretty-mods`, t
 
 ## Motion
 
-The Christmas and kitty scenes move slowly, with nothing flashing. They are meant to stop when your system's "reduce motion" setting is on (tested in a browser render; not yet confirmed in the app).
+The Christmas and kitty scenes move slowly, with nothing flashing. They stop when your system's "reduce motion" setting is on. The owner confirmed on Windows that this works in the app (the owner did not say which of the two themes was checked).
 
 ## The skill that makes mods
 
@@ -131,7 +132,7 @@ Everything in this repository is free and MIT-licensed, and stays free, includin
 
 - **A look (theme):** colours and a moving scene behind the conversation, for the desktop and mobile apps. The terminal and editors don't draw themes. `christmas-theme` and `kitty-theme` are looks.
 - **A status line:** one line of text, which the mod updates itself. `christmas-countdown`, `kitty-status` and `now-playing` are status lines.
-- **Running something on your computer:** `now-playing` asks your Music app (Mac) or Windows media controls what's playing. That works in the terminal only.
+- **Running something on your computer:** `now-playing` asks your Music app (Mac) or Windows media controls what's playing.
 
 **Where each works:** see "What works where" at the top.
 
@@ -161,10 +162,10 @@ New. Written in cloud sessions, so most of what is here was validated, not seen.
 
 Owner's report, Free account: the mods do not work on Claude Free; they work only in Claude Code. Nothing more was tested there, and the cause is not known.
 
-Owner's report, Windows desktop app (app version 6.28899.6, Pro plan): `christmas-theme` installed from a terminal showed nothing in a cloud Code session, and showed once the session was started on the owner's own computer. In a terminal-only session it reports that no client draws themes yet, which is expected. The owner's screenshot of `christmas-theme` 0.2.1 showed Santa, the reindeer and the sleigh on screen but as a blurred blob, because the backdrop glass blurred the whole scene (blur 18). `christmas-theme` 0.2.2 and `kitty-theme` 0.1.3 lower the blur to 2 and the veil to 45%, and Santa is a little more transparent so he doesn't compete with long answers; not yet reported back. With `christmas-theme` 0.2.3 (blur 2, veil 45%) the owner saw Santa less blurred but still not sharp, while the reindeer outside the chat panel was sharp. 0.2.4 and `kitty-theme` 0.1.5 set the blur to 0 and the veil to 35%. The owner then reported that the Christmas theme (0.2.4) looks good on their Windows desktop session. The owner then reported that Santa is sharp in 0.2.4. Not yet reported: whether text stays readable as he passes, and whether motion stops with "reduce motion" on. Not yet reported: `kitty-theme`, the phone app, and `christmas-countdown`/`kitty-status` in the desktop app.
+Owner's report, Windows desktop app (app version 6.28899.6, Pro plan): `christmas-theme` installed from a terminal showed nothing in a cloud Code session, and showed once the session was started on the owner's own computer. In a terminal-only session it reports that no client draws themes yet, which is expected. The owner's screenshot of `christmas-theme` 0.2.1 showed Santa, the reindeer and the sleigh on screen but as a blurred blob, because the backdrop glass blurred the whole scene (blur 18). `christmas-theme` 0.2.2 and `kitty-theme` 0.1.3 lower the blur to 2 and the veil to 45%, and Santa is a little more transparent so he doesn't compete with long answers; not yet reported back. With `christmas-theme` 0.2.3 (blur 2, veil 45%) the owner saw Santa less blurred but still not sharp, while the reindeer outside the chat panel was sharp. 0.2.4 and `kitty-theme` 0.1.5 set the blur to 0 and the veil to 35%. The owner then reported that the Christmas theme (0.2.4) looks good on their Windows desktop session. The owner then reported that Santa is sharp in 0.2.4. The owner also reported that "reduce motion" works in the app. The owner also reported that the text is easy to read in both themes. The owner also reported that `christmas-countdown` and `kitty-status` both work in the Claude Code terminal. The owner's reports on status lines in the Windows desktop app were mixed: `kitty-status` ("kitty is playing") was seen once under the text box, and later neither it nor `christmas-countdown` was seen, with both active. `christmas-countdown` also did not show after being reinstalled from the marketplace, and a test line that updated every 5 seconds did not show in a cloud session. Both mods work in the terminal. The cause is not known. Not yet reported: the phone app.
 
-`kitty-theme` 0.1.0, same setup: the plum colours showed but the cat did not, because the cat was drawn off screen on a wide window and too dark. 0.1.1 moved it to the right edge, in the visible band, and lightened it. The owner then saw a big cat with half of it in another colour (cause not confirmed: the moon was drawn half grey and the cat was about 320 px wide on a wide window, or a panel of the app may cover part of it). 0.1.2 makes the moon one colour and the cat smaller. The owner later reported that `kitty-theme` looks good (the version was not stated; 0.1.5 was current). Not reported: whether the text stays readable next to the cat, and whether the motion stops with "reduce motion" on.
+`kitty-theme` 0.1.0, same setup: the plum colours showed but the cat did not, because the cat was drawn off screen on a wide window and too dark. 0.1.1 moved it to the right edge, in the visible band, and lightened it. The owner then saw a big cat with half of it in another colour (cause not confirmed: the moon was drawn half grey and the cat was about 320 px wide on a wide window, or a panel of the app may cover part of it). 0.1.2 makes the moon one colour and the cat smaller. The owner later reported that `kitty-theme` looks good (the version was not stated; 0.1.5 was current). The owner then said the stars were plain circles and nothing moved. 0.1.6 draws four-pointed sparkles that twinkle more clearly and a tail that sways more (about 4.5 seconds per sway); not yet reported back.
 
-`now-playing` is tested only on sample text, not on a real Mac or Windows PC; the Windows media-controls script in particular has never been run. On a Mac, the first time it runs macOS may ask to let the terminal control Music; allow it. On Windows it needs Windows PowerShell (`powershell.exe`, built in). If it shows nothing while a song plays, please open an issue and say which system and player.
+`now-playing` 0.2.0, Windows: the owner's screenshot showed "🎵 title - artist" for a song playing in a browser, in the status line under the text box in the Windows desktop app. The owner also reported seeing it in the Claude Code terminal (version not stated). An accented letter in the title showed as a broken character (a codepage problem in the PowerShell reply); 0.2.1 makes the script answer in UTF-8 and the parser ignore a byte-order mark, which has only been tested on sample text, so it is not yet reported back. A Mac has never been tried; on a Mac, the first time it runs macOS may ask to let the terminal control Music; allow it. On Windows it needs Windows PowerShell (`powershell.exe`, built in). If it shows nothing while a song plays, please open an issue and say which system and player.
 
 MIT licence.
