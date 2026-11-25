@@ -8,6 +8,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 - **Necesitas Claude Code.** Estas mods funcionan solo en Claude Code. No funcionaron en una cuenta de Claude Free cuando la dueña del repositorio lo probó.
 - **Los temas (aspectos) solo se ven en la app de escritorio de Claude**, en una sesión de Claude Code. La terminal y los editores no dibujan temas. Usa una sesión **en tu propio ordenador**: una sesión que corre en la nube puede mostrar una copia antigua del tema, o ninguna.
+- **Las mods de línea de estado** (`christmas-countdown`, `kitty-status`, `now-playing`) se muestran en la terminal de Claude Code. La app de escritorio de Windows no las mostró.
 - **Un solo tema a la vez.** Si hay dos activos, gana el último.
 - Todavía no es para todo el mundo: se ha probado en un solo PC con Windows. Mac y móvil no se han probado.
 
@@ -19,7 +20,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 |---|---|---|
 | `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido). Móvil: sin probar |
 | `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien"; la 0.1.5 era la versión actual, no dijo cuál exactamente). Móvil: sin probar |
-| `christmas-countdown`, `kitty-status` | La línea de estado, donde Claude Code muestre una | Sí: las dos funcionan en la terminal de Claude Code, y `kitty-status` también se muestra en la app de escritorio de Windows junto al tema navideño (informes de la dueña). `christmas-countdown` en la app de escritorio: sin informe |
+| `christmas-countdown`, `kitty-status` | La línea de estado en la terminal de Claude Code. La app de escritorio de Windows no las mostró | Sí, las dos funcionan en la terminal de Claude Code (informe de la dueña). **No en la app de escritorio de Windows**: ninguna de las dos líneas se mostró allí, ni siquiera con `christmas-countdown` instalado desde el marketplace (informe de la dueña) |
 | `now-playing` | La línea de estado en la terminal de Claude Code (Mac: app Música; Windows: cualquier reproductor que informe a los controles multimedia del sistema, como YouTube Music en un navegador) | No. Nunca se ha ejecutado en un Mac ni en un PC con Windows reales |
 
 ## Las mods
