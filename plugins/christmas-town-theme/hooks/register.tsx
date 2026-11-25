@@ -49,18 +49,25 @@ const windowsOf = (x: number, w: number, top: number, h: number, offsets: number
     })
     .join('')
 
+const G_TOP = (item: House): number => GROUND - item.h
+
 const house = (item: House, index: number): string => {
-  const top = GROUND - item.h
+  const top = G_TOP(item)
   const mid = item.x + item.w / 2
-  const smokeX = item.x + item.w * 0.74
+  // The chimney stands on the right slope of the roof: its base is hidden behind the roof, its top shows above it.
+  const cx = item.x + item.w * 0.76
+  const slope = top - item.roof * (1 - Math.abs(cx - mid) / (item.w / 2 + 4))
+  const chimneyTop = slope - 16
 
   return [
+    `<rect x="${cx - 5}" y="${chimneyTop}" width="10" height="26" fill="#6b3d36"/>`,
+    `<rect x="${cx - 6.5}" y="${chimneyTop - 3}" width="13" height="4" fill="#e6edf7" opacity=".92"/>`,
     `<rect x="${item.x}" y="${top}" width="${item.w}" height="${item.h}" fill="#101a31"/>`,
     `<path d="M${item.x - 4} ${top} L${mid} ${top - item.roof} L${item.x + item.w + 4} ${top} Z" fill="#1a2744"/>`,
     // The snow on the roof.
     `<path d="M${item.x - 4} ${top} L${mid} ${top - item.roof} L${item.x + item.w + 4} ${top} L${item.x + item.w + 4} ${top - 3} L${mid} ${top - item.roof - 3} L${item.x - 4} ${top - 3} Z" fill="#dfe8f4" opacity=".85"/>`,
-    `<rect x="${smokeX}" y="${top - item.roof * 0.7}" width="6" height="12" fill="#101a31"/>`,
-    `<circle class="sm" cx="${smokeX + 3}" cy="${top - item.roof * 0.7 - 4}" r="4" style="animation-delay:${-((index * 3) % 8)}s"/>`,
+    `<circle class="sm" cx="${cx}" cy="${chimneyTop - 8}" r="5" style="animation-delay:${-((index * 3) % 8)}s"/>`,
+    `<circle class="sm" cx="${cx + 1}" cy="${chimneyTop - 8}" r="4" style="animation-delay:${-((index * 3 + 4) % 8)}s"/>`,
     windowsOf(item.x, item.w, top, item.h, item.windows),
   ].join('')
 }
@@ -126,10 +133,10 @@ const SCENE = [
   '.w{fill:#f4c35a;animation:glow 9s ease-in-out infinite}',
   '@keyframes glow{0%,100%{opacity:.7}50%{opacity:1}}',
   '.l{animation:glow 6s ease-in-out infinite}',
-  '.sm{fill:#c9d4e6;opacity:0;animation:rise 9s ease-out infinite}',
-  '@keyframes rise{0%{opacity:0;transform:translate(0,0)}20%{opacity:.35}100%{opacity:0;transform:translate(10px,-34px)}}',
+  '.sm{fill:#d6deec;opacity:0;animation:rise 9s ease-out infinite}',
+  '@keyframes rise{0%{opacity:0;transform:translate(0,0)}20%{opacity:.6}100%{opacity:0;transform:translate(12px,-42px)}}',
   // Asked to reduce motion, the snow rests at set heights and the windows, lights and smoke stay still.
-  '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.w,.l{animation:none}.sm{animation:none;opacity:.2}}',
+  '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.w,.l{animation:none}.sm{animation:none;opacity:.3}}',
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   '<circle cx="330" cy="318" r="17" fill="#f3e6c8" opacity=".9"/>',
