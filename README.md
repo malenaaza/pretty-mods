@@ -1,46 +1,60 @@
 # pretty-mods
 
-Pretty mods for Claude: changes to how Claude looks and what it shows, for the desktop and mobile apps. They start with Christmas, and now kitties.
+Pretty mods for Claude Code: changes to how it looks and what it shows. A Christmas look with Santa, a kitty look with a cat on a moonlit ledge, a few status-line extras, and a skill that makes mods in your own style. Everything here is free.
 
-## Christmas mods
+[Español](README.es.md)
+
+## Before you start
+
+- **You need Claude Code.** These mods work only in Claude Code. They did not work on a Claude Free account when the owner tried.
+- **Looks (themes) show only in the Claude desktop app**, in a Claude Code session. The terminal and editors don't draw themes. Use a session **on your own computer**: a session that runs in the cloud may show an older copy of a theme, or none.
+- **Only one theme at a time.** If two are on, the later one wins.
+- Not for everyone yet: it has been tried on one Windows PC. Mac and phone are untested.
+
+## What works where
+
+"Seen" means the owner reported seeing it. Everything else was checked only by tools, not by eye.
+
+| Mod | Where it shows | Seen? |
+|---|---|---|
+| `christmas-theme` | Claude desktop app, in a Claude Code session on your own computer | Yes, on Windows (version 0.2.4 "looks good"). Phone: not tested |
+| `kitty-theme` | Same as above | Colours seen; the cat has been reworked since and is not yet reported |
+| `christmas-countdown`, `kitty-status` | The status line, wherever Claude Code shows one | Not individually reported |
+| `now-playing` | The status line in the Claude Code terminal (Mac: Music app; Windows: any player that reports to the system media controls, such as YouTube Music in a browser) | No. Never run on a real Mac or Windows PC |
+
+## The mods
+
+### Christmas
+
+![Preview of christmas-theme: a pine-green night with snow, Santa's sleigh and a reindeer](docs/previews/christmas-theme.png)
+
+*Preview of the scene alone, drawn in a browser. The app adds its own blur and panels on top, so it looks different there. It is not a screenshot of anyone's screen.*
 
 | Mod | What it does |
 |---|---|
-| `christmas-theme` | A Christmas look: deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh and a reindeer crossing the sky once every 70 seconds. Dark, in the app's desktop and mobile versions. |
+| `christmas-theme` | Deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh and a reindeer crossing the sky once every 70 seconds. Dark. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
 
-## Kitty mods
+### Kitty
+
+![Preview of kitty-theme: a plum night with a moon and a cat on a ledge](docs/previews/kitty-theme.png)
+
+*Preview of the scene alone, drawn in a browser, without the app's blur and panels.*
 
 | Mod | What it does |
 |---|---|
-| `kitty-theme` | A cosy kitty look: soft plum night, cream text and rose accents, with a sleepy cat on a moonlit window ledge. Only the tail and the stars move, slowly. Dark, in the app's desktop and mobile versions. |
+| `kitty-theme` | Soft plum night, cream text and rose accents, with a moon and a sleepy cat on a ledge. Only the tail and the stars move, slowly. Dark. |
 | `kitty-status` | A little cat in the status line whose mood follows the time of day ("😴 kitty is asleep", "😺 kitty wants breakfast", "😸 kitty is purring"...). |
 
-## Music
+### Music
 
 | Mod | What it does |
 |---|---|
-| `now-playing` | Shows "🎵 title - artist" in the status line for the song that's playing. On a Mac it asks the Music app; on Windows it reads the system media controls, so YouTube Music in a browser works, and so do Spotify and most players. It asks your own computer, so it needs no account connection, token or sign-in. Terminal only: not the desktop or phone apps, and nothing shows when nothing is playing. Updates every 15 seconds. |
-
-## The skill that makes mods
-
-`pretty-mods` is a skill: ask Claude for a mod ("make Claude look like a cosy cabin", "a status line with the weather") and it builds one in your own style. The first time it asks a few questions (colours, dark or light, motion, sound) and saves them in `~/.pretty-mods/style.md`, outside the skill, so it never asks twice. It uses Claude's built-in mod-writing skill for the mechanics and adds the checks for desktop and mobile: readable contrast, slow vector-only motion, no flashing, layouts that fit a phone, no sound unless you ask, and an honest note on what could not be checked.
-
-The Christmas and kitty scenes stop moving when your system's "reduce motion" setting is on (tested in a browser render; not yet confirmed in the app). Before showing a moving scene, the skill renders it in a browser at a wide and a phone size (`scripts/render_scene.js`) so cropping and off-screen starts are caught early; the app's own blur and panels are not part of that render. It also carries a template for a theme in a company's own colours with its own logo as a faint backdrop (`plugins/pretty-mods/skills/pretty-mods/brand-theme-template/`). Attach your logo (an SVG works best) and Claude converts it to the plain shapes a theme can draw, refusing anything it can't, such as pictures, text or gradients. Use it only for a logo you have the right to use, and keep that theme in your own repository.
-
-```
-/plugin install pretty-mods --marketplace malenaaza/pretty-mods
-```
-
-## Plus (coming)
-
-Everything in this repository is free and MIT-licensed, and stays free, including `kitty-theme`. Later, a separate paid set of themes with richer scenes may appear under the name Plus. It would live in its own private repository, not here. Nothing is for sale yet, and no price or date is set.
+| `now-playing` | Shows "🎵 title - artist" in the status line for the song that's playing. Updates every 15 seconds. Nothing shows when nothing is playing. Terminal only. It needs no account connection, token or sign-in, because it asks your own computer. |
 
 ## Install
 
-**What you need: Claude Code.** These mods work only in Claude Code. The owner tried them with a Claude Free account and they did not work there, so they are not for Free. The themes also need a Claude Code session shown in the desktop app (see below), and `now-playing` needs the Claude Code terminal. Why they fail on Free was not investigated.
-
-In Claude Code, type these (for each mod you want):
+In a terminal, start Claude Code (`claude`) and type, for each mod you want:
 
 ```
 /plugin install christmas-theme --marketplace malenaaza/pretty-mods
@@ -62,11 +76,46 @@ In Claude Code, type these (for each mod you want):
 /plugin install now-playing --marketplace malenaaza/pretty-mods
 ```
 
-It asks once to add the marketplace (`y`), then for a scope. Start a new session afterwards.
+It asks once to add the marketplace (`y`), then for a scope. Choose **user** to have the mod in every session on that computer, or **project** for one folder only. Then open a **new** session: a theme is set when a session starts.
 
-The theme is drawn by the desktop and mobile apps. The terminal and editors don't draw themes, so there only the countdown shows.
+The desktop app's own **+** then **Plugins** menu may also work, but on the owner's version it had no "Add marketplace" button, so the terminal is the route that has been tried.
 
-**In the desktop app, the safest place is a session on your own computer.** `christmas-theme`, installed from a terminal, did not show in a cloud session and did show in a session started with "my own computer" selected (see Status). A copy of `kitty-theme` loaded in a cloud session's own mods folder did show its colours there, so cloud sessions can draw a theme; why the installed one didn't is not known. If you installed from a terminal, install at user scope, then start a new local session in the app.
+To update after a new version: `claude plugin marketplace update pretty-mods`, then `claude plugin update <mod>`. To switch one off: `claude plugin disable <mod>`.
+
+## If you see nothing
+
+1. **Run `claude plugin list`** in a terminal. Is the mod there, at the version you expect, and enabled?
+2. **Open a new session.** Themes are set at the start.
+3. **Use a session on your own computer** in the desktop app, not a cloud one.
+4. **Turn off other themes** so only one is on.
+5. **A terminal session only prints a note** such as "no attached desktop or mobile client draws themes yet". That is expected: the terminal doesn't draw themes.
+6. **On a Free account** the mods did not work, and the cause was not investigated.
+7. **Still nothing?** Open an issue with your system, app version, `claude plugin list` output, and what you see.
+
+## What the mods do on your computer
+
+- **Themes** only set colours and a picture behind the conversation. They run no commands and use no network.
+- **`christmas-countdown` and `kitty-status`** read the clock and show a line of text. They use no network.
+- **`now-playing`** runs a small command on your computer to ask what is playing: `osascript` on a Mac, or Windows PowerShell on Windows. It reads the title and artist only and sends them nowhere. On a Mac, the first time it runs macOS may ask to let the terminal control Music; allow it if you want it to work.
+- No mod collects or sends your data. The code is in `plugins/`, and you can read it.
+
+## Motion
+
+The Christmas and kitty scenes move slowly, with nothing flashing. They are meant to stop when your system's "reduce motion" setting is on (tested in a browser render; not yet confirmed in the app).
+
+## The skill that makes mods
+
+`pretty-mods` is a skill: ask Claude for a mod ("make Claude look like a cosy cabin", "a status line with the weather") and it builds one in your own style. The first time it asks a few questions (colours, dark or light, motion, sound) and saves them in `~/.pretty-mods/style.md`, outside the skill, so it never asks twice. It uses Claude's built-in mod-writing skill for the mechanics and adds the checks for desktop and mobile: readable contrast, slow vector-only motion, no flashing, layouts that fit a phone, no sound unless you ask, and an honest note on what could not be checked.
+
+Before showing a moving scene, the skill renders it in a browser at a wide and a phone size (`scripts/render_scene.js`) so cropping and off-screen starts are caught early; the app's own blur and panels are not part of that render. It also carries a template for a theme in a company's own colours with its own logo as a faint backdrop (`plugins/pretty-mods/skills/pretty-mods/brand-theme-template/`). Attach your logo (an SVG works best) and Claude converts it to the plain shapes a theme can draw, refusing anything it can't, such as pictures, text or gradients. Use it only for a logo you have the right to use, and keep that theme in your own repository.
+
+```
+/plugin install pretty-mods --marketplace malenaaza/pretty-mods
+```
+
+## Plus (coming)
+
+Everything in this repository is free and MIT-licensed, and stays free, including `kitty-theme`. Later, a separate paid set of themes with richer scenes may appear under the name Plus. It would live in its own private repository, not here. Nothing is for sale yet, and no price or date is set.
 
 ## How it works
 
@@ -84,13 +133,7 @@ The theme is drawn by the desktop and mobile apps. The terminal and editors don'
 - **A status line:** one line of text, which the mod updates itself. `christmas-countdown`, `kitty-status` and `now-playing` are status lines.
 - **Running something on your computer:** `now-playing` asks your Music app (Mac) or Windows media controls what's playing. That works in the terminal only.
 
-**Where each works** (what the design says, not yet all confirmed on real devices):
-
-| Mod | Terminal | Desktop app | Phone |
-|---|---|---|---|
-| `christmas-theme`, `kitty-theme` | no | yes | yes |
-| `christmas-countdown`, `kitty-status` | yes | where the app shows a status line | not confirmed |
-| `now-playing` | yes | no | no |
+**Where each works:** see "What works where" at the top.
 
 **Making or changing one yourself.**
 
@@ -114,7 +157,7 @@ It validates the marketplace and every plugin and runs each plugin's tests.
 
 ## Status
 
-New. Written in a cloud session, so the looks (Christmas and kitty) have been validated but not yet seen on a real desktop or phone screen. If the snow, the colours or the contrast look wrong on your device, please open an issue and say which device.
+New. Written in cloud sessions, so most of what is here was validated, not seen. What has been seen is what the owner reported below, on one Windows PC. If something looks wrong on your device, please open an issue and say which device and which app version.
 
 Owner's report, Free account: the mods do not work on Claude Free; they work only in Claude Code. Nothing more was tested there, and the cause is not known.
 
