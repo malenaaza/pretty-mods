@@ -1,6 +1,6 @@
 import type { Register } from 'claude-code'
 
-import { type Action, describe, isPlaying } from './controls.js'
+import { type Action, describe, nowPlaying } from './controls.js'
 
 const TIMEOUT_MS = 8000
 const EVERY = 15 * 1000
@@ -9,8 +9,9 @@ const PANE = 'now-playing-controls'
 // Each command and the pane are terminal-only: they act on this computer, which a desktop or phone client does not share.
 const SPEC = { isTerminalOnly: true } as const
 
-// Whether a song is playing, as last checked. The pane shows its buttons only while this is true.
-let playing = false
+// What is playing, as last checked ("Title - Artist"), or undefined when nothing is.
+// The pane and the band show their buttons only while this is set.
+let track: string | undefined
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
@@ -20,10 +21,10 @@ export const register: Register = on => {
     await $.command.register({ name: 'playback', description: 'Show the playback buttons in a pane', ...SPEC })
 
     const check = async (): Promise<void> => {
-      const now = await isPlaying(argv => $.process.run(argv, { timeoutMs: TIMEOUT_MS }))
+      const now = await nowPlaying(argv => $.process.run(argv, { timeoutMs: TIMEOUT_MS }))
 
-      if (now !== playing) {
-        playing = now
+      if (now !== track) {
+        track = now
         $.ui.invalidate('ui.render')
       }
     }
@@ -54,7 +55,7 @@ export const register: Register = on => {
 
   // The band row above the prompt: the same buttons, shown only while a song is playing.
   on('ui.render', { component: 'AbovePrompt' }, ($, e, next) => {
-    if (!playing) {
+    if (track === undefined) {
       return next(e)
     }
 
@@ -66,7 +67,7 @@ export const register: Register = on => {
 
     return (
       <Box>
-        <Text dimColor>🎵 </Text>
+        <Text dimColor>🎵 {track} </Text>
         <Button key="previous" label="⏮ Previous" onPress={press('previous')} />
         <Button key="playpause" label="⏯ Play / pause" onPress={press('playpause')} />
         <Button key="next" label="⏭ Next" onPress={press('next')} />
@@ -77,7 +78,7 @@ export const register: Register = on => {
   on('ui.render', { component: 'Pane', requestId: PANE }, ($, e) => {
     const { Box, Button, Text } = $.ui.resolve(e)
 
-    if (!playing) {
+    if (track === undefined) {
       return <Text dimColor>Nothing is playing right now.</Text>
     }
 
@@ -88,7 +89,7 @@ export const register: Register = on => {
 
     return (
       <Box flexDirection="column">
-        <Text dimColor>Controls the song that's playing.</Text>
+        <Text dimColor>Playing: {track}</Text>
         <Box flexDirection="row">
           <Button key="previous" onPress={press('previous')}>⏮ Previous</Button>
           <Button key="playpause" onPress={press('playpause')}>⏯ Play / pause</Button>
