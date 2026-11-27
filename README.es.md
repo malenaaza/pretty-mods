@@ -21,6 +21,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 | `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido; después la dueña informó de que los regalos añadidos en la 0.2.6 se ven bien). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
 | `christmas-town-theme` | Igual que arriba | Sí, en Windows: la primera versión tenía chimeneas que no se veían; tras la 0.1.1 (chimeneas de ladrillo con nieve) la dueña informó de que se ve bien |
 | `christmas-market-theme` | Igual que arriba | Sí, en Windows: tras pedir la dueña tres puestos (0.2.0), informó de que "está bien", aunque los puestos le siguen pareciendo grandes y decidió dejarlos así. Tras la 0.2.1 (casas del fondo visibles, tazas con asa) informó de que se ve bien. La primera versión mostraba solo dos puestos, uno cortado en el borde |
+| `snowman-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador, en claro y en oscuro |
 | `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien", y después de que la cola del gato y las estrellas se ven y se mueven en la 0.1.6). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
 | `kitty-status`, `christmas-countdown` | La línea de estado en la terminal de Claude Code | Sí, las dos funcionan en la terminal de Claude Code (informe de la dueña). **En la app de escritorio de Windows los informes fueron mixtos:** `kitty-status` se vio una vez bajo la caja de texto y luego no, y `christmas-countdown` nunca se vio allí. Una línea de prueba que se actualizaba cada 5 segundos tampoco se mostró en una sesión en la nube. No cuentes con las líneas de estado en la app de escritorio; la causa no se conoce |
 | `now-playing` | La línea de estado, bajo la caja de texto (Mac: app Música; Windows: cualquier reproductor que informe a los controles multimedia del sistema, como YouTube Music en un navegador) | **Sí, en Windows, en la app de escritorio** (captura de la dueña, versión 0.2.0: se mostraron título y artista con el nombre de la mod delante) **y en la terminal de Claude Code** (informe de la dueña, versión no indicada). Mac: nunca se ha ejecutado. Las letras con acento salían rotas en la 0.2.0; la dueña confirmó que se ven bien (é y ñ) en la 0.2.1 |
@@ -59,6 +60,16 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 | `kitty-theme` | Noche ciruela suave, texto crema y acentos rosas, con una luna y un gato dormilón en una repisa. Solo se mueven la cola y las estrellas, despacio. Oscuro. |
 | `kitty-status` | Un gatito en la línea de estado cuyo humor sigue la hora del día ("😴 kitty is asleep", "😺 kitty wants breakfast", "😸 kitty is purring"...). El texto de la línea está en inglés. |
 
+### Muñeco de nieve
+
+![Vista previa de snowman-theme: un muñeco de nieve y otro pequeño en una colina nevada con abetos, de día a la izquierda y de noche a la derecha](docs/previews/snowman-theme.png)
+
+*Vista previa solo de la escena, de día (izquierda) y de noche (derecha), dibujada en un navegador, sin el desenfoque ni los paneles de la app.*
+
+| Mod | Qué hace |
+|---|---|
+| `snowman-theme` | Un muñeco de nieve con chistera, bufanda roja y nariz de zanahoria, y otro pequeño con gorro de lana, en una colina nevada con abetos, bajo una nevada lenta. Sigue tu modo claro u oscuro: un día de nieve luminoso con sol, o una noche de nieve con estrellas y luna. Las bufandas ondean un poco y las estrellas parpadean. |
+
 ### Música
 
 | Mod | Qué hace |
@@ -87,6 +98,10 @@ En una terminal, inicia Claude Code (`claude`) y escribe, para cada mod que quie
 
 ```
 /plugin install kitty-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install snowman-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```

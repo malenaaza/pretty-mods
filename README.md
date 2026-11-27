@@ -21,6 +21,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 | `christmas-theme` | Claude desktop app, in a Claude Code session on your own computer | Yes, on Windows (version 0.2.4 "looks good", and Santa is sharp; the owner later reported that the presents added in 0.2.6 look good). iPhone: tried once, in a Remote Control session running on the computer with the theme switched on, and no theme showed |
 | `christmas-town-theme` | Same as above | Yes, on Windows: the first version had chimneys that could not be seen; after 0.1.1 (brick chimneys with snow caps) the owner reported that it looks good |
 | `christmas-market-theme` | Same as above | Yes, on Windows: after the owner asked for three stalls (0.2.0), the owner reported "it is ok", though the stalls still look big to the owner, who chose to leave them. After 0.2.1 (visible background houses, mugs with handles) the owner reported that it looks good. The first version showed only two stalls, one cut off at the edge |
+| `snowman-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
 | `kitty-theme` | Same as above | Yes, on Windows (the owner reported it "looks good", and later that the cat's tail and the stars show and move in 0.1.6). iPhone: tried once, in a Remote Control session running on the computer with the theme switched on, and no theme showed |
 | `kitty-status`, `christmas-countdown` | The status line in the Claude Code terminal | Yes, both work in the Claude Code terminal (owner's report). **In the Windows desktop app the reports were mixed:** `kitty-status` was seen once under the text box, was not seen later, and `christmas-countdown` was never seen there. A test line that updated every 5 seconds did not show in a cloud session in that app. So do not count on status lines in the desktop app; the cause is not known |
 | `now-playing` | The status line, under the text box (Mac: Music app; Windows: any player that reports to the system media controls, such as YouTube Music in a browser) | **Yes, on Windows, in the desktop app** (owner's screenshot, version 0.2.0: title and artist showed with the mod's name in front) **and in the Claude Code terminal** (owner's report, version not stated). A Mac: never run. Accented letters showed broken in 0.2.0; the owner confirmed they show correctly (é and ñ) in 0.2.1 |
@@ -59,6 +60,16 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 | `kitty-theme` | Soft plum night, cream text and rose accents, with a moon and a sleepy cat on a ledge. Only the tail and the stars move, slowly. Dark. |
 | `kitty-status` | A little cat in the status line whose mood follows the time of day ("😴 kitty is asleep", "😺 kitty wants breakfast", "😸 kitty is purring"...). |
 
+### Snowman
+
+![Preview of snowman-theme: a snowman and a small snowman on a snowy hill with fir trees, by day on the left and by night on the right](docs/previews/snowman-theme.png)
+
+*Preview of the scene alone, by day (left) and by night (right), drawn in a browser, without the app's blur and panels.*
+
+| Mod | What it does |
+|---|---|
+| `snowman-theme` | A snowman with a top hat, a red scarf and a carrot nose, and a small one with a woolly hat, on a snowy hill with fir trees, in slow snowfall. It follows your light or dark mode: a bright snowy day with the sun, or a snowy night with stars and the moon. The scarves flutter a little and the stars twinkle. |
+
 ### Music
 
 | Mod | What it does |
@@ -87,6 +98,10 @@ In a terminal, start Claude Code (`claude`) and type, for each mod you want:
 
 ```
 /plugin install kitty-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install snowman-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```

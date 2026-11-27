@@ -37,6 +37,11 @@
       "category": "extras"
     },
     {
+      "name": "snowman-theme",
+      "source": "./plugins/snowman-theme",
+      "category": "theme"
+    },
+    {
       "name": "now-playing",
       "source": "./plugins/now-playing",
       "category": "extras"
