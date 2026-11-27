@@ -12,7 +12,7 @@ const SPEC = { isTerminalOnly: true } as const
 // What is playing, as last checked ("Title - Artist"), or undefined when nothing is.
 // The pane and the band show their buttons only while this is set.
 let track: string | undefined
-// Set by the band's ✕: the row stays hidden until a new song starts or /playback is typed.
+// Set by the band's ✕: the row stays hidden until /playback is typed.
 let dismissed = false
 
 export const register: Register = on => {
@@ -26,10 +26,6 @@ export const register: Register = on => {
       const now = await nowPlaying(argv => $.process.run(argv, { timeoutMs: TIMEOUT_MS }))
 
       if (now !== track) {
-        if (now !== undefined) {
-          dismissed = false
-        }
-
         track = now
         $.ui.invalidate('ui.render')
       }
