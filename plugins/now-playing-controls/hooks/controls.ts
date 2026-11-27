@@ -51,11 +51,11 @@ const windowsScript = (call: string): string =>
     "if ($ok) { Write-Output 'ok' } else { Write-Output 'failed' }",
   ].join('\n')
 
-// Asks whether a song is playing: 'playing' or 'off'.
+// Asks what is playing: 'playing||title||artist', or 'off'.
 const MAC_PLAYING = [
   'if application "Music" is running then',
   'tell application "Music"',
-  'if player state is playing then return "playing"',
+  'if player state is playing then return "playing||" & (name of current track) & "||" & (artist of current track)',
   'end tell',
   'end if',
   'return "off"',
@@ -65,7 +65,10 @@ const WINDOWS_PLAYING = [
   ...windowsPreamble,
   "if ($null -eq $s) { Write-Output 'off'; exit 0 }",
   '$st = [string]$s.GetPlaybackInfo().PlaybackStatus',
-  "if ($st -eq 'Playing') { Write-Output 'playing' } else { Write-Output 'off' }",
+  "if ($st -ne 'Playing') { Write-Output 'off'; exit 0 }",
+  '$pt = [Windows.Media.Control.GlobalSystemMediaTransportControlsSessionMediaProperties, Windows.Media.Control, ContentType = WindowsRuntime]',
+  '$p = Await ($s.TryGetMediaPropertiesAsync()) $pt',
+  "Write-Output ('playing||' + $p.Title + '||' + $p.Artist)",
 ].join('\n')
 
 // Tries the Mac's Music app, then Windows' media controls. The first one that can run gives the answer.
@@ -106,15 +109,30 @@ export const attempt = async (action: Action, run: Run): Promise<Result> => {
   return 'failed'
 }
 
-// Whether a song is playing right now. Anything that can't be asked counts as not playing.
-export const isPlaying = async (run: Run): Promise<boolean> =>
-  (await ask(
+const MAX = 60
+
+const shorten = (text: string): string => (text.length > MAX ? `${text.slice(0, MAX - 1)}…` : text)
+
+// What is playing now, as "Title - Artist", or undefined when nothing is. Anything that can't be asked counts as nothing.
+export const nowPlaying = async (run: Run): Promise<string | undefined> => {
+  const answer = await ask(
     [
       ['osascript', '-e', MAC_PLAYING],
       ['powershell.exe', '-NoProfile', '-NonInteractive', '-Command', WINDOWS_PLAYING],
     ],
     run,
-  )) === 'playing'
+  )
+
+  const [state, title, ...rest] = (answer ?? '').split('||')
+
+  if (state !== 'playing' || title === undefined || title.trim() === '') {
+    return undefined
+  }
+
+  const artist = rest.join('||').trim()
+
+  return shorten(artist === '' ? title.trim() : `${title.trim()} - ${artist}`)
+}
 
 const DONE: Record<Action, string> = {
   next: 'Skipped to the next song.',
