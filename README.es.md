@@ -79,7 +79,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 | Mod | Qué hace |
 |---|---|
-| `new-year-theme` | Fuegos artificiales que estallan en los bordes izquierdo y derecho, sobre una ciudad con ventanas encendidas, y confeti que cae despacio. Sigue tu modo claro u oscuro: un día lavanda claro, o una noche azul medianoche. Los fuegos aparecen y se desvanecen despacio, y los paneles detrás del texto son de cristal esmerilado. A medianoche de Nochevieja, una notificación dice Feliz Año Nuevo. La envía la app de escritorio o la del móvil, cuando hay una sesión abierta en tu ordenador, y suena con el sonido que tu sistema usa para sus notificaciones; la mod no puede elegir ese sonido. |
+| `new-year-theme` | Fuegos artificiales que estallan en los bordes izquierdo y derecho, sobre una ciudad con ventanas encendidas, y confeti que cae despacio. Sigue tu modo claro u oscuro: un día lavanda claro, o una noche azul medianoche. Los fuegos aparecen y se desvanecen despacio, y los paneles detrás del texto son de cristal esmerilado. A medianoche de Nochevieja, una notificación dice Feliz Año Nuevo. Se envía a la app de escritorio, cuando hay una sesión abierta en tu ordenador, y suena con el sonido que tu sistema usa para sus notificaciones; la mod no puede elegir ese sonido. El móvil no está probado: hasta ahora no se ha visto ningún tema en un móvil. |
 
 ### Música
 
