@@ -165,7 +165,7 @@ const SCENE = [
   `<path class="hill" d="M0 ${G - 34} Q100 ${G - 64} 200 ${G - 36} T400 ${G - 42} L400 ${G} L0 ${G} Z"/>`,
   fir(16, 70, 0),
   fir(50, 52, 1),
-  snowman(352, 0.8, true, '#c23a4a', 0),
+  snowman(370, 0.76, true, '#c23a4a', 0),
   '<rect class="gnd" x="0" y="' + G + '" width="400" height="295"/>',
   FLAKES,
   '</svg>',
