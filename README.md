@@ -43,7 +43,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 | Mod | What it does |
 |---|---|
-| `christmas-theme` | Deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh full of wrapped presents, pulled by a team of three reindeer led by Rudolph, crossing the sky once every 70 seconds. Dark. |
+| `christmas-theme` | Deep pine green with warm cream text, cranberry accents and gold, a slow snowfall, and Santa with his sleigh full of wrapped presents, pulled by a team of three reindeer led by Rudolph, climbing across the sky once every 70 seconds. Dark. |
 | `christmas-town-theme` | Another Christmas look, with a town: a midnight-blue night with snow-roofed houses with brick chimneys and their lit windows, a church with a steeple, pine trees with coloured lights, a moon, drifting chimney smoke and slow snowfall. Dark. Install it instead of `christmas-theme`, not with it. |
 | `christmas-market-theme` | A Christmas market at night: three wooden stalls (red, mustard and green) with snowy roofs and striped awnings, strings of coloured lights between them, a tall lit tree behind the middle one, two standing tables with a candle and a steaming mug, and six people in winter coats eating and drinking (a sausage in a bun, a pretzel, a crepe, mugs of something hot). Their arms lift slowly to their mouths and steam rises from the mugs. Dark. Install it instead of the other Christmas themes, not with them. |
 | `christmas-countdown` | Shows "🎄 N days to Christmas" in the status line, and "🎄 Merry Christmas!" on the day. It stays correct if a session is left open past midnight. |
@@ -102,6 +102,8 @@ It asks once to add the marketplace (`y`), then for a scope. Choose **user** to 
 The desktop app's own **+** then **Plugins** menu may also work, but on the owner's version it had no "Add marketplace" button, so the terminal is the route that has been tried.
 
 To update after a new version: `claude plugin marketplace update pretty-mods`, then `claude plugin update <mod>`. To switch one off: `claude plugin disable <mod>`.
+
+If `enable`, `disable` or `update` says it worked from a terminal but nothing changes in your sessions, add the scope you installed it at, for example `claude plugin enable christmas-theme --scope user`. Those commands pick a scope by themselves when it isn't given, and it may not be the one your sessions read. Inside a Claude Code session, `/plugin` works on the scope you are in. (One user saw `enable` report success from PowerShell without effect, and `/plugin` work; the cause was not confirmed.)
 
 ## If you see nothing
 

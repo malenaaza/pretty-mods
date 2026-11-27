@@ -46,7 +46,8 @@ const FLAKES = Array.from({ length: 48 }, (_, i) => {
 }).join('')
 
 // Santa, his sleigh and a team of three reindeer, drawn small around (0, 0). The reindeer are on the left and face left, so
-// the flight goes from right to left and the reindeer pulls the sleigh. They rest at the spot given by the outer
+// the flight goes from right to left and the reindeer pulls the sleigh. The whole group is tilted 12 degrees, nose up,
+// and the flight runs along that tilt, so they climb into the sky as they cross. They rest at the spot given by the outer
 // transform, and the slow flight across the sky only moves them sideways. The sky band a wide window shows is
 // about y 290 to 510, so they fly through the middle of it. The animation starts partway across (the negative
 // delay), so they are on screen when a session opens.
@@ -114,7 +115,7 @@ const SCENE = [
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   FLAKES,
-  `<g transform="translate(250 400) scale(1.5)" opacity=".85"><g class="sl">${SANTA}</g></g>`,
+  `<g transform="translate(250 400) rotate(12) scale(1.5)" opacity=".85"><g class="sl">${SANTA}</g></g>`,
   '</svg>',
 ].join('')
 
