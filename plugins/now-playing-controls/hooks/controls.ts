@@ -32,28 +32,44 @@ const macScript = (line: string): string =>
   ].join('\n')
 
 // Windows PowerShell 5.1 reaches the system media session, the same one the now-playing mod reads.
+const windowsPreamble = [
+  '[Console]::OutputEncoding = New-Object System.Text.UTF8Encoding $false',
+  "$ErrorActionPreference = 'Stop'",
+  'Add-Type -AssemblyName System.Runtime.WindowsRuntime',
+  "$asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0]",
+  'function Await($op, $type) { $t = $asTask.MakeGenericMethod($type).Invoke($null, @($op)); $t.Wait(-1) | Out-Null; $t.Result }',
+  '$m = [Windows.Media.Control.GlobalSystemMediaTransportControlsSessionManager, Windows.Media.Control, ContentType = WindowsRuntime]',
+  '$mgr = Await ($m::RequestAsync()) $m',
+  '$s = $mgr.GetCurrentSession()',
+]
+
 const windowsScript = (call: string): string =>
   [
-    '[Console]::OutputEncoding = New-Object System.Text.UTF8Encoding $false',
-    "$ErrorActionPreference = 'Stop'",
-    'Add-Type -AssemblyName System.Runtime.WindowsRuntime',
-    "$asTask = ([System.WindowsRuntimeSystemExtensions].GetMethods() | Where-Object { $_.Name -eq 'AsTask' -and $_.GetParameters().Count -eq 1 -and $_.GetParameters()[0].ParameterType.Name -eq 'IAsyncOperation`1' })[0]",
-    'function Await($op, $type) { $t = $asTask.MakeGenericMethod($type).Invoke($null, @($op)); $t.Wait(-1) | Out-Null; $t.Result }',
-    '$m = [Windows.Media.Control.GlobalSystemMediaTransportControlsSessionManager, Windows.Media.Control, ContentType = WindowsRuntime]',
-    '$mgr = Await ($m::RequestAsync()) $m',
-    '$s = $mgr.GetCurrentSession()',
+    ...windowsPreamble,
     "if ($null -eq $s) { Write-Output 'off'; exit 0 }",
     `$ok = Await ($s.${call}()) ([bool])`,
     "if ($ok) { Write-Output 'ok' } else { Write-Output 'failed' }",
   ].join('\n')
 
-// Tries the Mac's Music app, then Windows' media controls. The first one that can run gives the answer.
-export const attempt = async (action: Action, run: Run): Promise<Result> => {
-  const plans: string[][] = [
-    ['osascript', '-e', macScript(MAC_LINE[action])],
-    ['powershell.exe', '-NoProfile', '-NonInteractive', '-Command', windowsScript(WINDOWS_CALL[action])],
-  ]
+// Asks whether a song is playing: 'playing' or 'off'.
+const MAC_PLAYING = [
+  'if application "Music" is running then',
+  'tell application "Music"',
+  'if player state is playing then return "playing"',
+  'end tell',
+  'end if',
+  'return "off"',
+].join('\n')
 
+const WINDOWS_PLAYING = [
+  ...windowsPreamble,
+  "if ($null -eq $s) { Write-Output 'off'; exit 0 }",
+  '$st = [string]$s.GetPlaybackInfo().PlaybackStatus',
+  "if ($st -eq 'Playing') { Write-Output 'playing' } else { Write-Output 'off' }",
+].join('\n')
+
+// Tries the Mac's Music app, then Windows' media controls. The first one that can run gives the answer.
+const ask = async (plans: string[][], run: Run): Promise<string | undefined> => {
   for (const argv of plans) {
     let ran: Ran
 
@@ -64,21 +80,41 @@ export const attempt = async (action: Action, run: Run): Promise<Result> => {
       continue
     }
 
-    if (ran.exitCode !== 0) {
-      return 'failed'
-    }
-
-    const word = ran.stdout.replace(/^﻿/, '').trim()
-
-    if (word === 'ok') {
-      return 'ok'
-    }
-
-    return word === 'off' ? 'off' : 'failed'
+    return ran.exitCode === 0 ? ran.stdout.replace(/^\uFEFF/, '').trim() : 'failed'
   }
 
-  return 'unavailable'
+  return undefined
 }
+
+export const attempt = async (action: Action, run: Run): Promise<Result> => {
+  const answer = await ask(
+    [
+      ['osascript', '-e', macScript(MAC_LINE[action])],
+      ['powershell.exe', '-NoProfile', '-NonInteractive', '-Command', windowsScript(WINDOWS_CALL[action])],
+    ],
+    run,
+  )
+
+  if (answer === undefined) {
+    return 'unavailable'
+  }
+
+  if (answer === 'ok' || answer === 'off') {
+    return answer
+  }
+
+  return 'failed'
+}
+
+// Whether a song is playing right now. Anything that can't be asked counts as not playing.
+export const isPlaying = async (run: Run): Promise<boolean> =>
+  (await ask(
+    [
+      ['osascript', '-e', MAC_PLAYING],
+      ['powershell.exe', '-NoProfile', '-NonInteractive', '-Command', WINDOWS_PLAYING],
+    ],
+    run,
+  )) === 'playing'
 
 const DONE: Record<Action, string> = {
   next: 'Skipped to the next song.',

@@ -1,6 +1,6 @@
 import { expect, test } from 'claude-code/testing'
 
-import { attempt, describe, type Ran, type Run } from './controls.js'
+import { attempt, describe, isPlaying, type Ran, type Run } from './controls.js'
 
 // A fake command runner: records each argv and answers with the given result or error.
 const fake = (answer: Ran | Error) => {
@@ -113,4 +113,16 @@ test('the line the command shows says what happened', async () => {
   expect(await describe('next', ok.run)).toBe('Skipped to the next song.')
   expect(await describe('next', off.run)).toBe('Nothing is playing to control.')
   expect(await describe('next', none.run)).toBe('No music app here that can be controlled.')
+})
+
+test('isPlaying is true only when the answer says playing', async () => {
+  const playing: Run = async () => ({ exitCode: 0, stdout: 'playing\n' })
+  const paused: Run = async () => ({ exitCode: 0, stdout: 'off\n' })
+  const none: Run = async () => {
+    throw new Error('not found')
+  }
+
+  expect(await isPlaying(playing)).toBe(true)
+  expect(await isPlaying(paused)).toBe(false)
+  expect(await isPlaying(none)).toBe(false)
 })

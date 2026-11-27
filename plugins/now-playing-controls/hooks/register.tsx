@@ -1,12 +1,16 @@
 import type { Register } from 'claude-code'
 
-import { type Action, describe } from './controls.js'
+import { type Action, describe, isPlaying } from './controls.js'
 
 const TIMEOUT_MS = 8000
+const EVERY = 15 * 1000
 const PANE = 'now-playing-controls'
 
 // Each command and the pane are terminal-only: they act on this computer, which a desktop or phone client does not share.
 const SPEC = { isTerminalOnly: true } as const
+
+// Whether a song is playing, as last checked. The pane shows its buttons only while this is true.
+let playing = false
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
@@ -14,6 +18,18 @@ export const register: Register = on => {
     await $.command.register({ name: 'previous-song', description: 'Go back to the previous song', ...SPEC })
     await $.command.register({ name: 'play-pause', description: 'Play or pause the song', ...SPEC })
     await $.command.register({ name: 'playback', description: 'Show the playback buttons in a pane', ...SPEC })
+
+    const check = async (): Promise<void> => {
+      const now = await isPlaying(argv => $.process.run(argv, { timeoutMs: TIMEOUT_MS }))
+
+      if (now !== playing) {
+        playing = now
+        $.ui.invalidate('ui.render')
+      }
+    }
+
+    await check()
+    $.clock.every(EVERY, check)
 
     return next(e)
   })
@@ -38,6 +54,10 @@ export const register: Register = on => {
 
   on('ui.render', { component: 'Pane', requestId: PANE }, ($, e) => {
     const { Box, Button, Text } = $.ui.resolve(e)
+
+    if (!playing) {
+      return <Text dimColor>Nothing is playing right now.</Text>
+    }
 
     // Each button runs its action and shows the result as a toast.
     const press = (action: Action) => async () => {
