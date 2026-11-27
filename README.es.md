@@ -68,7 +68,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 | Mod | Qué hace |
 |---|---|
-| `snowman-theme` | Un muñeco de nieve con chistera, bufanda roja y nariz de zanahoria, y otro pequeño con gorro de lana, en una colina nevada con abetos, bajo una nevada lenta. Sigue tu modo claro u oscuro: un día de nieve luminoso con sol, o una noche de nieve con estrellas y luna. Las bufandas ondean un poco y las estrellas parpadean. Los paneles detrás del texto son de cristal esmerilado, así que la escena se ve suavizada detrás de ellos; los muñecos y los abetos están en los bordes, fuera del centro donde suele estar el panel del chat. |
+| `snowman-theme` | Un muñeco de nieve con chistera, bufanda roja y nariz de zanahoria, en una colina nevada con abetos, bajo una nevada lenta. Sigue tu modo claro u oscuro: un día de nieve luminoso con sol, o una noche de nieve con estrellas y luna. Las bufandas ondean un poco y las estrellas parpadean. Los paneles detrás del texto son de cristal esmerilado, así que la escena se ve suavizada detrás de ellos; el muñeco y los abetos están en los bordes, fuera del centro donde suele estar el panel del chat. |
 
 ### Música
 

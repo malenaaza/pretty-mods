@@ -139,7 +139,6 @@ const SCENE = [
   fir(16, 70, 0),
   fir(50, 52, 1),
   snowman(352, 0.8, true, '#c23a4a', 0),
-  snowman(378, 0.46, false, '#2f7d9c', 2),
   '<rect class="gnd" x="0" y="' + G + '" width="400" height="295"/>',
   FLAKES,
   '</svg>',
