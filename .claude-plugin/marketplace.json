@@ -52,6 +52,11 @@
       "category": "extras"
     },
     {
+      "name": "now-playing-controls",
+      "source": "./plugins/now-playing-controls",
+      "category": "extras"
+    },
+    {
       "name": "pretty-mods",
       "source": "./plugins/pretty-mods",
       "category": "authoring"
