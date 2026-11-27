@@ -68,7 +68,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 | Mod | What it does |
 |---|---|
-| `snowman-theme` | A snowman with a top hat, a red scarf and a carrot nose, on a snowy hill with fir trees, in slow snowfall. It follows your light or dark mode: a bright snowy day with the sun, or a snowy night with stars and the moon. The scarves flutter a little and the stars twinkle. The panels behind the text are frosted glass, so the scene is softened behind them; the snowman and the trees stand at the edges, outside the middle where the chat panel usually is. |
+| `snowman-theme` | A snowman with a top hat, a red scarf and a carrot nose, on a snowy hill with decorated fir trees (baubles, lights and a gold star) with fir trees, in slow snowfall. It follows your light or dark mode: a bright snowy day with the sun, or a snowy night with stars and the moon. The scarves flutter a little and the stars twinkle. The panels behind the text are frosted glass, so the scene is softened behind them; the snowman and the trees stand at the edges, outside the middle where the chat panel usually is. |
 
 ### Music
 

@@ -68,10 +68,32 @@ const snowman = (x: number, scale: number, hasHat: boolean, scarf: string, delay
     '</g>',
   ].join('')
 
-// A fir with a cap of snow on its branches and one light.
+// A decorated fir: three tiers, a cap of snow, baubles, a few lights and a gold star on top. Its decorations are
+// placed on the tiers by their own fractions of the height, so they follow the size of the tree.
 const fir = (x: number, size: number, seed: number): string => {
   const tier = (offset: number, width: number, height: number): string =>
     `<path class="tr" d="M${x - width / 2} ${G - offset} L${x} ${G - offset - height} L${x + width / 2} ${G - offset} Z"/>`
+  const top = G - size
+  const bauble = (fx: number, fy: number, colour: string): string => {
+    const cx = x + fx * size * 0.3
+    const cy = G - fy * size
+
+    return `<circle cx="${cx}" cy="${cy}" r="${Math.max(1.6, size * 0.035)}" fill="${colour}"/>`
+  }
+  const lights = [
+    [-0.18, 0.3, '#f2c14e'],
+    [0.16, 0.44, '#ff8a7a'],
+    [-0.12, 0.58, '#9fd3ff'],
+    [0.18, 0.7, '#f2c14e'],
+  ] as const
+  const baubles = [
+    [-0.3, 0.2, '#c23a4a'],
+    [0.26, 0.26, '#2f6fb0'],
+    [-0.22, 0.4, '#f2c14e'],
+    [0.2, 0.54, '#c23a4a'],
+    [-0.25, 0.64, '#2f6fb0'],
+    [0.08, 0.78, '#f2c14e'],
+  ] as const
 
   return [
     `<rect x="${x - 2}" y="${G - 6}" width="4" height="7" fill="#3a2718"/>`,
@@ -79,7 +101,10 @@ const fir = (x: number, size: number, seed: number): string => {
     tier(size * 0.27, size * 0.48, size * 0.4),
     tier(size * 0.5, size * 0.34, size * 0.38),
     `<path d="M${x - size * 0.1} ${G - size * 0.86} L${x} ${G - size} L${x + size * 0.1} ${G - size * 0.86} Z" fill="#ffffff" opacity=".92"/>`,
-    `<circle cx="${x + (seed % 2 === 0 ? -2 : 3)}" cy="${G - size * 0.4}" r="1.6" fill="#f2c14e"/>`,
+    ...baubles.map(([fx, fy, c]) => bauble(fx, fy, c)),
+    ...lights.map(([fx, fy, c], i) =>
+      `<circle class="tl" cx="${x + fx * size * 0.3}" cy="${G - fy * size}" r="1.3" fill="${c}" style="animation-delay:${-((i + seed) % 3)}s"/>`),
+    `<path d="M${x} ${top - 6} L${x + 2} ${top - 2} L${x + 6} ${top - 2} L${x + 3} ${top + 1} L${x + 4} ${top + 5} L${x} ${top + 2.5} L${x - 4} ${top + 5} L${x - 3} ${top + 1} L${x - 6} ${top - 2} L${x - 2} ${top - 2} Z" fill="#f2c14e"/>`,
   ].join('')
 }
 
@@ -122,6 +147,8 @@ const SCENE = [
   '.gnd{fill:#f4f9fd}',
   '.hill{fill:#dbe9f4}',
   '.tr{fill:#2f6b4a}',
+  '.tl{animation:glow 4s ease-in-out infinite}',
+  '@keyframes glow{0%,100%{opacity:.55}50%{opacity:1}}',
   '.s{fill:#f6ecdf;animation-name:tw;animation-timing-function:ease-in-out;animation-iteration-count:infinite}',
   '@keyframes tw{0%,100%{opacity:.15}50%{opacity:1}}',
   '.fl{animation:flutter 5s ease-in-out infinite}',
@@ -129,7 +156,7 @@ const SCENE = [
   // At night: a dark sky, the stars and the moon, a bluer snow, and flakes without an outline.
   '@media (prefers-color-scheme:dark){.day{display:none}.night{display:inline}.f{fill:#fffaf0;stroke:none;opacity:.85}.sb{fill:#dce8f1}.so{stroke:#8da3b6}.ss{fill:#050b14;opacity:.5}.gnd{fill:#26384f}.hill{fill:#1a2b41}.tr{fill:#10301f}}',
   // Asked to reduce motion, the snow rests at set heights and the stars and the scarves stay still.
-  '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.s,.fl{animation:none}}',
+  '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.s,.fl,.tl{animation:none}}',
   '</style>',
   '<rect class="day" width="400" height="800" fill="url(#dayg)"/>',
   '<rect class="night" width="400" height="800" fill="url(#nightg)"/>',
