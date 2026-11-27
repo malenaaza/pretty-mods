@@ -1,5 +1,5 @@
 {
   "name": "now-playing-controls",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "Controls for the song that's playing: slash commands (/next-song, /previous-song, /play-pause) and a row above the prompt with Previous, Play/pause and Next buttons, plus a /playback pane with the same buttons. Works with the Music app on a Mac, or whatever your Windows media controls show (YouTube Music in a browser, Spotify...). The slash commands work in the terminal; the row and the pane also show in the desktop app."
 }
