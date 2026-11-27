@@ -45,18 +45,35 @@ const FLAKES = Array.from({ length: 48 }, (_, i) => {
   return `<circle class="f" cx="${x}" cy="-10" r="${r}" style="--d:${drift}px;--y:${rest}px;animation-duration:${duration}s;animation-delay:${delay}s"/>`
 }).join('')
 
-// Santa, his sleigh and one reindeer, drawn small around (0, 0). The reindeer is on the left and faces left, so
+// Santa, his sleigh and a team of three reindeer, drawn small around (0, 0). The reindeer are on the left and face left, so
 // the flight goes from right to left and the reindeer pulls the sleigh. They rest at the spot given by the outer
 // transform, and the slow flight across the sky only moves them sideways. The sky band a wide window shows is
 // about y 290 to 510, so they fly through the middle of it. The animation starts partway across (the negative
 // delay), so they are on screen when a session opens.
+// One reindeer, drawn facing left around (-50, -8) and shifted by `dx`. The first one leads, with the red nose.
+// It bobs a little as it flies, each at its own moment. The shift is on the outer group, the bob on the inner one,
+// since a CSS animation would replace a transform attribute.
+const reindeer = (dx: number, isLead: boolean, index: number): string => {
+  const coat = ['#7a5230', '#6b4528', '#84583a'][index % 3]
+  const nose = isLead ? '#e03a3a' : '#3d2616'
+
+  return [
+    `<g transform="translate(${dx} 0)"><g class="bob" style="animation-delay:${-index * 0.5}s">`,
+    `<ellipse cx="-50" cy="-8" rx="14" ry="7" fill="${coat}"/>`,
+    `<circle cx="-66" cy="-18" r="5" fill="${coat}"/>`,
+    `<circle cx="-71" cy="-17" r="${isLead ? 1.9 : 1.4}" fill="${nose}"/>`,
+    `<path d="M-67 -23 L-70 -33 M-67 -23 L-62 -32" stroke="${coat}" stroke-width="1.4" fill="none"/>`,
+    `<path d="M-58 -2 L-60 8 M-44 -2 L-42 8" stroke="${coat}" stroke-width="1.6" fill="none"/>`,
+    '</g></g>',
+  ].join('')
+}
+
 const SANTA = [
-  '<path d="M-38 -8 L-12 -4" stroke="#d9b45a" stroke-width="1" fill="none"/>',
-  '<ellipse cx="-50" cy="-8" rx="14" ry="7" fill="#7a5230"/>',
-  '<circle cx="-66" cy="-18" r="5" fill="#7a5230"/>',
-  '<circle cx="-71" cy="-17" r="1.8" fill="#e03a3a"/>',
-  '<path d="M-67 -23 L-70 -33 M-67 -23 L-62 -32" stroke="#7a5230" stroke-width="1.4" fill="none"/>',
-  '<path d="M-58 -2 L-60 8 M-44 -2 L-42 8" stroke="#7a5230" stroke-width="1.6" fill="none"/>',
+  // The harness: one line from the lead reindeer back to the sleigh, behind the team.
+  '<path d="M-122 -9 L-12 -4" stroke="#d9b45a" stroke-width="1" fill="none"/>',
+  reindeer(-84, true, 0),
+  reindeer(-42, false, 1),
+  reindeer(0, false, 2),
   '<path d="M-14 -2 C-12 8 6 10 24 6 L26 -8 L-6 -8 Z" fill="#b3263b"/>',
   '<path d="M-18 12 C0 16 26 14 32 4" stroke="#d9b45a" stroke-width="2" fill="none"/>',
   // Three wrapped presents with ribbons and bows, stacked at the back of the sleigh.
@@ -87,12 +104,14 @@ const SCENE = [
   '@keyframes fall{from{transform:translate(0,0)}to{transform:translate(var(--d),830px)}}',
   '.sl{animation:fly 70s linear -34s infinite}',
   // Asked to reduce motion, the flakes rest at set heights and Santa rests where he is drawn.
-  '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.sl{animation:none}}',
-  '@keyframes fly{from{transform:translate(215px,0)}to{transform:translate(-250px,0)}}',
+  '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.sl{animation:none}.bob{animation:none}}',
+  '@keyframes fly{from{transform:translate(260px,0)}to{transform:translate(-205px,0)}}',
+  '.bob{animation:bob 1.8s ease-in-out infinite}',
+  '@keyframes bob{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-2px)}}',
   '</style>',
   '<rect width="400" height="800" fill="url(#sky)"/>',
   FLAKES,
-  `<g transform="translate(200 400) scale(1.5)" opacity=".85"><g class="sl">${SANTA}</g></g>`,
+  `<g transform="translate(250 400) scale(1.5)" opacity=".85"><g class="sl">${SANTA}</g></g>`,
   '</svg>',
 ].join('')
 
