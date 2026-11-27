@@ -151,7 +151,14 @@ const CONFETTI = Array.from({ length: 34 }, (_, i) => {
   return `<rect class="f" x="${x}" y="-10" width="3" height="5" fill="${colour}" style="--d:${drift}px;--y:${rest}px;animation-duration:${duration}s;animation-delay:${delay}s"/>`
 }).join('')
 
-const buildScene = (label: string | undefined): string => [
+// The fireworks: shown only from midnight on, in the scene of the new year.
+const FIREWORKS = [
+  burst(56, 360, 46, BURST_COLOURS[0] ?? '#f2c14e', 0, 14),
+  burst(344, 468, 46, BURST_COLOURS[1] ?? '#ff7a8a', -3.5, 16),
+  burst(48, 548, 30, BURST_COLOURS[2] ?? '#7fd1ff', -5, 12),
+].join('')
+
+const buildScene = (label: string | undefined, fireworks: boolean): string => [
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">',
   '<defs>',
   '<linearGradient id="dayg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9d3ef"/><stop offset="0.75" stop-color="#efeaf8"/><stop offset="1" stop-color="#f8f6fc"/></linearGradient>',
@@ -181,11 +188,7 @@ const buildScene = (label: string | undefined): string => [
       return `<circle cx="${x}" cy="${y}" r="${r}" fill="#f6ecdf" opacity=".7"/>`
     }).join('') +
     '</g>',
-  // Fireworks at the left and the right edge, in the visible band; a smaller one higher up on each side.
-  burst(56, 360, 46, BURST_COLOURS[0] ?? '#f2c14e', 0, 14),
-  burst(344, 468, 46, BURST_COLOURS[1] ?? '#ff7a8a', -3.5, 16),
-  burst(48, 548, 30, BURST_COLOURS[2] ?? '#7fd1ff', -5, 12),
-  // The year, at the right edge of the band, only at night.
+  fireworks ? FIREWORKS : '',
   label === undefined ? '' : `<g class="night">${labelDigits(label)}</g>`,
   `<g class="day" opacity=".55">${SKYLINE.replace(/fill="#0a0c1c"/g, 'fill="#b7b0d6"')}</g>`,
   `<g class="night">${SKYLINE}</g>`,
@@ -257,6 +260,8 @@ export const register: Register = on => {
     const { Svg } = $.ui.resolve(e)
     const label = labelFor(e.props.scene)
 
-    return <Svg source={buildScene(label)} alt="Fireworks over a city skyline at night, with falling confetti" isInteractive />
+    const fireworks = e.props.scene.startsWith(SCENE_MIDNIGHT_PREFIX)
+
+    return <Svg source={buildScene(label, fireworks)} alt="Fireworks over a city skyline at night, with falling confetti" isInteractive />
   })
 }
