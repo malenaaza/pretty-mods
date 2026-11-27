@@ -21,6 +21,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 | `christmas-theme` | App de escritorio de Claude, en una sesión de Claude Code en tu propio ordenador | Sí, en Windows (versión 0.2.4, "se ve bien", y Santa se ve nítido; después la dueña informó de que los regalos añadidos en la 0.2.6 se ven bien). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
 | `christmas-town-theme` | Igual que arriba | Sí, en Windows: la primera versión tenía chimeneas que no se veían; tras la 0.1.1 (chimeneas de ladrillo con nieve) la dueña informó de que se ve bien |
 | `christmas-market-theme` | Igual que arriba | Sí, en Windows: tras pedir la dueña tres puestos (0.2.0), informó de que "está bien", aunque los puestos le siguen pareciendo grandes y decidió dejarlos así. Tras la 0.2.1 (casas del fondo visibles, tazas con asa) informó de que se ve bien. La primera versión mostraba solo dos puestos, uno cortado en el borde |
+| `new-year-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador, en claro y en oscuro |
 | `snowman-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador, en claro y en oscuro |
 | `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien", y después de que la cola del gato y las estrellas se ven y se mueven en la 0.1.6). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
 | `kitty-status`, `christmas-countdown` | La línea de estado en la terminal de Claude Code | Sí, las dos funcionan en la terminal de Claude Code (informe de la dueña). **En la app de escritorio de Windows los informes fueron mixtos:** `kitty-status` se vio una vez bajo la caja de texto y luego no, y `christmas-countdown` nunca se vio allí. Una línea de prueba que se actualizaba cada 5 segundos tampoco se mostró en una sesión en la nube. No cuentes con las líneas de estado en la app de escritorio; la causa no se conoce |
@@ -70,6 +71,16 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 |---|---|
 | `snowman-theme` | Un muñeco de nieve con chistera, bufanda roja y nariz de zanahoria, en una colina nevada con abetos decorados (bolas, luces y una estrella dorada) con abetos, bajo una nevada lenta. Sigue tu modo claro u oscuro: un día de nieve luminoso con sol, o una noche de nieve con estrellas y luna. Las bufandas ondean un poco y las estrellas parpadean. Los paneles detrás del texto son de cristal esmerilado, así que la escena se ve suavizada detrás de ellos; el muñeco y los abetos están en los bordes, fuera del centro donde suele estar el panel del chat. |
 
+### Año Nuevo
+
+![Vista previa de new-year-theme: fuegos artificiales sobre una ciudad, de día a la izquierda y de noche a la derecha](docs/previews/new-year-theme.png)
+
+*Vista previa solo de la escena, de día (izquierda) y de noche (derecha), dibujada en un navegador, sin el desenfoque ni los paneles de la app.*
+
+| Mod | Qué hace |
+|---|---|
+| `new-year-theme` | Fuegos artificiales que estallan en los bordes izquierdo y derecho, sobre una ciudad con ventanas encendidas, y confeti que cae despacio. Sigue tu modo claro u oscuro: un día lavanda claro, o una noche azul medianoche. Los fuegos aparecen y se desvanecen despacio, y los paneles detrás del texto son de cristal esmerilado. |
+
 ### Música
 
 | Mod | Qué hace |
@@ -102,6 +113,10 @@ En una terminal, inicia Claude Code (`claude`) y escribe, para cada mod que quie
 
 ```
 /plugin install snowman-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install new-year-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```

@@ -21,6 +21,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 | `christmas-theme` | Claude desktop app, in a Claude Code session on your own computer | Yes, on Windows (version 0.2.4 "looks good", and Santa is sharp; the owner later reported that the presents added in 0.2.6 look good). iPhone: tried once, in a Remote Control session running on the computer with the theme switched on, and no theme showed |
 | `christmas-town-theme` | Same as above | Yes, on Windows: the first version had chimneys that could not be seen; after 0.1.1 (brick chimneys with snow caps) the owner reported that it looks good |
 | `christmas-market-theme` | Same as above | Yes, on Windows: after the owner asked for three stalls (0.2.0), the owner reported "it is ok", though the stalls still look big to the owner, who chose to leave them. After 0.2.1 (visible background houses, mugs with handles) the owner reported that it looks good. The first version showed only two stalls, one cut off at the edge |
+| `new-year-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
 | `snowman-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
 | `kitty-theme` | Same as above | Yes, on Windows (the owner reported it "looks good", and later that the cat's tail and the stars show and move in 0.1.6). iPhone: tried once, in a Remote Control session running on the computer with the theme switched on, and no theme showed |
 | `kitty-status`, `christmas-countdown` | The status line in the Claude Code terminal | Yes, both work in the Claude Code terminal (owner's report). **In the Windows desktop app the reports were mixed:** `kitty-status` was seen once under the text box, was not seen later, and `christmas-countdown` was never seen there. A test line that updated every 5 seconds did not show in a cloud session in that app. So do not count on status lines in the desktop app; the cause is not known |
@@ -70,6 +71,16 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 |---|---|
 | `snowman-theme` | A snowman with a top hat, a red scarf and a carrot nose, on a snowy hill with decorated fir trees (baubles, lights and a gold star) with fir trees, in slow snowfall. It follows your light or dark mode: a bright snowy day with the sun, or a snowy night with stars and the moon. The scarves flutter a little and the stars twinkle. The panels behind the text are frosted glass, so the scene is softened behind them; the snowman and the trees stand at the edges, outside the middle where the chat panel usually is. |
 
+### New Year
+
+![Preview of new-year-theme: fireworks over a city skyline, by day on the left and by night on the right](docs/previews/new-year-theme.png)
+
+*Preview of the scene alone, by day (left) and by night (right), drawn in a browser, without the app's blur and panels.*
+
+| Mod | What it does |
+|---|---|
+| `new-year-theme` | Fireworks bursting at the left and right edges over a city skyline with lit windows, and slow confetti. It follows your light or dark mode: a pale lavender day, or a midnight-blue night. The fireworks fade in and out slowly, and the panels behind the text are frosted glass. |
+
 ### Music
 
 | Mod | What it does |
@@ -102,6 +113,10 @@ In a terminal, start Claude Code (`claude`) and type, for each mod you want:
 
 ```
 /plugin install snowman-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install new-year-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```

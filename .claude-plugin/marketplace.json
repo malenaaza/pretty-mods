@@ -42,6 +42,11 @@
       "category": "theme"
     },
     {
+      "name": "new-year-theme",
+      "source": "./plugins/new-year-theme",
+      "category": "theme"
+    },
+    {
       "name": "now-playing",
       "source": "./plugins/now-playing",
       "category": "extras"
