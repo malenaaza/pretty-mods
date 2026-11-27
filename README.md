@@ -79,7 +79,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 | Mod | What it does |
 |---|---|
-| `new-year-theme` | Fireworks bursting at the left and right edges over a city skyline with lit windows, the year 2027 in gold only from 23:00 on New Year's Eve to 01:00 on 1 January, and slow confetti. It follows your light or dark mode: a pale lavender day, or a midnight-blue night. The fireworks fade in and out slowly, and the panels behind the text are frosted glass. At midnight on New Year's Eve, a notification says Happy New Year. It is sent to the desktop app, when a session is open on your computer, and it makes the sound your system uses for its notifications; the mod cannot choose that sound. The phone is not tested: no theme has shown on a phone so far. |
+| `new-year-theme` | Fireworks bursting at the left and right edges over a city skyline with lit windows, in the last ten minutes of the year a countdown in gold (10, 9 ... 1, changing each minute), then the new year, 2027, from midnight to 01:00 on 1 January, and slow confetti. It follows your light or dark mode: a pale lavender day, or a midnight-blue night. The fireworks fade in and out slowly, and the panels behind the text are frosted glass. At midnight on New Year's Eve, a notification says Happy New Year. It is sent to the desktop app, when a session is open on your computer, and it makes the sound your system uses for its notifications; the mod cannot choose that sound. The phone is not tested: no theme has shown on a phone so far. |
 
 ### Music
 

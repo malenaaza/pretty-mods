@@ -1,7 +1,7 @@
 import type { Register, ThemeSetArgs } from 'claude-code'
 
 import { makeColors } from './make-colors.js'
-import { nextNewYear, sceneAt, SCENE_MIDNIGHT } from './midnight.js'
+import { nextNewYear, sceneAt, SCENE_COUNTDOWN_PREFIX, SCENE_MIDNIGHT_PREFIX } from './midnight.js'
 
 const HOUR = 60 * 60 * 1000
 
@@ -47,7 +47,18 @@ const G = 508
 // The year, "2027", drawn as seven-segment digits from plain rectangles, since a theme can't use a font. Each digit is
 // `w` wide and `h` tall, with segments `t` thick; the segments are named a (top), b and c (right), d (bottom),
 // e and f (left) and g (middle).
-const SEGMENTS: Record<string, string> = { '0': 'abcdef', '2': 'abged', '7': 'abc' }
+const SEGMENTS: Record<string, string> = {
+  '0': 'abcdef',
+  '1': 'bc',
+  '2': 'abged',
+  '3': 'abgcd',
+  '4': 'fgbc',
+  '5': 'afgcd',
+  '6': 'afgedc',
+  '7': 'abc',
+  '8': 'abcdefg',
+  '9': 'abcdfg',
+}
 
 const digit = (x: number, y: number, w: number, h: number, t: number, value: string): string => {
   const parts: Record<string, [number, number, number, number]> = {
@@ -69,12 +80,23 @@ const digit = (x: number, y: number, w: number, h: number, t: number, value: str
     .join('')
 }
 
-const YEAR_2027 = [
-  digit(268, 330, 22, 34, 4, '2'),
-  digit(294, 330, 22, 34, 4, '0'),
-  digit(320, 330, 22, 34, 4, '2'),
-  digit(346, 330, 22, 34, 4, '7'),
-].join('')
+// A label (the year, or the minutes left) drawn right-aligned in the same place, at the right edge of the band.
+const labelDigits = (label: string): string =>
+  [...label]
+    .map((value, i) => digit(368 - (label.length - 1 - i) * 26 - 22, 330, 22, 34, 4, value))
+    .join('')
+
+// The label for a scene name: the year at midnight, the minutes in the countdown, nothing otherwise.
+const labelFor = (scene: string): string | undefined => {
+  if (scene.startsWith(SCENE_MIDNIGHT_PREFIX)) {
+    return scene.slice(SCENE_MIDNIGHT_PREFIX.length)
+  }
+  if (scene.startsWith(SCENE_COUNTDOWN_PREFIX)) {
+    return scene.slice(SCENE_COUNTDOWN_PREFIX.length)
+  }
+
+  return undefined
+}
 
 const BURST_COLOURS = ['#f2c14e', '#ff7a8a', '#7fd1ff', '#c59bff', '#ffffff']
 
@@ -129,7 +151,7 @@ const CONFETTI = Array.from({ length: 34 }, (_, i) => {
   return `<rect class="f" x="${x}" y="-10" width="3" height="5" fill="${colour}" style="--d:${drift}px;--y:${rest}px;animation-duration:${duration}s;animation-delay:${delay}s"/>`
 }).join('')
 
-const buildScene = (withYear: boolean): string => [
+const buildScene = (label: string | undefined): string => [
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">',
   '<defs>',
   '<linearGradient id="dayg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9d3ef"/><stop offset="0.75" stop-color="#efeaf8"/><stop offset="1" stop-color="#f8f6fc"/></linearGradient>',
@@ -164,7 +186,7 @@ const buildScene = (withYear: boolean): string => [
   burst(344, 468, 46, BURST_COLOURS[1] ?? '#ff7a8a', -3.5, 16),
   burst(48, 548, 30, BURST_COLOURS[2] ?? '#7fd1ff', -5, 12),
   // The year, at the right edge of the band, only at night.
-  withYear ? `<g class="night">${YEAR_2027}</g>` : '',
+  label === undefined ? '' : `<g class="night">${labelDigits(label)}</g>`,
   `<g class="day" opacity=".55">${SKYLINE.replace(/fill="#0a0c1c"/g, 'fill="#b7b0d6"')}</g>`,
   `<g class="night">${SKYLINE}</g>`,
   `<rect x="0" y="${G}" width="400" height="95" fill="#1a1a33" class="night"/>`,
@@ -233,8 +255,8 @@ export const register: Register = on => {
     }
 
     const { Svg } = $.ui.resolve(e)
-    const withYear = e.props.scene === SCENE_MIDNIGHT
+    const label = labelFor(e.props.scene)
 
-    return <Svg source={buildScene(withYear)} alt="Fireworks over a city skyline at night, with falling confetti" isInteractive />
+    return <Svg source={buildScene(label)} alt="Fireworks over a city skyline at night, with falling confetti" isInteractive />
   })
 }

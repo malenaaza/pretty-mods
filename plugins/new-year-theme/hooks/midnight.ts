@@ -10,14 +10,28 @@ export const nextNewYear = (now: Date): number | undefined => {
 }
 
 export const SCENE_PLAIN = 'new-year'
-export const SCENE_MIDNIGHT = 'new-year-midnight'
+export const SCENE_COUNTDOWN_PREFIX = 'new-year-count-'
+export const SCENE_MIDNIGHT_PREFIX = 'new-year-midnight-'
+export const COUNTDOWN_MINUTES = 10
 
-// The year is shown from 23:00 on 31 December to 01:00 on 1 January, local time, and the scene is plain otherwise.
+const MINUTE = 60 * 1000
+
+// The scene for a moment, from the last ten minutes of the year to the first hour of the new one:
+//   new-year-count-<minutes left>   the countdown, 10 down to 1
+//   new-year-midnight-<year>        the new year, from midnight to 01:00
+//   new-year                        the plain scene otherwise
 export const sceneAt = (now: Date): string => {
   const year = now.getFullYear()
-  const eve = new Date(year + 1, 0, 1, 0).getTime() - 60 * 60 * 1000
+  const midnight = new Date(year + 1, 0, 1, 0).getTime()
   const endOfNewYearsDay = new Date(year, 0, 1, 1).getTime()
   const t = now.getTime()
 
-  return t >= eve || t < endOfNewYearsDay ? SCENE_MIDNIGHT : SCENE_PLAIN
+  if (t >= midnight - COUNTDOWN_MINUTES * MINUTE && t < midnight) {
+    return `${SCENE_COUNTDOWN_PREFIX}${Math.ceil((midnight - t) / MINUTE)}`
+  }
+  if (t >= midnight || t < endOfNewYearsDay) {
+    return `${SCENE_MIDNIGHT_PREFIX}${year}`
+  }
+
+  return SCENE_PLAIN
 }
