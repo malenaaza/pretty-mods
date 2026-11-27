@@ -52,6 +52,28 @@ export const register: Register = on => {
     return { text: 'Playback buttons opened.' }
   })
 
+  // The band row above the prompt: the same buttons, shown only while a song is playing.
+  on('ui.render', { component: 'AbovePrompt' }, ($, e, next) => {
+    if (!playing) {
+      return next(e)
+    }
+
+    const { Box, Button, Text } = $.ui.resolve(e)
+
+    const press = (action: Action) => async () => {
+      $.ui.toast(await describe(action, argv => $.process.run(argv, { timeoutMs: TIMEOUT_MS })))
+    }
+
+    return (
+      <Box>
+        <Text dimColor>🎵 </Text>
+        <Button key="previous" label="⏮ Previous" onPress={press('previous')} />
+        <Button key="playpause" label="⏯ Play / pause" onPress={press('playpause')} />
+        <Button key="next" label="⏭ Next" onPress={press('next')} />
+      </Box>
+    )
+  })
+
   on('ui.render', { component: 'Pane', requestId: PANE }, ($, e) => {
     const { Box, Button, Text } = $.ui.resolve(e)
 
