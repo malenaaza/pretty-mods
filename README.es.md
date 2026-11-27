@@ -85,7 +85,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 | Mod | Qué hace |
 |---|---|
-| `now-playing-controls` | Comandos `/next-song`, `/previous-song` y `/play-pause`, y un panel `/playback` con botones Anterior, Reproducir/pausa y Siguiente (solo mientras suena una canción), en la terminal de Claude Code. Mac: solo la app Música. Windows: lo que muestren los controles multimedia del sistema. No muestra nada en la línea de estado. |
+| `now-playing-controls` | Comandos `/next-song`, `/previous-song` y `/play-pause`, una fila con botones Anterior, Reproducir/pausa y Siguiente encima de la caja de texto, y un panel `/playback` con los mismos botones (ambos solo mientras suena una canción), en la terminal de Claude Code. Mac: solo la app Música. Windows: lo que muestren los controles multimedia del sistema. No muestra nada en la línea de estado. |
 | `now-playing` | Muestra "🎵 título - artista" en la línea de estado para la canción que suena. Se actualiza cada 15 segundos. No muestra nada si no suena nada. No necesita conectar ninguna cuenta, ni claves, ni iniciar sesión, porque pregunta a tu propio ordenador. |
 
 ## Instalación
