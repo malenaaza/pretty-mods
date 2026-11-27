@@ -38,7 +38,8 @@ const { theme, problems } = makeColors({
 
 // The scene is drawn on a tall 400 x 800 picture. A wide window shows only its middle band (about y 290 to 510), so
 // the hill's snow line is at y 505 and everything stands in that band; a phone shows all of it. The snowmen stand at
-// the right edge and the trees at the left, where the words are not.
+// the right edge and the trees at the left, as far out as they can go, so a chat panel in the middle of a wide window
+// (which is blurred) leaves them outside the frosted glass.
 const G = 505
 
 // A snowman drawn around (0, 0) at its feet, then placed and scaled. Its colours come from CSS classes, so the
@@ -135,10 +136,10 @@ const SCENE = [
   `<g class="night">${STARS}<circle cx="86" cy="338" r="19" fill="#f3e6c8" opacity=".92"/></g>`,
   '<circle class="day" cx="86" cy="338" r="22" fill="#fff4c9" opacity=".95"/>',
   `<path class="hill" d="M0 ${G - 34} Q100 ${G - 64} 200 ${G - 36} T400 ${G - 42} L400 ${G} L0 ${G} Z"/>`,
-  fir(30, 74, 0),
-  fir(70, 56, 1),
-  snowman(318, 0.85, true, '#c23a4a', 0),
-  snowman(362, 0.52, false, '#2f7d9c', 2),
+  fir(16, 70, 0),
+  fir(50, 52, 1),
+  snowman(352, 0.8, true, '#c23a4a', 0),
+  snowman(378, 0.46, false, '#2f7d9c', 2),
   '<rect class="gnd" x="0" y="' + G + '" width="400" height="295"/>',
   FLAKES,
   '</svg>',
