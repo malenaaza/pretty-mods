@@ -74,7 +74,7 @@ const digit = (x: number, y: number, w: number, h: number, t: number, value: str
     .map(seg => {
       const [rx, ry, rw, rh] = parts[seg] ?? [0, 0, 0, 0]
 
-      return `<rect x="${rx}" y="${ry}" width="${rw}" height="${rh}" rx="0.6" fill="#f2c14e"/>`
+      return `<rect class="yr" x="${rx}" y="${ry}" width="${rw}" height="${rh}" rx="0.6"/>`
     })
     .join('')
 }
@@ -165,6 +165,7 @@ const buildScene = (label: string | undefined, fireworks: boolean): string => [
   '</defs>',
   '<style>',
   '.night{display:none}',
+  '.yr{fill:#1f2a55}',
   '.f{animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite}',
   '@keyframes fall{from{transform:translate(0,0)}to{transform:translate(var(--d),830px)}}',
   '.bu{opacity:0;animation:pop 7s ease-in-out infinite}',
@@ -172,7 +173,7 @@ const buildScene = (label: string | undefined, fireworks: boolean): string => [
   '.wn{animation:glow 6s ease-in-out infinite}',
   '@keyframes glow{0%,100%{opacity:.45}50%{opacity:1}}',
   // At night the sky and the windows are as above; by day the skyline is a soft blue-grey and the windows are off.
-  '@media (prefers-color-scheme:dark){.day{display:none}.night{display:inline}.f{opacity:.9}}',
+  '@media (prefers-color-scheme:dark){.day{display:none}.night{display:inline}.f{opacity:.9}.yr{fill:#f2c14e}}',
   // Asked to reduce motion, the fireworks stay as bright bursts, the confetti rests at set heights and the windows stay lit.
   '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.bu{animation:none;opacity:.85}.wn{animation:none;opacity:.8}}',
   '</style>',
@@ -188,7 +189,7 @@ const buildScene = (label: string | undefined, fireworks: boolean): string => [
     }).join('') +
     '</g>',
   fireworks ? FIREWORKS : '',
-  label === undefined ? '' : `<g class="night">${labelDigits(label)}</g>`,
+  label === undefined ? '' : `<g>${labelDigits(label)}</g>`,
   `<g class="day" opacity=".55">${SKYLINE.replace(/fill="#0a0c1c"/g, 'fill="#b7b0d6"')}</g>`,
   `<g class="night">${SKYLINE}</g>`,
   `<rect x="0" y="${G}" width="400" height="95" fill="#1a1a33" class="night"/>`,
