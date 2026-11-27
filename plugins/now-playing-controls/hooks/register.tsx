@@ -73,7 +73,12 @@ export const register: Register = on => {
 
     return (
       <Box>
-        {track !== undefined && <Text dimColor>🎵 {track} </Text>}
+        {track !== undefined && (
+          <Text dimColor>
+            🎵 {track}
+            {playing ? '' : ' (paused)'}{' '}
+          </Text>
+        )}
         <Button key="previous" label="⏮ Previous" onPress={press('previous')} />
         <Button key="playpause" label="⏯ Play / pause" onPress={press('playpause')} />
         <Button key="next" label="⏭ Next" onPress={press('next')} />
