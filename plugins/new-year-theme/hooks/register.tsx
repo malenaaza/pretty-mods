@@ -83,7 +83,7 @@ const digit = (x: number, y: number, w: number, h: number, t: number, value: str
 // The chat panel covers most of a wide window, so the label stands in the free strip at the right, one digit under
 // another, from the band's middle down.
 const labelDigits = (label: string): string =>
-  [...label].map((value, i) => digit(352, 330 + i * 30, 18, 24, 3.5, value)).join('')
+  [...label].map((value, i) => digit(352, 290 + i * 30, 18, 24, 3.5, value)).join('')
 
 // The label for a scene name: the year at midnight, the minutes in the countdown, nothing otherwise.
 const labelFor = (scene: string): string | undefined => {
