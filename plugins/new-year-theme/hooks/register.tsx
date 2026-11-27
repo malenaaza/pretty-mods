@@ -1,9 +1,8 @@
 import type { Register, ThemeSetArgs } from 'claude-code'
 
 import { makeColors } from './make-colors.js'
-import { nextNewYear, sceneAt, SCENE_COUNTDOWN_PREFIX, SCENE_MIDNIGHT_PREFIX } from './midnight.js'
+import { sceneAt, SCENE_COUNTDOWN_PREFIX, SCENE_MIDNIGHT_PREFIX } from './midnight.js'
 
-const HOUR = 60 * 60 * 1000
 
 // Midnight navy with gold and rose accents in dark mode; a pale lavender day with the same accents in light mode.
 // Neither mode is forced, so the look follows the mode the person has chosen.
@@ -80,11 +79,11 @@ const digit = (x: number, y: number, w: number, h: number, t: number, value: str
     .join('')
 }
 
-// A label (the year, or the minutes left) drawn right-aligned in the same place, at the right edge of the band.
+// A label (the year, or the minutes left).
+// The chat panel covers most of a wide window, so the label stands in the free strip at the right, one digit under
+// another, from the band's middle down.
 const labelDigits = (label: string): string =>
-  [...label]
-    .map((value, i) => digit(368 - (label.length - 1 - i) * 26 - 22, 330, 22, 34, 4, value))
-    .join('')
+  [...label].map((value, i) => digit(352, (label.length > 2 ? 304 : 330) + i * 26, 18, 24, 3.5, value)).join('')
 
 // The label for a scene name: the year at midnight, the minutes in the countdown, nothing otherwise.
 const labelFor = (scene: string): string | undefined => {
@@ -229,25 +228,6 @@ export const register: Register = on => {
       }
     })
 
-    // The Happy New Year notification. Only a client that can show it gets one: in a terminal a notification with a
-    // moment set is raised at once. It is re-armed each hour with the same key, so it never doubles.
-    const isInApp = (await $.session.surfaces()).some(surface => surface !== 'terminal')
-    const armNotification = async (): Promise<void> => {
-      const at = nextNewYear(new Date())
-
-      if (!isInApp || at === undefined) {
-        return
-      }
-
-      try {
-        await $.ui.notify('Happy New Year!', { title: 'New Year', key: 'new-year-midnight', at, untilBack: false })
-      } catch {
-        // A client that cannot take the notification: nothing to do.
-      }
-    }
-
-    await armNotification()
-    $.clock.every(HOUR, armNotification)
 
     return next(e)
   })
