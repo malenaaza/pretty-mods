@@ -4,24 +4,10 @@ import { makeColors } from './make-colors.js'
 import { sceneAt, SCENE_COUNTDOWN_PREFIX, SCENE_MIDNIGHT_PREFIX } from './midnight.js'
 
 
-// Midnight navy with gold and rose accents in dark mode; a pale lavender day with the same accents in light mode.
-// Neither mode is forced, so the look follows the mode the person has chosen.
+// Midnight navy with gold and rose accents. Dark only: the look is always dark, whatever mode the app is in.
 const { theme, problems } = makeColors({
   label: 'New Year',
   roles: { danger: '#b3392f', success: '#2f7d4f', warning: '#a86f14', pro: '#6d4f94', accent: '#b8862b' },
-  light: {
-    roles: { accent: '#9a6d1a' },
-    gray: {
-      anchors: {
-        'surface-0': '#ebe8f4',
-        'surface-1': '#f2f0f9',
-        'surface-2': '#f9f8fc',
-        'text-primary': '#1c1830',
-        'text-secondary': '#3d3857',
-        'text-muted': '#56507a',
-      },
-    },
-  },
   dark: {
     roles: { accent: '#e8c060', danger: '#d9695e', success: '#5fb07a', warning: '#d9a441', pro: '#b59be0' },
     gray: {
@@ -36,6 +22,7 @@ const { theme, problems } = makeColors({
       },
     },
   },
+  only: 'dark',
 })
 
 // The scene is drawn on a tall 400 x 800 picture. A wide window shows only its middle band (about y 290 to 510),
@@ -74,7 +61,7 @@ const digit = (x: number, y: number, w: number, h: number, t: number, value: str
     .map(seg => {
       const [rx, ry, rw, rh] = parts[seg] ?? [0, 0, 0, 0]
 
-      return `<rect x="${rx}" y="${ry}" width="${rw}" height="${rh}" rx="0.6" fill="#f2c14e"/>`
+      return `<rect class="yr" x="${rx}" y="${ry}" width="${rw}" height="${rh}" rx="0.6"/>`
     })
     .join('')
 }
@@ -165,6 +152,7 @@ const buildScene = (label: string | undefined, fireworks: boolean): string => [
   '</defs>',
   '<style>',
   '.night{display:none}',
+  '.yr{fill:#1f2a55}',
   '.f{animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite}',
   '@keyframes fall{from{transform:translate(0,0)}to{transform:translate(var(--d),830px)}}',
   '.bu{opacity:0;animation:pop 7s ease-in-out infinite}',
@@ -172,7 +160,7 @@ const buildScene = (label: string | undefined, fireworks: boolean): string => [
   '.wn{animation:glow 6s ease-in-out infinite}',
   '@keyframes glow{0%,100%{opacity:.45}50%{opacity:1}}',
   // At night the sky and the windows are as above; by day the skyline is a soft blue-grey and the windows are off.
-  '@media (prefers-color-scheme:dark){.day{display:none}.night{display:inline}.f{opacity:.9}}',
+  '@media (prefers-color-scheme:dark){.day{display:none}.night{display:inline}.f{opacity:.9}.yr{fill:#f2c14e}}',
   // Asked to reduce motion, the fireworks stay as bright bursts, the confetti rests at set heights and the windows stay lit.
   '@media (prefers-reduced-motion:reduce){.f{animation:none;transform:translate(0,var(--y))}.bu{animation:none;opacity:.85}.wn{animation:none;opacity:.8}}',
   '</style>',
@@ -188,7 +176,7 @@ const buildScene = (label: string | undefined, fireworks: boolean): string => [
     }).join('') +
     '</g>',
   fireworks ? FIREWORKS : '',
-  label === undefined ? '' : `<g class="night">${labelDigits(label)}</g>`,
+  label === undefined ? '' : `<g>${labelDigits(label)}</g>`,
   `<g class="day" opacity=".55">${SKYLINE.replace(/fill="#0a0c1c"/g, 'fill="#b7b0d6"')}</g>`,
   `<g class="night">${SKYLINE}</g>`,
   `<rect x="0" y="${G}" width="400" height="95" fill="#1a1a33" class="night"/>`,
@@ -201,6 +189,7 @@ const buildScene = (label: string | undefined, fireworks: boolean): string => [
 const lookFor = (scene: string): ThemeSetArgs => ({
   colors: theme,
   backdrop: { scene, glass: { blur: 14, opacity: 0.55 } },
+  overrideColorScheme: 'dark',
 })
 
 export const register: Register = on => {
