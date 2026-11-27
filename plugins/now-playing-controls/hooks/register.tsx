@@ -12,6 +12,8 @@ const SPEC = { isTerminalOnly: true } as const
 // What is playing, as last checked ("Title - Artist"), or undefined when nothing is.
 // The pane and the band show their buttons only while this is set.
 let track: string | undefined
+// Set by the band's ✕: the row stays hidden until /playback is typed.
+let dismissed = false
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
@@ -48,6 +50,7 @@ export const register: Register = on => {
   }))
 
   on('command.run', { command: 'playback' }, async $ => {
+    dismissed = false
     await $.ui.open({ id: PANE, title: 'Now playing' })
 
     return { text: 'Playback buttons opened.' }
@@ -55,7 +58,7 @@ export const register: Register = on => {
 
   // The band row above the prompt: the same buttons, shown only while a song is playing.
   on('ui.render', { component: 'AbovePrompt' }, ($, e, next) => {
-    if (track === undefined) {
+    if (dismissed) {
       return next(e)
     }
 
@@ -67,10 +70,18 @@ export const register: Register = on => {
 
     return (
       <Box>
-        <Text dimColor>🎵 {track} </Text>
+        {track !== undefined && <Text dimColor>🎵 {track} </Text>}
         <Button key="previous" label="⏮ Previous" onPress={press('previous')} />
         <Button key="playpause" label="⏯ Play / pause" onPress={press('playpause')} />
         <Button key="next" label="⏭ Next" onPress={press('next')} />
+        <Button
+          key="close"
+          label="✕"
+          onPress={() => {
+            dismissed = true
+            $.ui.invalidate('ui.render')
+          }}
+        />
       </Box>
     )
   })
