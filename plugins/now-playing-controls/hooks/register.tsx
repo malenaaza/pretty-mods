@@ -58,7 +58,7 @@ export const register: Register = on => {
 
   // The band row above the prompt: the same buttons, shown only while a song is playing.
   on('ui.render', { component: 'AbovePrompt' }, ($, e, next) => {
-    if (track === undefined || dismissed) {
+    if (dismissed) {
       return next(e)
     }
 
@@ -70,7 +70,7 @@ export const register: Register = on => {
 
     return (
       <Box>
-        <Text dimColor>🎵 {track} </Text>
+        {track !== undefined && <Text dimColor>🎵 {track} </Text>}
         <Button key="previous" label="⏮ Previous" onPress={press('previous')} />
         <Button key="playpause" label="⏯ Play / pause" onPress={press('playpause')} />
         <Button key="next" label="⏭ Next" onPress={press('next')} />
