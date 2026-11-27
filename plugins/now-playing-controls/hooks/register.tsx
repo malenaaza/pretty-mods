@@ -9,9 +9,9 @@ const PANE = 'now-playing-controls'
 // Each command and the pane are terminal-only: they act on this computer, which a desktop or phone client does not share.
 const SPEC = { isTerminalOnly: true } as const
 
-// What is playing, as last checked ("Title - Artist"), or undefined when nothing is.
-// The pane and the band show their buttons only while this is set.
+// The last track loaded ("Title - Artist"), kept while it is paused; undefined when none is loaded.
 let track: string | undefined
+let playing = false
 // Set by the band's ✕: the row stays hidden until /playback is typed.
 let dismissed = false
 
@@ -24,9 +24,12 @@ export const register: Register = on => {
 
     const check = async (): Promise<void> => {
       const now = await nowPlaying(argv => $.process.run(argv, { timeoutMs: TIMEOUT_MS }))
+      const nextTrack = now?.text
+      const nextPlaying = now?.isPlaying ?? false
 
-      if (now !== track) {
-        track = now
+      if (nextTrack !== track || nextPlaying !== playing) {
+        track = nextTrack
+        playing = nextPlaying
         $.ui.invalidate('ui.render')
       }
     }
@@ -90,7 +93,7 @@ export const register: Register = on => {
     const { Box, Button, Text } = $.ui.resolve(e)
 
     if (track === undefined) {
-      return <Text dimColor>Nothing is playing right now.</Text>
+      return <Text dimColor>Nothing is loaded right now.</Text>
     }
 
     // Each button runs its action and shows the result as a toast.
@@ -100,7 +103,7 @@ export const register: Register = on => {
 
     return (
       <Box flexDirection="column">
-        <Text dimColor>Playing: {track}</Text>
+        <Text dimColor>{playing ? 'Playing: ' : 'Paused: '}{track}</Text>
         <Box flexDirection="row">
           <Button key="previous" onPress={press('previous')}>⏮ Previous</Button>
           <Button key="playpause" onPress={press('playpause')}>⏯ Play / pause</Button>

@@ -115,16 +115,18 @@ test('the line the command shows says what happened', async () => {
   expect(await describe('next', none.run)).toBe('No music app here that can be controlled.')
 })
 
-test('nowPlaying gives the title and artist only while playing', async () => {
+test('nowPlaying gives the title and artist, playing or paused, and nothing when off', async () => {
   const playing: Run = async () => ({ exitCode: 0, stdout: 'playing||Song||Band\n' })
   const solo: Run = async () => ({ exitCode: 0, stdout: 'playing||Solo||\n' })
-  const paused: Run = async () => ({ exitCode: 0, stdout: 'off\n' })
+  const paused: Run = async () => ({ exitCode: 0, stdout: 'paused||Song||Band\n' })
+  const off: Run = async () => ({ exitCode: 0, stdout: 'off\n' })
   const none: Run = async () => {
     throw new Error('not found')
   }
 
-  expect(await nowPlaying(playing)).toBe('Song - Band')
-  expect(await nowPlaying(solo)).toBe('Solo')
-  expect(await nowPlaying(paused)).toBeUndefined()
+  expect(await nowPlaying(playing)).toEqual({ isPlaying: true, text: 'Song - Band' })
+  expect(await nowPlaying(solo)).toEqual({ isPlaying: true, text: 'Solo' })
+  expect(await nowPlaying(paused)).toEqual({ isPlaying: false, text: 'Song - Band' })
+  expect(await nowPlaying(off)).toBeUndefined()
   expect(await nowPlaying(none)).toBeUndefined()
 })
