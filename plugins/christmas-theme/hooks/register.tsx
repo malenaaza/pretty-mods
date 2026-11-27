@@ -92,11 +92,10 @@ const SANTA = [
   '<circle cx="16.8" cy="-24.4" r="1.8" fill="#e8c76a"/>',
   '<circle cx="20.4" cy="-24.4" r="1.8" fill="#e8c76a"/>',
   '<circle cx="8" cy="-14" r="7" fill="#b3263b"/>',
-  // Santa holds the reins: three thin lines from his hand to the collars of the three reindeer, and an arm
-  // stretched forward to the hand, so he is the one pulling on them.
-  '<path d="M-9 -10 L-59 -15 M-9 -10 L-101 -15 M-9 -10 L-143 -15" stroke="#e8d9b0" stroke-width="0.9" fill="none"/>',
-  '<path d="M3 -15 L-8 -10.5" stroke="#b3263b" stroke-width="4.4" stroke-linecap="round" fill="none"/>',
-  '<circle cx="-9.2" cy="-10" r="2.6" fill="#f4dcc4"/>',
+  // Santa pulls on the harness line that runs from the last reindeer to the sleigh: an arm stretched forward, with
+  // the hand closed on the line where it leaves the sleigh.
+  '<path d="M3 -15 L-9.5 -5.6" stroke="#b3263b" stroke-width="4.4" stroke-linecap="round" fill="none"/>',
+  '<circle cx="-11.2" cy="-4.6" r="2.6" fill="#f4dcc4"/>',
   '<circle cx="8" cy="-24" r="4.5" fill="#f4dcc4"/>',
   '<path d="M3 -26 L8 -37 L13 -26 Z" fill="#b3263b"/>',
   '<circle cx="8" cy="-38" r="1.8" fill="#fffaf0"/>',
