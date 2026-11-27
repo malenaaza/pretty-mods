@@ -144,10 +144,12 @@ const SCENE = [
   '</svg>',
 ].join('')
 
-// The glass has no tint of its own, so its veil takes each mode's own panel colour.
+// The glass frosts the panels over the scene: the desktop app blurs what is behind a panel by `blur` points and
+// lays a veil over it. It has no tint of its own, so the veil takes each mode's own panel colour. The scene shows
+// sharp outside the panels and softened behind them, which keeps the words easy to read over the snow.
 const LOOK: ThemeSetArgs = {
   colors: theme,
-  backdrop: { scene: 'snowman', glass: { blur: 0, opacity: 0.35 } },
+  backdrop: { scene: 'snowman', glass: { blur: 14, opacity: 0.55 } },
 }
 
 export const register: Register = on => {
