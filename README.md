@@ -103,6 +103,8 @@ The desktop app's own **+** then **Plugins** menu may also work, but on the owne
 
 To update after a new version: `claude plugin marketplace update pretty-mods`, then `claude plugin update <mod>`. To switch one off: `claude plugin disable <mod>`.
 
+If `enable`, `disable` or `update` says it worked from a terminal but nothing changes in your sessions, add the scope you installed it at, for example `claude plugin enable christmas-theme --scope user`. Those commands pick a scope by themselves when it isn't given, and it may not be the one your sessions read. Inside a Claude Code session, `/plugin` works on the scope you are in. (One user saw `enable` report success from PowerShell without effect, and `/plugin` work; the cause was not confirmed.)
+
 ## If you see nothing
 
 1. **Run `claude plugin list`** in a terminal. Is the mod there, at the version you expect, and enabled?

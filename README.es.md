@@ -103,6 +103,8 @@ El menú **+** y luego **Plugins** de la app de escritorio también puede funcio
 
 Para actualizar tras una versión nueva: `claude plugin marketplace update pretty-mods`, y luego `claude plugin update <mod>`. Para apagar una: `claude plugin disable <mod>`.
 
+Si `enable`, `disable` o `update` dicen que funcionó desde una terminal pero no cambia nada en tus sesiones, añade el alcance con el que la instalaste, por ejemplo `claude plugin enable christmas-theme --scope user`. Esos comandos eligen un alcance por su cuenta cuando no se indica, y puede no ser el que leen tus sesiones. Dentro de una sesión de Claude Code, `/plugin` actúa sobre el alcance en el que estás. (Una usuaria vio que `enable` decía haberlo hecho desde PowerShell sin efecto, y que `/plugin` sí funcionó; la causa no se confirmó.)
+
 ## Si no ves nada
 
 1. **Ejecuta `claude plugin list`** en una terminal. ¿Está la mod, en la versión que esperas y activa?
