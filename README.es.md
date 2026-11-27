@@ -79,7 +79,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 
 | Mod | Qué hace |
 |---|---|
-| `new-year-theme` | Un horizonte de ciudad con ventanas encendidas y confeti que cae despacio. En los últimos diez minutos del año, una cuenta atrás en dorado (de 10 a 1, cambiando cada minuto). Desde la medianoche, el año 2027 en dorado y fuegos artificiales que estallan en los bordes izquierdo y derecho, hasta la 01:00 del 1 de enero. Sigue tu modo claro u oscuro, y los paneles detrás del texto son de cristal esmerilado. El aviso de medianoche va a la app de escritorio, cuando hay una sesión abierta en tu ordenador. El móvil no es compatible por ahora: hasta ahora no se ha visto ningún tema en un iPhone |
+| `new-year-theme` | Un horizonte de ciudad con ventanas encendidas y confeti que cae despacio. En los últimos diez minutos del año, una cuenta atrás en dorado (de 10 a 1, cambiando cada minuto). Desde la medianoche, el año 2027 en dorado y fuegos artificiales que estallan en los bordes izquierdo y derecho, hasta la 01:00 del 1 de enero. Sigue tu modo claro u oscuro, y los paneles detrás del texto son de cristal esmerilado. No hay aviso a medianoche: en las pruebas, la app de escritorio no lo mostró, así que solo cambia la escena. El móvil no es compatible por ahora: hasta ahora no se ha visto ningún tema en un iPhone |
 
 ### Música
 
