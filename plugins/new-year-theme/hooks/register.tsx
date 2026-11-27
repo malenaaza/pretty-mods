@@ -1,6 +1,9 @@
 import type { Register, ThemeSetArgs } from 'claude-code'
 
 import { makeColors } from './make-colors.js'
+import { nextNewYear, sceneAt, SCENE_MIDNIGHT } from './midnight.js'
+
+const HOUR = 60 * 60 * 1000
 
 // Midnight navy with gold and rose accents in dark mode; a pale lavender day with the same accents in light mode.
 // Neither mode is forced, so the look follows the mode the person has chosen.
@@ -126,7 +129,7 @@ const CONFETTI = Array.from({ length: 34 }, (_, i) => {
   return `<rect class="f" x="${x}" y="-10" width="3" height="5" fill="${colour}" style="--d:${drift}px;--y:${rest}px;animation-duration:${duration}s;animation-delay:${delay}s"/>`
 }).join('')
 
-const SCENE = [
+const buildScene = (withYear: boolean): string => [
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">',
   '<defs>',
   '<linearGradient id="dayg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9d3ef"/><stop offset="0.75" stop-color="#efeaf8"/><stop offset="1" stop-color="#f8f6fc"/></linearGradient>',
@@ -161,7 +164,7 @@ const SCENE = [
   burst(344, 468, 46, BURST_COLOURS[1] ?? '#ff7a8a', -3.5, 16),
   burst(48, 548, 30, BURST_COLOURS[2] ?? '#7fd1ff', -5, 12),
   // The year, at the right edge of the band, only at night.
-  `<g class="night">${YEAR_2027}</g>`,
+  withYear ? `<g class="night">${YEAR_2027}</g>` : '',
   `<g class="day" opacity=".55">${SKYLINE.replace(/fill="#0a0c1c"/g, 'fill="#b7b0d6"')}</g>`,
   `<g class="night">${SKYLINE}</g>`,
   `<rect x="0" y="${G}" width="400" height="95" fill="#1a1a33" class="night"/>`,
@@ -171,10 +174,10 @@ const SCENE = [
 ].join('')
 
 // The glass frosts the panels over the scene. The fireworks are at the edges, so the frosted middle leaves them sharp.
-const LOOK: ThemeSetArgs = {
+const lookFor = (scene: string): ThemeSetArgs => ({
   colors: theme,
-  backdrop: { scene: 'new-year', glass: { blur: 14, opacity: 0.55 } },
-}
+  backdrop: { scene, glass: { blur: 14, opacity: 0.55 } },
+})
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
@@ -184,11 +187,42 @@ export const register: Register = on => {
     if (unpainted !== undefined) {
       $.ui.toast(unpainted)
     }
-    const set = await $.theme.set(LOOK)
+    let current = sceneAt(new Date())
+    const set = await $.theme.set(lookFor(current))
 
     if (!set.isDrawn) {
       $.ui.status(set.reason)
     }
+
+    // The year appears and goes with the clock: the scene is set again only when the moment changes.
+    $.clock.every(60 * 1000, async () => {
+      const wanted = sceneAt(new Date())
+
+      if (wanted !== current) {
+        current = wanted
+        await $.theme.set(lookFor(wanted))
+      }
+    })
+
+    // The Happy New Year notification. Only a client that can show it gets one: in a terminal a notification with a
+    // moment set is raised at once. It is re-armed each hour with the same key, so it never doubles.
+    const isInApp = (await $.session.surfaces()).some(surface => surface !== 'terminal')
+    const armNotification = async (): Promise<void> => {
+      const at = nextNewYear(new Date())
+
+      if (!isInApp || at === undefined) {
+        return
+      }
+
+      try {
+        await $.ui.notify('Happy New Year!', { title: 'New Year', key: 'new-year-midnight', at, untilBack: false })
+      } catch {
+        // A client that cannot take the notification: nothing to do.
+      }
+    }
+
+    await armNotification()
+    $.clock.every(HOUR, armNotification)
 
     return next(e)
   })
@@ -199,7 +233,8 @@ export const register: Register = on => {
     }
 
     const { Svg } = $.ui.resolve(e)
+    const withYear = e.props.scene === SCENE_MIDNIGHT
 
-    return <Svg source={SCENE} alt="Fireworks over a city skyline at night, with falling confetti" isInteractive />
+    return <Svg source={buildScene(withYear)} alt="Fireworks over a city skyline at night, with falling confetti" isInteractive />
   })
 }
