@@ -41,6 +41,38 @@ const { theme, problems } = makeColors({
 // at the left and right edges of the band, where the words are not. A phone shows all of it.
 const G = 508
 
+// The year, "2027", drawn as seven-segment digits from plain rectangles, since a theme can't use a font. Each digit is
+// `w` wide and `h` tall, with segments `t` thick; the segments are named a (top), b and c (right), d (bottom),
+// e and f (left) and g (middle).
+const SEGMENTS: Record<string, string> = { '0': 'abcdef', '2': 'abged', '7': 'abc' }
+
+const digit = (x: number, y: number, w: number, h: number, t: number, value: string): string => {
+  const parts: Record<string, [number, number, number, number]> = {
+    a: [x + t, y, w - 2 * t, t],
+    d: [x + t, y + h - t, w - 2 * t, t],
+    g: [x + t, y + h / 2 - t / 2, w - 2 * t, t],
+    f: [x, y + t, t, h / 2 - t],
+    b: [x + w - t, y + t, t, h / 2 - t],
+    e: [x, y + h / 2, t, h / 2 - t],
+    c: [x + w - t, y + h / 2, t, h / 2 - t],
+  }
+
+  return [...(SEGMENTS[value] ?? '')]
+    .map(seg => {
+      const [rx, ry, rw, rh] = parts[seg] ?? [0, 0, 0, 0]
+
+      return `<rect x="${rx}" y="${ry}" width="${rw}" height="${rh}" rx="0.6" fill="#f2c14e"/>`
+    })
+    .join('')
+}
+
+const YEAR_2027 = [
+  digit(268, 330, 22, 34, 4, '2'),
+  digit(294, 330, 22, 34, 4, '0'),
+  digit(320, 330, 22, 34, 4, '2'),
+  digit(346, 330, 22, 34, 4, '7'),
+].join('')
+
 const BURST_COLOURS = ['#f2c14e', '#ff7a8a', '#7fd1ff', '#c59bff', '#ffffff']
 
 // One firework: a ring of rays and a few sparks, drawn around (0, 0) and placed by the caller. It fades slowly in and
@@ -126,9 +158,10 @@ const SCENE = [
     '</g>',
   // Fireworks at the left and the right edge, in the visible band; a smaller one higher up on each side.
   burst(56, 360, 46, BURST_COLOURS[0] ?? '#f2c14e', 0, 14),
-  burst(344, 430, 50, BURST_COLOURS[1] ?? '#ff7a8a', -3.5, 16),
+  burst(344, 468, 46, BURST_COLOURS[1] ?? '#ff7a8a', -3.5, 16),
   burst(48, 548, 30, BURST_COLOURS[2] ?? '#7fd1ff', -5, 12),
-  burst(352, 310, 34, BURST_COLOURS[3] ?? '#c59bff', -1.8, 12),
+  // The year, at the right edge of the band, only at night.
+  `<g class="night">${YEAR_2027}</g>`,
   `<g class="day" opacity=".55">${SKYLINE.replace(/fill="#0a0c1c"/g, 'fill="#b7b0d6"')}</g>`,
   `<g class="night">${SKYLINE}</g>`,
   `<rect x="0" y="${G}" width="400" height="95" fill="#1a1a33" class="night"/>`,
