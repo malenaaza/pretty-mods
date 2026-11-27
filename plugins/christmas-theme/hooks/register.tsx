@@ -70,8 +70,8 @@ const reindeer = (dx: number, isLead: boolean, index: number): string => {
 }
 
 const SANTA = [
-  // The harness: one line from the lead reindeer back to the sleigh, behind the team.
-  '<path d="M-122 -9 L-12 -4" stroke="#d9b45a" stroke-width="1" fill="none"/>',
+  // The harness: one line from the lead reindeer back to Santa's hand, behind the team. It is not tied to the sleigh.
+  '<path d="M-122 -9 L-5 -10.6" stroke="#d9b45a" stroke-width="1" fill="none"/>',
   reindeer(-84, true, 0),
   reindeer(-42, false, 1),
   reindeer(0, false, 2),
@@ -92,10 +92,9 @@ const SANTA = [
   '<circle cx="16.8" cy="-24.4" r="1.8" fill="#e8c76a"/>',
   '<circle cx="20.4" cy="-24.4" r="1.8" fill="#e8c76a"/>',
   '<circle cx="8" cy="-14" r="7" fill="#b3263b"/>',
-  // Santa pulls on the harness line that runs from the last reindeer to the sleigh: an arm stretched forward, with
-  // the hand closed on the line where it leaves the sleigh.
-  '<path d="M3 -15 L-9.5 -5.6" stroke="#b3263b" stroke-width="4.4" stroke-linecap="round" fill="none"/>',
-  '<circle cx="-11.2" cy="-4.6" r="2.6" fill="#f4dcc4"/>',
+  // Santa holds the end of the harness line in his hand: a short arm, bent forward, with the hand closed on the line.
+  '<path d="M4 -15 L-2.6 -11.6" stroke="#b3263b" stroke-width="4" stroke-linecap="round" fill="none"/>',
+  '<circle cx="-4.4" cy="-10.8" r="2.3" fill="#f4dcc4"/>',
   '<circle cx="8" cy="-24" r="4.5" fill="#f4dcc4"/>',
   '<path d="M3 -26 L8 -37 L13 -26 Z" fill="#b3263b"/>',
   '<circle cx="8" cy="-38" r="1.8" fill="#fffaf0"/>',
