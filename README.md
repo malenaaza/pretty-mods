@@ -85,6 +85,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 | Mod | What it does |
 |---|---|
+| `now-playing-controls` | Slash commands `/next-song`, `/previous-song` and `/play-pause`, and a `/playback` pane with Previous, Play/pause and Next buttons (shown only while a song is playing), in the Claude Code terminal. Mac: the Music app only. Windows: whatever the system media controls show. Nothing is shown in the status line. |
 | `now-playing` | Shows "🎵 title - artist" in the status line for the song that's playing. Updates every 15 seconds. Nothing shows when nothing is playing. It needs no account connection, token or sign-in, because it asks your own computer. |
 
 ## Install
