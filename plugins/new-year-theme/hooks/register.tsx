@@ -4,24 +4,10 @@ import { makeColors } from './make-colors.js'
 import { sceneAt, SCENE_COUNTDOWN_PREFIX, SCENE_MIDNIGHT_PREFIX } from './midnight.js'
 
 
-// Midnight navy with gold and rose accents in dark mode; a pale lavender day with the same accents in light mode.
-// Neither mode is forced, so the look follows the mode the person has chosen.
+// Midnight navy with gold and rose accents. Dark only: the look is always dark, whatever mode the app is in.
 const { theme, problems } = makeColors({
   label: 'New Year',
   roles: { danger: '#b3392f', success: '#2f7d4f', warning: '#a86f14', pro: '#6d4f94', accent: '#b8862b' },
-  light: {
-    roles: { accent: '#9a6d1a' },
-    gray: {
-      anchors: {
-        'surface-0': '#ebe8f4',
-        'surface-1': '#f2f0f9',
-        'surface-2': '#f9f8fc',
-        'text-primary': '#1c1830',
-        'text-secondary': '#3d3857',
-        'text-muted': '#56507a',
-      },
-    },
-  },
   dark: {
     roles: { accent: '#e8c060', danger: '#d9695e', success: '#5fb07a', warning: '#d9a441', pro: '#b59be0' },
     gray: {
@@ -36,6 +22,7 @@ const { theme, problems } = makeColors({
       },
     },
   },
+  only: 'dark',
 })
 
 // The scene is drawn on a tall 400 x 800 picture. A wide window shows only its middle band (about y 290 to 510),
@@ -202,6 +189,7 @@ const buildScene = (label: string | undefined, fireworks: boolean): string => [
 const lookFor = (scene: string): ThemeSetArgs => ({
   colors: theme,
   backdrop: { scene, glass: { blur: 14, opacity: 0.55 } },
+  overrideColorScheme: 'dark',
 })
 
 export const register: Register = on => {
