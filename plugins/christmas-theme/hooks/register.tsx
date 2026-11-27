@@ -75,7 +75,10 @@ const SANTA = [
   reindeer(-42, false, 1),
   reindeer(0, false, 2),
   '<path d="M-14 -2 C-12 8 6 10 24 6 L26 -8 L-6 -8 Z" fill="#b3263b"/>',
-  '<path d="M-18 12 C0 16 26 14 32 4" stroke="#d9b45a" stroke-width="2" fill="none"/>',
+  // The runner is flat along the bottom and curls up at the front, on the left, the way the sleigh is going. Two
+  // struts join it to the body.
+  '<path d="M-4 7 L-4 13 M18 7 L18 12" stroke="#d9b45a" stroke-width="1.3" fill="none"/>',
+  '<path d="M30 11 C14 14.5 -4 14.5 -16 12 C-22 10.6 -25 6 -22 2" stroke="#d9b45a" stroke-width="2" stroke-linecap="round" fill="none"/>',
   // Three wrapped presents with ribbons and bows, stacked at the back of the sleigh.
   '<rect x="13" y="-18" width="11" height="10" fill="#2f7d4f"/>',
   '<rect x="17.5" y="-18" width="2.4" height="10" fill="#e8c76a"/>',
