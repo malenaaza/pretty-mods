@@ -3,7 +3,7 @@ import type { Register, ThemeSetArgs } from 'claude-code'
 import { makeColors } from './make-colors.js'
 import { nextNewYear, sceneAt, SCENE_COUNTDOWN_PREFIX, SCENE_MIDNIGHT_PREFIX } from './midnight.js'
 
-const HOUR = 60 * 60 * 1000
+const MINUTE = 60 * 1000
 
 // Midnight navy with gold and rose accents in dark mode; a pale lavender day with the same accents in light mode.
 // Neither mode is forced, so the look follows the mode the person has chosen.
@@ -230,10 +230,11 @@ export const register: Register = on => {
     })
 
     // The Happy New Year notification. Only a client that can show it gets one: in a terminal a notification with a
-    // moment set is raised at once. It is re-armed each hour with the same key, so it never doubles.
-    const isInApp = (await $.session.surfaces()).some(surface => surface !== 'terminal')
+    // moment set is raised at once. The surfaces are empty at session start, because an app attaches after the start,
+    // so the check runs each minute. The same key replaces the notification, so re-arming never doubles it.
     const armNotification = async (): Promise<void> => {
       const at = nextNewYear(new Date())
+      const isInApp = (await $.session.surfaces()).some(surface => surface !== 'terminal')
 
       if (!isInApp || at === undefined) {
         return
@@ -247,7 +248,7 @@ export const register: Register = on => {
     }
 
     await armNotification()
-    $.clock.every(HOUR, armNotification)
+    $.clock.every(MINUTE, armNotification)
 
     return next(e)
   })
