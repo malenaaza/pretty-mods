@@ -23,6 +23,8 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 | `christmas-market-theme` | Igual que arriba | Sí, en Windows: tras pedir la dueña tres puestos (0.2.0), informó de que "está bien", aunque los puestos le siguen pareciendo grandes y decidió dejarlos así. Tras la 0.2.1 (casas del fondo visibles, tazas con asa) informó de que se ve bien. La primera versión mostraba solo dos puestos, uno cortado en el borde |
 | `new-year-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador, en claro y en oscuro |
 | `snowman-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador, en claro y en oscuro |
+| `machu-picchu-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador, en claro y en oscuro |
+| `huacachina-theme` | Igual que arriba | Sin informe todavía. Solo comprobado en un render en navegador, en claro y en oscuro |
 | `kitty-theme` | Igual que arriba | Sí, en Windows (la dueña informó de que "se ve bien", y después de que la cola del gato y las estrellas se ven y se mueven en la 0.1.6). iPhone: se probó una vez, en una sesión de Remote Control que corría en el ordenador con el tema activado, y no se vio ningún tema |
 | `kitty-status`, `christmas-countdown` | La línea de estado en la terminal de Claude Code | Sí, las dos funcionan en la terminal de Claude Code (informe de la dueña). **En la app de escritorio de Windows los informes fueron mixtos:** `kitty-status` se vio una vez bajo la caja de texto y luego no, y `christmas-countdown` nunca se vio allí. Una línea de prueba que se actualizaba cada 5 segundos tampoco se mostró en una sesión en la nube. No cuentes con las líneas de estado en la app de escritorio; la causa no se conoce |
 | `now-playing` | La línea de estado, bajo la caja de texto (Mac: app Música; Windows: cualquier reproductor que informe a los controles multimedia del sistema, como YouTube Music en un navegador) | **Sí, en Windows, en la app de escritorio** (captura de la dueña, versión 0.2.0: se mostraron título y artista con el nombre de la mod delante) **y en la terminal de Claude Code** (informe de la dueña, versión no indicada). Mac: nunca se ha ejecutado. Las letras con acento salían rotas en la 0.2.0; la dueña confirmó que se ven bien (é y ñ) en la 0.2.1 |
@@ -81,6 +83,19 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 |---|---|
 | `new-year-theme` | Un horizonte de ciudad con ventanas encendidas y confeti que cae despacio. En los últimos diez minutos del año, una cuenta atrás en dorado (de 10 a 1, cambiando cada minuto). Desde la medianoche, el año 2027 en dorado y fuegos artificiales que estallan en los bordes izquierdo y derecho, hasta la 01:00 del 1 de enero. Es siempre oscuro, aunque tu sistema esté en claro, y los paneles detrás del texto son de cristal esmerilado. No hay aviso a medianoche: en las pruebas, la app de escritorio no lo mostró, así que solo cambia la escena. El móvil no es compatible por ahora: hasta ahora no se ha visto ningún tema en un iPhone |
 
+### Perú
+
+![Vista previa de machu-picchu-theme: terrazas de piedra y llamas bajo un pico alto, de día a la izquierda y de noche a la derecha](docs/previews/machu-picchu-theme.png)
+
+![Vista previa de huacachina-theme: dunas de arena alrededor de una laguna con palmeras, de día a la izquierda y de noche a la derecha](docs/previews/huacachina-theme.png)
+
+*Vista previa solo de las escenas, de día (izquierda) y de noche (derecha), dibujadas en un navegador, sin el desenfoque ni los paneles de la app. Son dibujos, no fotografías.*
+
+| Mod | Qué hace |
+|---|---|
+| `machu-picchu-theme` | Terrazas de piedra y ruinas con puertas trapezoidales en una ladera verde andina, un pico alto, dos llamas con mantas tejidas y una niebla lenta, de día con sol o de noche con estrellas y luna. Sigue tu modo claro u oscuro. La niebla se desplaza y las estrellas parpadean. Las ruinas están en el borde izquierdo y las llamas en el derecho, fuera del centro donde suele estar el panel del chat. |
+| `huacachina-theme` | Dunas de arena alrededor de una pequeña laguna del desierto con palmeras que se mecen, de día con sol o de noche con estrellas y luna. Sigue tu modo claro u oscuro. Las palmeras se mecen un poco, la laguna ondula y las estrellas parpadean. Las palmeras están en los dos bordes. |
+
 ### Música
 
 | Mod | Qué hace |
@@ -118,6 +133,14 @@ En una terminal, inicia Claude Code (`claude`) y escribe, para cada mod que quie
 
 ```
 /plugin install new-year-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install machu-picchu-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install huacachina-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```

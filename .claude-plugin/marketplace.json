@@ -47,6 +47,16 @@
       "category": "theme"
     },
     {
+      "name": "machu-picchu-theme",
+      "source": "./plugins/machu-picchu-theme",
+      "category": "theme"
+    },
+    {
+      "name": "huacachina-theme",
+      "source": "./plugins/huacachina-theme",
+      "category": "theme"
+    },
+    {
       "name": "now-playing",
       "source": "./plugins/now-playing",
       "category": "extras"

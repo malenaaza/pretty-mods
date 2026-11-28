@@ -23,6 +23,8 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 | `christmas-market-theme` | Same as above | Yes, on Windows: after the owner asked for three stalls (0.2.0), the owner reported "it is ok", though the stalls still look big to the owner, who chose to leave them. After 0.2.1 (visible background houses, mugs with handles) the owner reported that it looks good. The first version showed only two stalls, one cut off at the edge |
 | `new-year-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
 | `snowman-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
+| `machu-picchu-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
+| `huacachina-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
 | `kitty-theme` | Same as above | Yes, on Windows (the owner reported it "looks good", and later that the cat's tail and the stars show and move in 0.1.6). iPhone: tried once, in a Remote Control session running on the computer with the theme switched on, and no theme showed |
 | `kitty-status`, `christmas-countdown` | The status line in the Claude Code terminal | Yes, both work in the Claude Code terminal (owner's report). **In the Windows desktop app the reports were mixed:** `kitty-status` was seen once under the text box, was not seen later, and `christmas-countdown` was never seen there. A test line that updated every 5 seconds did not show in a cloud session in that app. So do not count on status lines in the desktop app; the cause is not known |
 | `now-playing` | The status line, under the text box (Mac: Music app; Windows: any player that reports to the system media controls, such as YouTube Music in a browser) | **Yes, on Windows, in the desktop app** (owner's screenshot, version 0.2.0: title and artist showed with the mod's name in front) **and in the Claude Code terminal** (owner's report, version not stated). A Mac: never run. Accented letters showed broken in 0.2.0; the owner confirmed they show correctly (é and ñ) in 0.2.1 |
@@ -81,6 +83,19 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 |---|---|
 | `new-year-theme` | A city skyline with lit windows and slow confetti. In the last ten minutes of the year a countdown in gold (10 down to 1, changing each minute). From midnight, the year 2027 in gold and fireworks bursting at the left and right edges, until 01:00 on 1 January. It is always dark, whatever mode your system is in, and the panels behind the text are frosted glass. There is no notification at midnight: the desktop app did not show one in testing, so only the scene changes. The phone is not supported for now: no theme has shown on an iPhone so far | Fireworks bursting at the left and right edges over a city skyline with lit windows, in the last ten minutes of the year a countdown in gold (10, 9 ... 1, changing each minute), then the new year, 2027, from midnight to 01:00 on 1 January, and slow confetti. It follows your light or dark mode: a pale lavender day, or a midnight-blue night. The fireworks fade in and out slowly, and the panels behind the text are frosted glass. At midnight on New Year's Eve, a notification says Happy New Year. It is sent to the desktop app, when a session is open on your computer, and it makes the sound your system uses for its notifications; the mod cannot choose that sound. The phone is not supported for now: no theme has shown on an iPhone so far: no theme has shown on a phone so far. |
 
+### Peru
+
+![Preview of machu-picchu-theme: stone terraces and llamas under a high peak, by day on the left and by night on the right](docs/previews/machu-picchu-theme.png)
+
+![Preview of huacachina-theme: sand dunes around a lagoon with palms, by day on the left and by night on the right](docs/previews/huacachina-theme.png)
+
+*Previews of the scenes alone, by day (left) and by night (right), drawn in a browser, without the app's blur and panels. They are drawings, not photographs.*
+
+| Mod | What it does |
+|---|---|
+| `machu-picchu-theme` | Stone terraces and ruins with trapezoid doorways on a green Andean hillside, a high peak, two llamas in woven blankets and slow mist, by day with the sun or at night with stars and the moon. It follows your light or dark mode. The mist drifts and the stars twinkle. The ruins stand at the left edge and the llamas at the right, outside the middle where the chat panel usually is. |
+| `huacachina-theme` | Sand dunes around a small desert lagoon with swaying palms, by day with the sun or at night with stars and the moon. It follows your light or dark mode. The palms sway a little, the lagoon ripples and the stars twinkle. The palms stand at both edges. |
+
 ### Music
 
 | Mod | What it does |
@@ -118,6 +133,14 @@ In a terminal, start Claude Code (`claude`) and type, for each mod you want:
 
 ```
 /plugin install new-year-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install machu-picchu-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install huacachina-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```

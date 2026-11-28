@@ -1,0 +1,12 @@
+{
+  "name": "huacachina-theme",
+  "version": "0.1.0",
+  "description": "A Huacachina look for Claude that follows your light or dark mode: sand dunes around a small desert lagoon with swaying palms, by day or under stars, with frosted-glass panels behind the text.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
+}

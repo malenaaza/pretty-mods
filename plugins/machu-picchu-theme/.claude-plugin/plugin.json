@@ -1,0 +1,12 @@
+{
+  "name": "machu-picchu-theme",
+  "version": "0.1.0",
+  "description": "A Machu Picchu look for Claude that follows your light or dark mode: stone terraces and ruins on a green Andean ridge in drifting mist, a high peak and llamas, by day or under stars, with frosted-glass panels behind the text.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
+}
