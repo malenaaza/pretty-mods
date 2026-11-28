@@ -168,7 +168,7 @@ export const register: Register = on => {
   })
 
   on('ui.render', { component: 'Backdrop' }, ($, e, next) => {
-    if (e.surface !== 'desktop' && e.surface !== 'mobile') {
+    if (e.surface !== 'desktop') {
       return next(e)
     }
 
