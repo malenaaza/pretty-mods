@@ -13,3 +13,4 @@ Pretty mods for Claude: one folder per mod in `plugins/`, listed in `.claude-plu
 7. **Pull requests** only when asked. Before opening one, fetch `main` and merge it into the branch.
 8. **Update the README only when something readers need changes:** a mod added or removed, what a mod does, how to install it, or a real limit. Don't update it for each test result, tweak to a look, or owner report.
 9. **Free mods only.** Everything in this repository is free and MIT-licensed. A paid mod would go in a separate private repository, never here.
+10. **Themes are for the desktop app only.** Do not build a mobile version: draw a new theme only when `e.surface` is `desktop`, and skip phone-sized frames and phone fit checks. No theme has shown on an iPhone.
