@@ -1,5 +1,12 @@
 {
   "name": "now-playing",
   "version": "0.2.1",
-  "description": "Shows the song that's playing in the status line: the Music app on a Mac, or whatever your Windows media controls show (YouTube Music in a browser, Spotify...). Terminal only."
+  "description": "Shows the song that's playing in the status line: the Music app on a Mac, or whatever your Windows media controls show (YouTube Music in a browser, Spotify...). Terminal only.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
 }

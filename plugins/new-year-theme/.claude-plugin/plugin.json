@@ -1,5 +1,12 @@
 {
   "name": "new-year-theme",
   "version": "0.1.8",
-  "description": "A New Year look for Claude, always dark: fireworks over a city at the edges from midnight, a countdown in the last ten minutes, and frosted-glass panels behind the text."
+  "description": "A New Year look for Claude, always dark: fireworks over a city at the edges from midnight, a countdown in the last ten minutes, and frosted-glass panels behind the text.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
 }

@@ -1,5 +1,12 @@
 {
   "name": "kitty-theme",
   "version": "0.1.6",
-  "description": "A cosy kitty look for Claude: soft plum night, cream text, rose accents, and a sleepy cat on a window ledge with a slowly swaying tail."
+  "description": "A cosy kitty look for Claude: soft plum night, cream text, rose accents, and a sleepy cat on a window ledge with a slowly swaying tail.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
 }
