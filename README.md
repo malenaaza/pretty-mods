@@ -93,7 +93,7 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 
 | Mod | What it does |
 |---|---|
-| `machu-picchu-theme` | Stone terraces and ruins with trapezoid doorways on a green Andean hillside, a high peak, two llamas in woven blankets and slow mist, by day with the sun or at night with stars and the moon. It follows your light or dark mode. The mist drifts and the stars twinkle. The ruins stand at the left edge and the llamas at the right, outside the middle where the chat panel usually is. |
+| `machu-picchu-theme` | Stone terraces with a hillside city of stone houses (thatched roofs, trapezoid doors and niches, and some left as walls), a steep peak with a small ruin on top, two llamas in woven blankets and slow mist, by day with the sun or at night with stars and the moon. It follows your light or dark mode. The mist drifts and the stars twinkle. The ruins stand at the left edge and the llamas at the right, outside the middle where the chat panel usually is. |
 | `huacachina-theme` | Sand dunes around a small desert lagoon with swaying palms, by day with the sun or at night with stars and the moon. It follows your light or dark mode. The palms sway a little, the lagoon ripples and the stars twinkle. The palms stand at both edges. |
 
 ### Music
