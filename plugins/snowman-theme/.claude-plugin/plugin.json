@@ -1,5 +1,12 @@
 {
   "name": "snowman-theme",
   "version": "0.1.7",
-  "description": "A snowy look for Claude that follows your light or dark mode: a snowman and decorated fir trees on a snowy hill, by day or by night, with slow snowfall, and frosted-glass panels behind the text."
+  "description": "A snowy look for Claude that follows your light or dark mode: a snowman and decorated fir trees on a snowy hill, by day or by night, with slow snowfall, and frosted-glass panels behind the text.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
 }

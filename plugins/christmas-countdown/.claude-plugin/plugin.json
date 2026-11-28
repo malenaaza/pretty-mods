@@ -1,5 +1,12 @@
 {
   "name": "christmas-countdown",
   "version": "0.1.0",
-  "description": "Days left until Christmas in the status line, and a greeting on the day."
+  "description": "Days left until Christmas in the status line, and a greeting on the day.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
 }

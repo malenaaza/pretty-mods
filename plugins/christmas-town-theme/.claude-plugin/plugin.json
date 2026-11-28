@@ -1,5 +1,12 @@
 {
   "name": "christmas-town-theme",
   "version": "0.1.1",
-  "description": "A Christmas look for Claude: a snowy night town with lit windows, a church, trees with lights, drifting chimney smoke and slow snowfall."
+  "description": "A Christmas look for Claude: a snowy night town with lit windows, a church, trees with lights, drifting chimney smoke and slow snowfall.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
 }
