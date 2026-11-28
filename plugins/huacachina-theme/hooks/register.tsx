@@ -104,7 +104,7 @@ const boat = (x: number, y: number, delay: number): string =>
 // A dune buggy on a crest: a squat body, a roll cage and two chunky wheels.
 const buggy = (x: number, y: number): string =>
   [
-    `<g transform="translate(${x} ${y}) rotate(28) scale(1.25)">`,
+    `<g transform="translate(${x} ${y}) rotate(36) scale(0.95)">`,
     '<path class="bg" d="M-11 -4 H11 L9 -9 H1 L-3 -14 H-9 L-10 -9 Z"/>',
     '<path class="bg" d="M-8 -9 L-6 -16 H0 L2 -9" fill="none" stroke="#2f3a45" stroke-width="1.2"/>',
     '<circle class="bg" cx="-8" cy="-1" r="4.2"/><circle class="bg" cx="8" cy="-1" r="4.2"/>',
@@ -113,7 +113,7 @@ const buggy = (x: number, y: number): string =>
 
 // A sandboarder standing on a slope: a head, a body and a board under the feet.
 const boarder = (x: number, y: number): string =>
-  `<g transform="translate(${x} ${y}) rotate(34)"><circle class="fg2" cx="0" cy="-13" r="2.2"/><path class="fg" d="M0 -11 V-4 M0 -9 L-4 -6 M0 -9 L4 -6 M0 -4 L-2 0 M0 -4 L2 0" stroke-width="1.3" stroke-linecap="round" fill="none"/><path class="fg" d="M-7 1 H7" stroke-width="1.8" stroke-linecap="round"/></g>`
+  `<g transform="translate(${x} ${y}) rotate(38)"><circle class="fg2" cx="0" cy="-13" r="2.2"/><path class="fg" d="M0 -11 V-4 M0 -9 L-4 -6 M0 -9 L4 -6 M0 -4 L-2 0 M0 -4 L2 0" stroke-width="1.3" stroke-linecap="round" fill="none"/><path class="fg" d="M-7 1 H7" stroke-width="1.8" stroke-linecap="round"/></g>`
 
 // Slow wind ripples combed across a dune, as short curved strokes.
 const ripples = (x: number, y: number, count: number): string =>
@@ -157,14 +157,14 @@ const SCENE = [
   '<circle class="day" cx="300" cy="336" r="24" fill="#fff3c4" opacity=".95"/>',
   // Far dunes, then two tall dunes with sharp crests, sunlit on one side and shaded on the lee side.
   `<path class="d0" d="M0 ${G - 118} Q70 ${G - 146} 140 ${G - 112} T270 ${G - 122} T400 ${G - 106} L400 ${G} L0 ${G} Z"/>`,
-  `<path class="d1" d="M-10 ${G - 56} Q70 ${G - 80} 96 ${G - 172} Q130 ${G - 90} 240 ${G - 58} L240 ${G} L-10 ${G} Z"/>`,
-  `<path class="dsh" d="M96 ${G - 172} Q130 ${G - 90} 240 ${G - 58} L160 ${G - 58} Q116 ${G - 104} 96 ${G - 172} Z"/>`,
-  `<path class="d2" d="M160 ${G - 50} Q290 ${G - 78} 316 ${G - 156} Q330 ${G - 86} 420 ${G - 66} L420 ${G} L160 ${G} Z"/>`,
-  `<path class="dsh" d="M316 ${G - 156} Q290 ${G - 78} 160 ${G - 50} L240 ${G - 50} Q300 ${G - 84} 316 ${G - 156} Z"/>`,
+  `<path class="d1" d="M-10 ${G - 56} C40 ${G - 70} 70 ${G - 170} 98 ${G - 172} C126 ${G - 174} 150 ${G - 90} 240 ${G - 58} L240 ${G} L-10 ${G} Z"/>`,
+  `<path class="dsh" d="M98 ${G - 172} C126 ${G - 174} 150 ${G - 90} 240 ${G - 58} L160 ${G - 58} C130 ${G - 100} 112 ${G - 148} 98 ${G - 172} Z"/>`,
+  `<path class="d2" d="M160 ${G - 50} C250 ${G - 60} 290 ${G - 158} 318 ${G - 158} C346 ${G - 158} 340 ${G - 80} 420 ${G - 66} L420 ${G} L160 ${G} Z"/>`,
+  `<path class="dsh" d="M318 ${G - 158} C290 ${G - 158} 250 ${G - 60} 160 ${G - 50} L240 ${G - 50} C280 ${G - 80} 300 ${G - 130} 318 ${G - 158} Z"/>`,
   `<path class="wr" d="${ripples(24, G - 96, 5)}${ripples(30, G - 70, 6)}${ripples(246, G - 70, 5)}${ripples(270, G - 100, 4)}"/>`,
-  buggy(180, G - 85),
-  boarder(113, G - 139),
-  boarder(129, G - 119),
+  buggy(182, G - 93),
+  boarder(125, G - 153),
+  boarder(140, G - 135),
   `<path class="d3" d="M0 ${G - 48} Q120 ${G - 82} 220 ${G - 44} T400 ${G - 50} L400 ${G} L0 ${G} Z"/>`,
   // The town on the far shore, with its arcades, and the lagoon in front of it.
   building(92, 34, 26, 'ba', false),
