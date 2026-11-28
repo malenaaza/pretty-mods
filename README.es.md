@@ -94,7 +94,7 @@ Mods bonitas para Claude Code: cambian cómo se ve y qué muestra. Un aspecto na
 | Mod | Qué hace |
 |---|---|
 | `machu-picchu-theme` | Terrazas de piedra con una ciudad en la ladera de casas de piedra (techos de paja, puertas trapezoidales y nichos, y algunas solo con muros), un pico empinado con una pequeña ruina en la cima, dos llamas con mantas tejidas y una niebla lenta, de día con sol o de noche con estrellas y luna. Sigue tu modo claro u oscuro. La niebla se desplaza y las estrellas parpadean. Las ruinas están en el borde izquierdo y las llamas en el derecho, fuera del centro donde suele estar el panel del chat. |
-| `huacachina-theme` | Dunas de arena alrededor de una pequeña laguna del desierto con palmeras que se mecen, de día con sol o de noche con estrellas y luna. Sigue tu modo claro u oscuro. Las palmeras se mecen un poco, la laguna ondula y las estrellas parpadean. Las palmeras están en los dos bordes. |
+| `huacachina-theme` | Altas dunas con ondulaciones del viento, un buggy y dos sandboarders, alrededor de una laguna del desierto con un pequeño pueblo en la orilla lejana (arcadas, muros de colores, ventanas que brillan de noche y se reflejan en el agua), un muelle de madera, dos botes de remos y palmeras que se mecen, de día con sol o de noche con estrellas y luna. Sigue tu modo claro u oscuro. Las palmeras se mecen, los botes se balancean, la laguna ondula y las estrellas parpadean. Las palmeras están en los dos bordes. |
 
 ### Música
 
