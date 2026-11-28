@@ -25,6 +25,8 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 | `snowman-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
 | `machu-picchu-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
 | `huacachina-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
+| `alhambra-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
+| `sagrada-familia-theme` | Same as above | Not yet reported. Only checked in a browser render, in light and dark |
 | `kitty-theme` | Same as above | Yes, on Windows (the owner reported it "looks good", and later that the cat's tail and the stars show and move in 0.1.6). iPhone: tried once, in a Remote Control session running on the computer with the theme switched on, and no theme showed |
 | `kitty-status`, `christmas-countdown` | The status line in the Claude Code terminal | Yes, both work in the Claude Code terminal (owner's report). **In the Windows desktop app the reports were mixed:** `kitty-status` was seen once under the text box, was not seen later, and `christmas-countdown` was never seen there. A test line that updated every 5 seconds did not show in a cloud session in that app. So do not count on status lines in the desktop app; the cause is not known |
 | `now-playing` | The status line, under the text box (Mac: Music app; Windows: any player that reports to the system media controls, such as YouTube Music in a browser) | **Yes, on Windows, in the desktop app** (owner's screenshot, version 0.2.0: title and artist showed with the mod's name in front) **and in the Claude Code terminal** (owner's report, version not stated). A Mac: never run. Accented letters showed broken in 0.2.0; the owner confirmed they show correctly (é and ñ) in 0.2.1 |
@@ -96,6 +98,19 @@ Pretty mods for Claude Code: changes to how it looks and what it shows. A Christ
 | `machu-picchu-theme` | Stone terraces with a hillside city of stone houses (thatched roofs, trapezoid doors and niches, and some left as walls), a steep peak with a small ruin on top, two llamas in woven blankets and slow mist, by day with the sun or at night with stars and the moon. It follows your light or dark mode. The mist drifts and the stars twinkle. The ruins stand at the left edge and the llamas at the right, outside the middle where the chat panel usually is. |
 | `huacachina-theme` | Tall sand dunes with wind ripples, a buggy and two sandboarders, around a desert lagoon with a small town on its far shore (arcades, coloured walls, windows that glow at night and are mirrored in the water), a wooden pier, two rowing boats and swaying palms, by day with the sun or at night with stars and the moon. It follows your light or dark mode. The palms sway, the boats bob, the lagoon ripples and the stars twinkle. The palms stand at both edges. |
 
+### Spain
+
+![Preview of alhambra-theme: the red fortress of Granada with the snowy Sierra Nevada behind, by day on the left and by night on the right](docs/previews/alhambra-theme.png)
+
+![Preview of sagrada-familia-theme: the spires of the Sagrada Familia with a crane and plane trees, by day on the left and by night on the right](docs/previews/sagrada-familia-theme.png)
+
+*Previews of the scenes alone, by day (left) and by night (right), drawn in a browser, without the app's blur and panels. They are drawings, not photographs.*
+
+| Mod | What it does |
+|---|---|
+| `alhambra-theme` | The red fortress of the Alhambra in Granada on its hill: crenellated walls, the tall tower of Comares, the Alcazaba towers, a palace block with a tiled roof and the great gate, with cypresses, the white houses of the Albaicin below and the snowy Sierra Nevada behind. By day with the sun, or at night floodlit with stars and lit windows. It follows your light or dark mode. The clouds drift and the stars and lights twinkle. |
+| `sagrada-familia-theme` | The tapering spires of the Sagrada Familia in Barcelona with their coloured fruit on top, a group at each side, a yellow building crane between them and plane trees in the street. By day with the sun, or at night floodlit with stars. It follows your light or dark mode. The clouds drift and the stars and lights twinkle. |
+
 ### Music
 
 | Mod | What it does |
@@ -141,6 +156,14 @@ In a terminal, start Claude Code (`claude`) and type, for each mod you want:
 
 ```
 /plugin install huacachina-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install alhambra-theme --marketplace malenaaza/pretty-mods
+```
+
+```
+/plugin install sagrada-familia-theme --marketplace malenaaza/pretty-mods
 ```
 
 ```

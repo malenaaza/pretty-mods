@@ -1,0 +1,12 @@
+{
+  "name": "sagrada-familia-theme",
+  "version": "0.1.0",
+  "description": "A Sagrada Familia look for Claude that follows your light or dark mode: the tapering spires with their coloured fruit, a building crane and plane trees, by day or floodlit at night, with frosted-glass panels behind the text.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
+}

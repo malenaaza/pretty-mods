@@ -1,0 +1,12 @@
+{
+  "name": "alhambra-theme",
+  "version": "0.1.0",
+  "description": "An Alhambra look for Claude that follows your light or dark mode: the red fortress of Granada on its hill with the snowy Sierra Nevada behind and the white houses of the Albaicin below, by day or floodlit at night, with frosted-glass panels behind the text.",
+  "author": {
+    "name": "malenaaza",
+    "url": "https://github.com/malenaaza"
+  },
+  "homepage": "https://github.com/malenaaza/pretty-mods",
+  "repository": "https://github.com/malenaaza/pretty-mods",
+  "license": "MIT"
+}

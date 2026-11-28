@@ -57,6 +57,16 @@
       "category": "theme"
     },
     {
+      "name": "alhambra-theme",
+      "source": "./plugins/alhambra-theme",
+      "category": "theme"
+    },
+    {
+      "name": "sagrada-familia-theme",
+      "source": "./plugins/sagrada-familia-theme",
+      "category": "theme"
+    },
+    {
       "name": "now-playing",
       "source": "./plugins/now-playing",
       "category": "extras"
